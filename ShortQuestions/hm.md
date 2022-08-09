@@ -28,7 +28,7 @@
 5. How to merge the branch_test to master branch in command?show me the commands
    1. git checkout master
    2. git merge branch_test 
-6. How to stash your new code before leaving branch branch_learn_stash and pop your stash when you checkout back to **branch_learn_stash ? try commands way and intellij way.
+6. How to stash your new code before leaving branch branch_learn_stash and pop your stash when you checkout back to branch_learn_stash ? try commands way and intellij way.
    - commands way 
    1. git checkout branch_learn_stash
    2. git stash
