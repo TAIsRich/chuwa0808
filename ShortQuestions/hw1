@@ -1,0 +1,26 @@
+#1
+
+See README.md
+
+#2
+git commit — add branch on main
+
+git branch — create a new branch at current main head
+
+git checkout name — set the working direction to newImage
+
+	git checkout name + git commit == git switch
+  
+	git checkout -b [branch_name] == git checkout name + git commit 
+  
+git checkout — *放到这个上去，当前working direction
+
+git merge — *在哪儿，就merge到谁上面
+
+rebase:
+
+git checkout 被copy的
+
+git rebase 目标— copy一份 c2 -> c2’   c2’加在main下面，要先checkout c2, 然后git rebase main
+
+
