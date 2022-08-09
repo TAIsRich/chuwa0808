@@ -1,12 +1,9 @@
 #1
-
 See README.md
 
 #2
 git commit — add branch on main
-
 git branch — create a new branch at current main head
-
 git checkout name — set the working direction to newImage
 
 	git checkout name + git commit == git switch
