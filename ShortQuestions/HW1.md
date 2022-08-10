@@ -12,12 +12,14 @@ git push origin/
 git reset --hard
 ```
 ### 3. What is the basic steps to init a git repo in you local ?
+```
 Create a directory to contain the project
 Go into the new directory
 Type git init 
 Write some code
 Type git add to add the files (see the typical use page)
 Type git commit 
+```
 ### 4. How to clone a repo from Github ?
 ```
 git clone
@@ -31,12 +33,13 @@ git checkout -b
 git checkout master
 git merge branch_test
 ```
-### 7. How to stash your new code before leaving branch branch_learn_stash and pop your stash when you
-checkout back to **branch_learn_stash ? try commands way and intellij way.
+### 7. How to stash your new code before leaving branch branch_learn_stash and pop your stash when you checkout back to **branch_learn_stash ? try commands way and intellij way.
+```
 Run git stash
 Check out other branch and push
 Check out branch_learn_stash
 Run git stash pop to get your stashed changes back
+```
 ### 8. How do you understand PR is based on Branch?
 A pull request is an event in Git where a contributor asks a maintainer of a Git repository (i.e. main branch) to review code they want to merge into main branch.
 ### 9. What is maven role ? what it be used to do ?
