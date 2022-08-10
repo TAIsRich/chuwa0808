@@ -1,0 +1,109 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Camel :: Web
+
+
+From: 'an unknown organization'
+  - AOP alliance (http://aopalliance.sourceforge.net) aopalliance:aopalliance:jar:1.0
+    License: Public Domain 
+  - JAXB RI (https://jaxb.dev.java.net/) com.sun.xml.bind:jaxb-impl:jar:2.1.13
+    License: CDDL 1.0  (https://glassfish.dev.java.net/public/CDDL+GPL.html)    License: GPL2 w/ CPE  (https://glassfish.dev.java.net/public/CDDL+GPL.html)
+  - JavaBeans Activation Framework (JAF) (http://java.sun.com/products/javabeans/jaf/index.jsp) javax.activation:activation:jar:1.1
+    License: Common Development and Distribution License (CDDL) v1.0  (https://glassfish.dev.java.net/public/CDDLv1.0.html)
+  - JSR-250 Common Annotations for the JavaTM Platform (http://jcp.org/aboutJava/communityprocess/final/jsr250/index.html) javax.annotation:jsr250-api:jar:1.0
+    License: COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0  (https://glassfish.dev.java.net/public/CDDLv1.0.html)
+  - Unnamed - javax.xml.bind:jaxb-api:jar:2.1  javax.xml.bind:jaxb-api:jar:2.1
+
+  - Streaming API for XML  javax.xml.stream:stax-api:jar:1.0-2
+    License: GNU General Public Library  (http://www.gnu.org/licenses/gpl.txt)    License: COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0  (http://www.sun.com/cddl/cddl.html)
+  - Unnamed - jdom:jdom:jar:1.0  jdom:jdom:jar:1.0
+
+  - Jettison  org.codehaus.jettison:jettison:bundle:1.2
+
+  - Unnamed - org.springframework:spring-aop:jar:3.0.5.RELEASE  org.springframework:spring-aop:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-asm:jar:3.0.5.RELEASE  org.springframework:spring-asm:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-beans:jar:3.0.5.RELEASE  org.springframework:spring-beans:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-context:jar:3.0.5.RELEASE  org.springframework:spring-context:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-core:jar:3.0.5.RELEASE  org.springframework:spring-core:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-expression:jar:3.0.5.RELEASE  org.springframework:spring-expression:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-tx:jar:3.0.5.RELEASE  org.springframework:spring-tx:jar:3.0.5.RELEASE
+
+  - Unnamed - org.springframework:spring-web:jar:3.0.5.RELEASE  org.springframework:spring-web:jar:3.0.5.RELEASE
+
+  - StAX API (http://stax.codehaus.org/) stax:stax-api:jar:1.0.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Apache Software Foundation' (http://www.apache.org)
+  - Apache Log4j (http://logging.apache.org/log4j/1.2/) log4j:log4j:bundle:1.2.16
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'FasterXML' (http://fasterxml.com)
+  - Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-core-asl:jar:1.5.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - JAX-RS provider for JSON content type (http://jackson.codehaus.org) org.codehaus.jackson:jackson-jaxrs:jar:1.5.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)    License: GNU Lesser General Public License (LGPL), Version 2.1  (http://www.fsf.org/licensing/licenses/lgpl.txt)
+  - Data Mapper for Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-mapper-asl:jar:1.5.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Xml Compatibility extensions for Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-xc:jar:1.5.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)    License: GNU Lesser General Public License (LGPL), Version 2.1  (http://www.fsf.org/licensing/licenses/lgpl.txt)
+
+From: 'FuseSource' (http://fusesource.com/)
+  - Scalate :: Core (http://scalate.fusesource.org/scalate-core) org.fusesource.scalate:scalate-core:jar:1.3.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'FuseSource' (http://www.fusesource.org)
+  - Commons Management (http://commonman.fusesource.org) org.fusesource.commonman:commons-management:bundle:1.0
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.html)
+
+From: 'LAMP/EPFL' (http://lamp.epfl.ch/)
+  - Unnamed - org.scala-lang:scala-compiler:jar:2.8.0 (http://www.scala-lang.org/) org.scala-lang:scala-compiler:jar:2.8.0
+    License: BSD-like  (http://www.scala-lang.org/downloads/license.html)
+  - Unnamed - org.scala-lang:scala-library:jar:2.8.0 (http://www.scala-lang.org/) org.scala-lang:scala-library:jar:2.8.0
+    License: BSD-like  (http://www.scala-lang.org/downloads/license.html)
+
+From: 'ObjectWeb' (http://www.objectweb.org/)
+  - ASM Core (http://asm.objectweb.org/asm) asm:asm:jar:3.1
+
+
+From: 'Oracle Corporation' (http://www.oracle.com/)
+  - jersey-atom (https://jersey.dev.java.net/jersey-atom) com.sun.jersey:jersey-atom:jar:1.4
+    License: CDDL 1.1  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)    License: GPL2 w/ CPE  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)
+  - jersey-core (https://jersey.dev.java.net/jersey-core) com.sun.jersey:jersey-core:bundle:1.4
+    License: CDDL 1.1  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)    License: GPL2 w/ CPE  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)
+  - jersey-json (https://jersey.dev.java.net/jersey-json) com.sun.jersey:jersey-json:bundle:1.4
+    License: CDDL 1.1  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)    License: GPL2 w/ CPE  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)
+  - jersey-server (https://jersey.dev.java.net/jersey-server) com.sun.jersey:jersey-server:bundle:1.4
+    License: CDDL 1.1  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)    License: GPL2 w/ CPE  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)
+  - jersey-spring (http://maven.apache.org) com.sun.jersey.contribs:jersey-spring:jar:1.4
+    License: CDDL 1.1  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)    License: GPL2 w/ CPE  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html)
+
+From: 'QOS.ch' (http://www.qos.ch)
+  - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:1.6.1
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+  - SLF4J LOG4J-12 Binding (http://www.slf4j.org) org.slf4j:slf4j-log4j12:jar:1.6.1
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+
+From: 'The Apache Software Foundation' (http://jakarta.apache.org)
+  - Logging (http://jakarta.apache.org/commons/logging/) commons-logging:commons-logging-api:jar:1.1
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - Commons Logging (http://commons.apache.org/logging) commons-logging:commons-logging:jar:1.1.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Camel :: Core (http://camel.apache.org/camel-parent/camel-core) org.apache.camel:camel-core:bundle:2.6.0
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Camel :: Spring (http://camel.apache.org/camel-parent/camel-spring) org.apache.camel:camel-spring:bundle:2.6.0
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
+
+
