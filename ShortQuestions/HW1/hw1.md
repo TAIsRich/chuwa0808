@@ -3,7 +3,7 @@
 ### 1. Learn **MarkDown** and show all of basic usage in the **ShortQuestions/README.md**.
 #### https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
-[README](https://github.com/TAIsRich/chuwa0808/blob/flora_zhong/hw1/ShortQuestions/HW1/README.md)
+[README](https://github.com/TAIsRich/chuwa0808/blob/Flora_Zhong/hw1/ShortQuestions/HW1/README.md)
 
 ### 2. Practice git using the platform. List the git commands you learned.
 #### https://learngitbranching.js.org/
