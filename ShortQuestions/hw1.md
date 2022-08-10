@@ -157,7 +157,7 @@ Plugins:
 1. groupID: com.chuwa.learn
 2. artifactID: java-core
 
-cheak the link below:
+check the link below:
 
 [module](https://github.com/TAIsRich/chuwa0808/blob/zhiyu_li/hw1/MavenProject/module/pom.xml)
 
