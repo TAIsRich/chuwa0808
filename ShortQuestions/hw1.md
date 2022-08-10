@@ -2,7 +2,7 @@
 
 Please check the link below
 
-[README](ShortQuestions/README.md)
+[README](https://github.com/TAIsRich/chuwa0808/blob/zhiyu_li/hw1/ShortQuestions/README.md)
 
 ### 2. practice git using the platform. list the git commands you learned
 	
@@ -159,6 +159,6 @@ Plugins:
 
 cheak the link below:
 
-[module](MavenProject/module/pom.xml)
+[module](https://github.com/TAIsRich/chuwa0808/blob/zhiyu_li/hw1/MavenProject/module/pom.xml)
 
 ### 14. Do Code Review: Go over the PRs in your repo, tried to leave some useful or useful comments in other students' PR, please don't merge it.
