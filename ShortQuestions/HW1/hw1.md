@@ -138,7 +138,6 @@ Maven is actually a plugin execution framework where every task is actually done
 - create project documentation
 - create project reports
 
-	
 Build plugins: 
 They execute during the build process and should be configured in the <build/> element of pom.xml.
 Reporting plugins:
