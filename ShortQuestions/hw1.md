@@ -35,7 +35,9 @@ git revert
 
 # Answer to question 3
 $pwd — check the current working direction
+
 $ cd cw/HW1
+
 $git init
 
 # Answer to question 4
