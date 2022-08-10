@@ -159,6 +159,6 @@ Plugins:
 
 cheak the link below:
 
-[module](MavenProject\module\pom.xml)
+[module](MavenProject/module/pom.xml)
 
 ### 14. Do Code Review: Go over the PRs in your repo, tried to leave some useful or useful comments in other students' PR, please don't merge it.
