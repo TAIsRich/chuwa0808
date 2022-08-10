@@ -2,7 +2,7 @@
 ## Nice meeting you all
 ###### Heading from largest to smallest: # - 6#
 
-![This is an image](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfPbgZoJrHUXmNlU3vPiS7zA7URNsd6I70Jg&usqp=CAU](https://www.clipartmax.com/png/middle/185-1850042_minion-waving-minion-quotes.png)
+![This is an image](https://www.seekpng.com/png/detail/306-3069752_minion-waving-nephew-minions-birthday-card.png)
 
 this is original text
 
@@ -20,16 +20,40 @@ _This is italicized text_
 
 <sup>This is a superscript text</sup>
 
-I will quote a text:
+### I will quote a text:
 
 > This is my quoted text
 
-I will quote some code:
+### I will quote some code:
 
 `this is my quoted code with ctrl+E`
 
-The background color should be `#ffffff` for light mode
+#### The background color should be `#ffffff` for light mode
 
-The background color should be `#0d1117` for dark mode
+#### The background color should be `#0d1117` for dark mode
 
-Reference: [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+### I will create an unordered list:
+- list 1
+  - list 1-1
+  - list 1-2 
+- list 2
+  - list 2-1
+
+### I will create an ordered list:
+1. list 1
+   - list 1-1
+   - list 1-2 
+2. list 2
+   - list 2-1
+
+### I will create a task list:
+- [x] this is selected
+- [ ] this is NOT selected
+- [ ] this is NOT selected, either
+- [ ] \(Optional) this is optional
+
+### here is the emoji :star_struck:
+check out the [Emoji-Cheat-Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
+### here is a footnote[^1]
+[^1]: a simple footnote
