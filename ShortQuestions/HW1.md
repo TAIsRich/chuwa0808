@@ -51,7 +51,9 @@ Maven is loaded with many valuable and useful features, which goes a long way to
 - Strong error and integrity reporting
 - Automatic parent versioning
 - Ensures consistent usage across all projects
+
 It’s extensible, and you can easily write plug-ins using scripting languages or Java.
+
 Maven is chiefly used for Java-based projects, helping to download dependencies, which refers to the libraries or JAR files. The tool helps get the right JAR files for each project as there may be different versions of separate packages. 
 ### 10. What is the lifecycle of maven? could you tell me the details ?
 1. Validate: This step validates if the project structure is correct. For example – It checks if all the dependencies have been downloaded and are available in the local repository.
@@ -65,17 +67,17 @@ Maven is chiefly used for Java-based projects, helping to download dependencies,
 ### 11. what is the difference between package and install in maven lifecycle ?
 mvn package command will compile source code and also package it as a jar or war as per pom file and put it into the target folder(by default). mvn install command will compile and package, but it will also put the package in your local repository.
 ### 12. What is plugins in maven, list some plugins.
-Build plugins: They execute during the build process and should be configured in the <build/> element of pom.xml.
-Reporting plugins: They execute during the site generation process and they should be configured in the <reporting/> element of the pom.xml.
-Following is the list of few common plugins:
-clean: Cleans up target after the build. Deletes the target directory.
-compiler: Compiles Java source files.
-surefire: Runs the JUnit unit tests. Creates test reports.
-jar: Builds a JAR file from the current project.
-war: Builds a WAR file from the current project.
-javadoc: Generates Javadoc for the project.
-antrun: Runs a set of ant tasks from any phase mentioned of the build.
+- Build plugins: They execute during the build process and should be configured in the <build/> element of pom.xml.
+- Reporting plugins: They execute during the site generation process and they should be configured in the <reporting/> element of the pom.xml.
+- Following is the list of few common plugins:
+- clean: Cleans up target after the build. Deletes the target directory.
+- compiler: Compiles Java source files.
+- surefire: Runs the JUnit unit tests. Creates test reports.
+- jar: Builds a JAR file from the current project.
+- war: Builds a WAR file from the current project.
+- javadoc: Generates Javadoc for the project.
+- antrun: Runs a set of ant tasks from any phase mentioned of the build.
 ### 13. In chuwa0808, MavenProject directory, create a maven Module using Intellij, named it as belows:
-    - 1. groupID: com.chuwa.learn
-    - 2. artifactID: java-core
+    1. groupID: com.chuwa.learn
+    2. artifactID: java-core
 ### 14. Do Code Review: Go over the PRs in your repo, tried to leave some useful or useful comments in other students' PR, please don't merge it
