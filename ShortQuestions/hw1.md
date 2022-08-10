@@ -43,15 +43,17 @@ $git clone https://github.com/url....
 
 # Answer to question 5
 git branch — create a new branch at current main head
+
 git checkout name — set the working direction to the node named "name"
 
 # Answer to question 6
 merge branch_test to master:
-git checkout main;   //* point to main
-git merge branch_test   //merge the selected to main
+- git checkout main;   //* point to main
+- git merge branch_test   //merge the selected to main
 
 # Answer to question 7
 $git checkout branch_learn_stash
+
 $git stash   //隐藏branch_learn_stash
 
 $git stash pop  //恢复，可以继续操作，并且恢复的同时把stash内容也删了
@@ -72,10 +74,12 @@ Maven:
 
 # Answer to question 10
 lifeCycle of maven.
+
 clean -> prepare-resources -> validate -> package -> install
 
 # Answer to question 11
 package -- where you create JAR/WAR file
+
 install -- where install the generated package on your own working directory
 
 # Answer to question 12
