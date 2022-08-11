@@ -157,6 +157,6 @@ List of a few common plugins:
 #### 1. groupID: com.chuwa.learn
 #### 2. artifactID: java-core
 
-[Maven Module](https://github.com/TAIsRich/chuwa0808/blob/flora_zhong/hw1/MavenProject/module/pom.xml)
+[Maven Module](https://github.com/TAIsRich/chuwa0808/blob/Flora_Zhong/hw1/MavenProject/module/pom.xml)
 
 ### 14. Do Code Review: Go over the PRs in your repo, tried to leave some useful or useful comments in other students' PR, please **do not** merge it.
