@@ -1,11 +1,16 @@
-1： Learn MarkDown and show all of basic usage in the ShortQuestions/README.md
-Markdown” is two things: (1) a plain text formatting syntax; and
-(2) a software tool, written in Perl, that converts the plain text formatting to HTML.
+### 1. Learn MarkDown and show all of basic usage in the ShortQuestions/README.md
+Markdown is two things:
+1. a plain text formatting syntax; and
+1. a software tool, written in Perl, that converts the plain text formatting to HTML.
  
-2: practice git using the platform. list the git commands you learned
-git commit, git branch, git checkout, git merge, git rebase
+### 2. practice git using the platform. list the git commands you learned
+- git commit
+- git branch
+- git checkout
+- git merge
+- git rebase
 
-3: What is the basic steps to init a git repo in you local ?
+### 3. What is the basic steps to init a git repo in you local ?
 Create a directory to contain the project.
 Go into the new directory.
 Type git init .
@@ -13,7 +18,7 @@ Write some code.
 Type git add to add the files.
 Type git commit .
 
-4. How to clone a repo from Github ?
+### 4. How to clone a repo from Github ?
 On GitHub.com, navigate to the main page of the repository.
 Above the list of files, click Code.
 Copy the URL for the repository. To clone the repository using HTTPS, under "HTTPS", click . ...
