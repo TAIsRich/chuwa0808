@@ -8,12 +8,13 @@ public class Ticket {
     private Date inTime;
     private Date outTime;
     private boolean payOrNot;
+    private int currentCapacity;
 
     public Ticket(int tId, String licensePlate, Date inTime, boolean payOrNot){
         this.tId = tId;
         this.licensePlate = licensePlate;
         this.inTime = inTime;
         this.payOrNot = payOrNot;
-
     }
+
 }
