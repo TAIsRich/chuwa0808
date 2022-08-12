@@ -72,15 +72,15 @@ Abstract class:
 - poll(), poll the top
 - peek(), look at the top but not pull
 
-#16. runtime(unchecked) vs. compile(checked)
+# 16. runtime(unchecked) vs. compile(checked)
 - compile(checked), haven’t run the code yet, but has compile error that can be fixed
 - runtime(unchecked), error during running
 
-#17. Throw and throws
+# 17. Throw and throws
 - throw: throw an exception within a method with a throwable class object
 - throws: put in the heading of the method, means there might be an error, and the method who invoke this method should catch the exception and deal with it.
 
-#18 Exception class
+# 18 Exception class
 Exception is the parent class for all other kinds of exceptions. If put Exception before the subclasses, the subclasses will not be reached since Exception will catch all exceptions. 
 
 When we put the subclass before parent class, then we can define how to catch a specific error and the rests will be catch by Exception.
