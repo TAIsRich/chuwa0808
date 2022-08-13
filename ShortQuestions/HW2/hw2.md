@@ -270,7 +270,19 @@ Concurrent Queue Implementations:
 [Java Queue Implementations2](./queue_interface_implementation2.png)
 
 
-### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
+###16. OutOfMemoryError and StackOverFlowError
+
+```
+java.lang.OutOfMemoryError: 
+- a runtime error 
+- occurs when the Java Virtual Machine (JVM) is unable to allocate an object into the insufficient space in the Java heap due to the Java Garbage Collector (GC) cannot free up the space required for the new object
+
+java.lang.StackOverflowError:
+- a runtime error 
+- the application stack is exhausted and is usually caused by deep or infinite recursion
+```
+
+### 17. What is Runtime/unchecked exception? what is Compile/Checked Exception?
 
 ```
 Exception is an unwanted or unexpected event, which occurs during the execution of a program, i.e. at run time, that disrupts the normal flow of the program’s instructions. In Java, there are two types of exceptions:
@@ -320,11 +332,11 @@ try-catch balock:
 ```
 [Exception](./exception.png)
 
-### 17. what is the difference between final, finally  and finalize?
+### 18. What is the difference between final, finally  and finalize?
 
 [Final vs. Finally vs._Finalize](./final_finally_finalize.png)
 
-### 18. what is the difference between throw and throws?
+### 19. What is the difference between throw and throws?
 
 ```
 throws: 
@@ -338,7 +350,7 @@ throw:
 - when it is required to throw an explicit exception logically
 ```
 
-### 19. Run the below three pieces codes, noticed the printed exceptions. Why do we put the Null/Runtime exception before Exception?
+### 20. Run the below three pieces codes, noticed the printed exceptions. Why do we put the Null/Runtime exception before Exception?
 
 ```
 public class Main {
