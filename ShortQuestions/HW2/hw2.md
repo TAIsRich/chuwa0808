@@ -320,7 +320,11 @@ try-catch balock:
 ```
 [Exception](./exception.png)
 
-### 17. what is the difference between throw and throws?
+### 17. what is the difference between final, finally  and finalize?
+
+[final_finally_finalize](./final_finally_finalize.png)
+
+### 18. what is the difference between throw and throws?
 
 ```
 throws: 
@@ -334,7 +338,7 @@ throw:
 - when it is required to throw an explicit exception logically
 ```
 
-### 18. Run the below three pieces codes, noticed the printed exceptions. Why do we put the Null/Runtime exception before Exception?
+### 19. Run the below three pieces codes, noticed the printed exceptions. Why do we put the Null/Runtime exception before Exception?
 
 ```
 public class Main {
