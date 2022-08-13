@@ -59,7 +59,7 @@ access modifier: set the access level for classes, constructors, attributes (fie
 
 scopes of access modifiers:
 ```
-[Access Modifier Scope](./access_modifier_scope)
+[Access Modifier Scope](./access_modifier_scope.png)
 
 ### 6. What is final keyword? (Filed, Method, Class)
 
@@ -70,7 +70,7 @@ Java final keyword is a non-access modifier used to restrict a class, variable a
 - If we declare a method as final, then it cannot be overridden by any subclasses.
 - If we declare a class as final, we restrict the other classes to inherit or extend it. In other words, the final classes can not be inherited by other classes.
 ```
-[Final Keyword](./final_keyword)
+[Final Keyword](./final_keyword.png)
 
 ### 7. What is static keyword? (Filed, Method, Class). When do we usually use it?
 
@@ -119,9 +119,9 @@ difference:
 
 ### 9. What is the differences between super and this?
 
-[Difference Between this and super Keyword](./this_super)
+[Difference Between this and super Keyword](./this_super.png)
 
-[Difference Between this() and super() Keyword](./this()_super())
+[Difference Between this() and super() Keyword](./this()_super().png)
 
 ### 10. What is the Java load sequence?
 
@@ -265,8 +265,8 @@ Concurrent Queue Implementations:
 - SynchronousQueue: a blocking queue where each insert operation must wait for a corresponding remove operation by another thread, and vice versa
 - DelayQueue: a time-based scheduling queue backed by a heap
 ```
-[Java Queue Implementations1](./queue_interface_implementation1)
-[Java Queue Implementations2](./queue_interface_implementation2)
+[Java Queue Implementations1](./queue_interface_implementation1.png)
+[Java Queue Implementations2](./queue_interface_implementation2.png)
 
 
 ### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
@@ -317,7 +317,7 @@ try-catch balock:
 - handle a exception: produce, print or solve
 - can be used in checked/unchecked exception
 ```
-[Exception](./exception)
+[Exception](./exception.png)
 
 ### 17. what is the difference between throw and throws?
 
