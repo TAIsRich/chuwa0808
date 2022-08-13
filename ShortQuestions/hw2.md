@@ -86,6 +86,8 @@ Without inheritance:
 - An interface can extend another Java interface only.
 ### 14. design a parking lot (put the code to codingQuestions/coding1 folder, )
 	If you have no ability to design it, please find the solution in internet, then understand it, then type it.(Do not just copy and paste)
+	
+[CODE](https://github.com/TAIsRich/chuwa0808/tree/zhiyu_li/hw2/codingQuestions/coding1/src/Parking_lot);
 ### 15. What are Queue interface implementations and what are the differences and when to use what?
 - The Queue interface is present in java.util package and extends the Collection interface is used to hold the elements about to be processed in FIFO(First In First Out) order. It is an ordered list of objects with its use limited to inserting elements at the end of the list and deleting elements from the start of the list, (i.e.), it follows the FIFO or the First-In-First-Out principle.
 - PriorityQueue: PriorityQueue class which is implemented in the collection framework provides us a way to process the objects based on the priority.
@@ -94,7 +96,7 @@ Without inheritance:
 ### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
 - a checked exception (also called a logical exception) in Java is something that has gone wrong in your code and is potentially recoverable.
 - An unchecked exception (also known as an runtime exception) in Java is something that has gone wrong with the program and is unrecoverable. 
-- the difference between a checked and unchecked exception is that a checked exception is caught at compile time whereas a runtime or unchecked exception is, as it states, at runtime. A checked exception must be handled either by re-throwing or with a try catch block, a runtime isn¡¯t required to be handled. An unchecked exception is a programming error and are fatal, whereas a checked exception is an exception condition within your codes logic and can be recovered or retried from.
+- the difference between a checked and unchecked exception is that a checked exception is caught at compile time whereas a runtime or unchecked exception is, as it states, at runtime. A checked exception must be handled either by re-throwing or with a try catch block, a runtime isnÂ¡Â¯t required to be handled. An unchecked exception is a programming error and are fatal, whereas a checked exception is an exception condition within your codes logic and can be recovered or retried from.
 ### 17. what is the difference between throw and throws?
 - The throw keyword is used inside a function. It is used when it is required to throw an Exception logically.
 - The throws keyword is used in the function signature. It is used when the function has some statements that can lead to exceptions.
