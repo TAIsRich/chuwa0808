@@ -224,7 +224,7 @@ an abstract class can contain a constructor as a regular class
 keyword implements
 ```
 
-### 14. Design a parking lot (put the code to codingQuestions/coding1 folder). If you have no ability to design it, please find the solution in the internet, then **understand** it, then **type** it, **do not just copy and paste**.
+### 14. Design a parking lot (put the code to CodingQuestions/Coding1 folder). If you have no ability to design it, please find the solution in the internet, then **understand** it, then **type** it, **do not just copy and paste**.
 
 [CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw2/CodingQuestions/Coding1/parkingLlot)
 
@@ -334,7 +334,7 @@ throw:
 - when it is required to throw an explicit exception logically
 ```
 
-### 18. Run the below three pieces codes, noticed the printed exceptions. Why do we put the Null/Runtime exception before Exception? (code is located under CodingQuestion/Coding1 folder)
+### 18. Run the below three pieces codes, noticed the printed exceptions. Why do we put the Null/Runtime exception before Exception?
 
 ```
 public class Main {
@@ -344,7 +344,8 @@ public class Main {
         String s = null; 
         try {
             System.out.println(b / a); 
-            System.out.println(s.equals("aa")); throw new RuntimeException();
+            System.out.println(s.equals("aa")); 
+            throw new RuntimeException();
         } catch (ArithmeticException e) { 
             e.printStackTrace();
         } catch (NullPointerException e) { 
@@ -404,4 +405,23 @@ public class Main {
         System.out.println("End ..."); 
     }
 }
+```
+
+```
+Line 4: error: ';' expected [in Main.java]
+int b = 3
+```
+
+```
+Put ArithmeticException (against b / a) and NullPointerException (against s.equals("aa")) ahead of RuntimeException, then put RuntimeException ahead of Exception. That is becase the inheritance relationship:
+
+- java.lang.Object
+	 java.lang.Throwable
+		 java.lang.Exception
+			 java.lang.RuntimeException
+				 java.lang.ArithmeticException or java.lang.NullPointerException
+
+- once the superclass (Exception class) run, will not reach out the subclass (ArithmeticException/NullPointerException class), which will lead to we cannot determine the specific exception the program produce
+
+- the scopes of exceptions in try-catch block should be in the form of a pyramid
 ```
