@@ -322,7 +322,7 @@ try-catch balock:
 
 ### 17. what is the difference between final, finally  and finalize?
 
-[final_finally_finalize](./final_finally_finalize.png)
+[Final vs. Finally vs._Finalize](./final_finally_finalize.png)
 
 ### 18. what is the difference between throw and throws?
 
