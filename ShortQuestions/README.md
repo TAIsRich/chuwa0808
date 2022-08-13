@@ -7,11 +7,11 @@
 
 
 1. First Create the Folder. e.g. (**HW1**)
-   1. Then
-      - first
-      - second
 
 2. Add the corresponding markdown file to the *folder*
+
+
+
 
 ~~strikethrought~~
 <sub>
