@@ -266,6 +266,7 @@ Concurrent Queue Implementations:
 - DelayQueue: a time-based scheduling queue backed by a heap
 ```
 [Java Queue Implementations1](./queue_interface_implementation1.png)
+
 [Java Queue Implementations2](./queue_interface_implementation2.png)
 
 
