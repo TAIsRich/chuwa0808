@@ -110,5 +110,5 @@ perform the same thing
 type B could substitute object of type A.
 4.  It means that for the class B to inherit class A, objects of type B and objects of type A must be same.
 ```
-1
+3
 ```
