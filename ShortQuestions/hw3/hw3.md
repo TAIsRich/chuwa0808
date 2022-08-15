@@ -1,124 +1,114 @@
-### 1. What is wrapper class in Java and Why we need wrapper class?
+### 1. What is the checked exception and unchecked exception in Java, could you give one example?
 ```
-A Wrapper class is a class whose object wraps or contains primitive data types. 
-
-Wrapper class is needed, because:
-1. They convert primitive data types into objects. Objects are needed if we wish to modify the arguments passed into a method (because primitive types are passed by value)
-2. The classes in java.util package handles only objects and hence wrapper classes help in this case also.
-3. Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
-4. An object is needed to support synchronization in multithreading.
+Unchecked Exceptions are the exceptions that occurs at the time of execution e.g. NullPointerException
+Checked Exceptions are the exceptions that are checked at compile time and must be handled e.g. IOException
 ```
 
-### 2. What is the difference between HashMap and HashTable?
+### 2. Can there be multiple finally blocks?
 ```
-1. HashMap is non-synchronized, while HashTable is synchronized
-2. HashMap’s object is not thread-safe (multiple threads can operate simultaneously), while HashTable is thread-safe (At a time only one thread is allowed to operate the Hashtable’s object)
-3. HashMap has higher performance because threads are not required to wait, while HashTable has lower performance because it increases the waiting time of the thread
-4. HashMap allows Null for both key and value, while HashTable doesn't allow Null for either key and value
-5. HashMap is non-legacy, while HashTable is is legacy
+You can only have one finally clause per try/catch/finally statement
+but you can have multiple such statements, either in the same method or in multiple methods.
 ```
 
-### 3. What is String pool in Java and why we need String pool
+### 3. When both catch and finally return values, what will be the final result?
 ```
-String pool is a separate place in the heap memory where the values of all the strings which are defined in the program are stored.
-We need it because Strings are immutable and the String Pool helps increase performance and decrease memory overhead.
-```
-
-### 4. What is Java garbage collection?
-```
-Garbage collection in Java is the process by which Java programs perform automatic memory management. The garbage collector finds these unused objects and deletes them to free up memory.
+Returned value from the finally block will be the final result
 ```
 
-### 5. What are access modifiers and their scopes in Java?
+### 4. What is optional? why do you use it? write an optional example
 ```
-Access modifiers in Java helps to restrict the scope of a class, constructor, variable, method, or data member. 
-There are 4 types of access modifiers:
-1. Default - visible only within the package (package private)
-2. Private - visible only within the class
-3. Protected - visible within the package or all subclasses
-4. Public - visible everywhere
+To avoid abnormal termination, we use the Optional class, which is a container object which may or may not contain a non-null value. 
+It can help in writing a neat code without using too many null checks. 
+By using Optional, we can specify alternate values to return or alternate code to run. 
+This makes the code more readable because the facts which were hidden are now visible to the developer.
+
+public class OptionalDemo {
+    public static void main(String[] args)
+    {
+        String[] words = new String[10];
+        Optional<String> checkNull
+            = Optional.ofNullable(words[5]);
+        if (checkNull.isPresent()) {
+            String word = words[5].toLowerCase();
+            System.out.print(word);
+        }
+        else
+            System.out.println("word is null");
+    }
+}
+
+Output:
+word is null
 ```
 
-### 6. What is final key word? (Filed, Method, Class)
+### 5. Why finally always be executed ?
 ```
-The final keyword is a non-access modifier that makes object non-changeable
-```
-
-### 7. What is static keyword? (Filed, Method, Class). When do we usually use it?
-```
-The static keyword is a non-access modifier that can be accessed without creating an object of a class.
-The static keyword belongs to the class instead of an object, so it is mainly used for memory management. 
+A finally block is always get executed to clean up the code or close any open file . 
 ```
 
-### 8. What is the differences between overriding and overloading? 
+### 7. What is Java 8 new features ?
 ```
-Overriding - the method signature (name and parameters) are the same in the superclass and the child class
-Overloading - two or more methods in the same class have the same name but different parameters
-```
-
-### 9. What is the differences between super and this?
-```
-this refers to the current class
-super refers to the parent class
-```
-
-### 10. What is the Java load sequence?
-```
-static variable/block -> constructo -> non static variable
+Lambda expression - A function that can be shared or referred to as an object.
+Functional Interfaces - Single abstract method interface.
+Method References - Uses function as a parameter to invoke a method.
+Default method - It provides an implementation of methods within interfaces enabling 'Interface evolution' facilities.
+Stream API - Abstract layer that provides pipeline processing of the data.
+Date Time API - New improved joda-time inspired APIs to overcome the drawbacks in previous versions
+Optional - Wrapper class to check the null values and helps in further processing based on the value.
+Nashorn, JavaScript Engine - An improvised version of JavaScript Engine that enables JavaScript executions in Java, to replace Rhino.
 ```
 
-### 11. What is Polymorphism? And how Java implements it?
+### 8. What are the types of design patterns in Java ?
 ```
-Polymorphism refers to the same object exhibiting different forms and behaviors. 
-There are two ways of implements it:
-- Static Polymorphism - Overload (same class) - compile time
-- Dynamic Polymorphism - Override (child class) - run tim
+A design patterns are well-proved solution for solving the specific problem/task and every design pattern has some specification or set of rules for solving the problems.
+
+There are mainly three types of design patterns, which are further divided into their sub-parts:
+
+1. Creational Design Pattern
+These design patterns are all about class instantiation or object creation. 
+These patterns can be further categorized into Class-creational patterns and object-creational patterns. 
+While class-creation patterns use inheritance effectively in the instantiation process, object-creation patterns use delegation effectively to get the job done. 
+Creational design patterns are the Factory Method, Abstract Factory, Builder, Singleton, Object Pool, and Prototype. 
+
+2. Structural Design Pattern
+These design patterns are about organizing different classes and objects to form larger structures and provide new functionality. 
+Structural design patterns are Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Private Class Data, and Proxy. 
+
+3. Behavioral Design Pattern
+Behavioral patterns are about identifying common communication patterns between objects and realizing these patterns. 
+Behavioral patterns are Chain of responsibility, Command, Interpreter, Iterator, Mediator, Memento, Null Object, Observer, State, Strategy, Template method, Visitor 
 ```
 
-### 12. What is Encapsulation? How Java implements it? And why we need encapsulation?
+### 9. What are the SOLID Principles ?
 ```
-Encapsulation in OOP refers to binding the data and the methods to manipulate that data together in a single unit (class)
-We can use access modifiers to impletemnt it
-Encapsulation is a way of restricting the access of our data members by hiding the implementation details. Encapsulation also improves the re-usability and is easy to change with new requirements.
+SOLID is an acronym for the first five object-oriented design (OOD) principles. SOLID stands for:
+
+S - Single-responsiblity Principle -> A class should have one and only one reason to change, meaning that a class should have only one job.
+O - Open-closed Principle -> Objects or entities should be open for extension but closed for modification.
+L - Liskov Substitution Principle -> Let q(x) be a property provable about objects of x of type T. Then q(y) should be provable for objects y of type S where S is a subtype of T.
+I - Interface Segregation Principle -> A client should never be forced to implement an interface that it doesn’t use
+D - Dependency Inversion Principle -> Entities must depend on abstractions, not on concretions. It states that the high-level module must not depend on the low-level module, but they should depend on abstractions.
 ```
 
-### 13. What is Interface and what is abstract class? What are the differences between them?
+### 10. How can you achieve thread-safe singleton patterns in Java ?
 ```
-An Interface is defined as an abstract type used to specify the behavior of a class. 
-An abstract class is a normal class that is declared using the abstract keyword. It permits you to make functionality that subclasses can implement or override
-
-Differences:
-1. A class can extend only one abstract class while a class can implement multiple interfaces.
-2. Interface can only contains abstract methods, but abstract class can contain both abstract and concrete methods
-3. You cannot use access modifiers in Interface, but you can in abstract class
-4. An interface can have only public abstract methods.	An abstract class has protected and public abstract methods
+A thread safe singleton is created so that singleton property is maintained even in multithreaded environment. To make a singleton class thread safe, getInstance() method is made synchronized so that multiple threads can’t access it simultaneously.
 ```
 
-### 15. What are Queue interface implementations and what are the differences and when to use what?
+### 11. What do you understand by the Open-Closed Principle (OCP) ?
 ```
-A queue is a linear data structure or a collection that stores elements in a FIFO (First In, First Out) order. 
-The two most common implementations are PriorityQueue and LinkedList.
-
-LinkedList is a linear data structure where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. 
-
-A PriorityQueue is used when the objects are supposed to be processed based on the priority. The PriorityQueue is based on the priority heap. The elements of the priority queue are ordered according to the natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used.  
+Open/closed principle states that software entities like class, modules, functions, etc.; should be able to extend a class behavior without modifying it. 
+This principle separates the existing code from modified mode to provide better stability, maintainability and minimizes the changes in the code. 
+In a nutshell, the developer must need to change only a specific part of the code (a class or a function) every time a requirement changes.
 ```
 
-### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
+### 12.  Liskov’s substitution principle states that if class B is a subtype of class A, then object of type A may be substituted with any object of type B. What does this actually mean? (from OA ) choose your answer.
+1.  It mean that if the object of type A can do something, the object of type B could also be able tp 
+perform the same thing
+2.  It means that all the objects of type A could execute all the methods present in its subtype B
+3.  It means if a method is present in class A, it should also be present in class B so that the object of 
+type B could substitute object of type A.
+4.  It means that for the class B to inherit class A, objects of type B and objects of type A must be same.
 ```
-Unchecked Exceptions are the exceptions that occurs at the time of execution
-Checked Exceptions are the exceptions that are checked at compile time and must be handled
-```
-
-### 17. what is the difference between throw and throws?
-```
-Both throw and throws are concepts of exception handling in Java. 
-The throws keyword is used to declare which exceptions can be thrown from a method
-The throw keyword is used to explicitly throw an exception within a method or block of code
-```
-
-### 18. Run the below three pieces codes, Noticed the printed exceptions. why do we put the Null/Runtime exception before Exception
-```
-Exception is the parent class for all other kinds of exceptions, which includes the Null/Runtime exception.
-If put Exception before the Null/Runtime exception, the Null/Runtime exception will not be reached since Exception will catch all exceptions.
+1
 ```
