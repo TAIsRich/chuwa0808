@@ -66,38 +66,41 @@ opt.ifPresent(value -> {System.out.println("test");});
 ### 8. What are the types of design patterns in Java ?
 1. Creational Design Patterns
 - These design patterns are all about class instantiation or object creation. These patterns can be further categorized into Class-creational patterns and object-creational patterns. While class-creation patterns use inheritance effectively in the instantiation process, object-creation patterns use delegation effectively to get the job done. 
- 1. Singleton Pattern
- 2. Factory Pattern
- 3. Abstract Factory Pattern
- 4. Builder Pattern
- 5. Prototype Pattern
+  1. Singleton Pattern
+  2. Factory Pattern
+  3. Abstract Factory Pattern
+  4. Builder Pattern
+  5. Prototype Pattern
+
 2. Structural Design Patterns
 - These design patterns are about organizing different classes and objects to form larger structures and provide new functionality. 
 - When 2 interfaces are not compatible with each other and want to establish a relationship between them through an adapter it¡¯s called an adapter design pattern. The adapter pattern converts the interface of a class into another interface or class that the client expects, i.e adapter lets classes work together that could not otherwise because of incompatibility. so in these types of incompatible scenarios, we can go for the adapter pattern. 
-1. Adapter Pattern
- 2. Composite Pattern
- 3. Proxy Pattern
- 4. Flyweight Pattern
- 5. Facade Pattern
- 6. Bridge Pattern
- 7. Decorator Pattern
+  1. Adapter Pattern
+  2. Composite Pattern
+  3. Proxy Pattern
+  4. Flyweight Pattern
+  5. Facade Pattern
+  6. Bridge Pattern
+  7. Decorator Pattern
+
 3. Behavioral Design Patterns
 - The template pattern defines the skeleton of an algorithm in an operation deferring some steps to sub-classes. The template method lets subclasses redefine certain steps of an algorithm without changing the algorithm structure. For example, in your project, you want the behavior of the module to be able to extend, such that we can make the module behave in new and different ways as the requirements of the application change, or to meet the needs of new applications. However, no one is allowed to make source code changes to it, i.e you can add but can¡¯t modify the structure in those scenarios a developer can approach template design pattern.
- 1. Template Method Pattern
- 2. Mediator Pattern
- 3. Chain of Responsibility Pattern
- 4. Observer Pattern
- 5. Strategy Pattern
- 6. Command Pattern
- 7. State Pattern
- 8. Visitor Pattern
- 9. Interpreter Pattern
- 10. Iterator Pattern
- 11. Memento Pattern
+  1. Template Method Pattern
+  2. Mediator Pattern
+  3. Chain of Responsibility Pattern
+  4. Observer Pattern
+  5. Strategy Pattern
+  6. Command Pattern
+  7. State Pattern
+  8. Visitor Pattern
+  9. Interpreter Pattern
+  10. Iterator Pattern
+  11. Memento Pattern
+
 4. Miscellaneous Design Patterns
- 1. DAO Design Pattern
- 2. Dependency Injection Pattern
- 3. MVC Pattern
+   1. DAO Design Pattern
+   2. Dependency Injection Pattern
+   3. MVC Pattern
 ### 9. What are the SOLID Principles ?
 - Single Responsibility Principle: It means a class should only have one reason to change, which means each class should be responsible for a single part or functionality of the system. As many as you can to break classes into smaller classes to add new features.
 - Open/Closed Principle: This principle states that ¡°software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification¡± which means you should be able to extend a class behavior, without modifying it.
