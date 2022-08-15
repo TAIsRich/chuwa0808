@@ -40,18 +40,22 @@ Eg: Optional<String> optional = Optional.empty();
 
 ### 5. Why finally always be executed ?
 ```
-The finally block is always get executed unless there is an abnormal program termination either resulting from a JVM crash or from a call to System.exit().
+The finally block is always get executed unless there is an abnormal program termination either resulting from a JVM crash or 
+from a call to System.exit().
 • A finally block is always get executed whether the exception has occurred or not.
 • If an exception occurs like closing a file or DB connection, then the finally block is used to clean up the code.
-• We cannot say the finally block is always executes because sometimes if any statement like System.exit() or some similar code is written into try block then program will automatically terminate and the finally block will not be executed in this case.
-• A finally block will not execute due to other conditions like when JVM runs out of memory when our java process is killed forcefully from task manager or console when our machine shuts down due to power failure and deadlock condition in our try block.
+• We cannot say the finally block is always executes because sometimes if any statement like System.exit() or some similar 
+code is written into try block then program will automatically terminate and the finally block will not be executed in this case.
+• A finally block will not execute due to other conditions like when JVM runs out of memory when our java process is killed 
+forcefully from task manager or console when our machine shuts down due to power failure and deadlock condition in our try block.
 ```
 
 ### 6. Practice collection problems here: https://github.com/TAIsRich/chuwa-eij-tutorial/tree/main/02-java-core/ src/main/java/com/chuwa/exercise/collection
 
 ### 7. What is Java 8 new features ?
 ```
-Java 8 was released on 18th March 2014. That’s a long time ago but still many projects are running on Java 8. It’s because it was a major release with a lot of new features. Let’s look at all the exciting and major features of Java 8 with example code.
+Java 8 was released on 18th March 2014. That’s a long time ago but still many projects are running on Java 8. It’s because it was 
+a major release with a lot of new features. Let’s look at all the exciting and major features of Java 8 with example code.
 Some of the important Java 8 features are;
 	1	forEach() method in Iterable interface
 	2	default and static methods in Interfaces
@@ -107,12 +111,15 @@ SOLID stands for:
 
 ### 10. How can you achieve thread-safe singleton patterns in Java ?
 ```
-A thread safe singleton is created so that singleton property is maintained even in multithreaded environment. To make a singleton class thread safe, getInstance() method is made synchronized so that multiple threads can’t access it simultaneously.
+A thread safe singleton is created so that singleton property is maintained even in multithreaded environment. 
+To make a singleton class thread safe, getInstance() method is made synchronized so that multiple threads 
+can’t access it simultaneously.
 ```
 
 ### 11. What do you understand by the Open-Closed Principle (OCP) ?
 ```
-the open–closed principle states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code.
+the open–closed principle states "software entities (classes, modules, functions, etc.) should be open for extension,
+but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code.
 ```
 
 ### 12. Liskov’s substitution principle states that if class B is a subtype of class A, then object of type A may be substituted with any object of type B. What does this actually mean? (from OA ) choose your answer. 1
