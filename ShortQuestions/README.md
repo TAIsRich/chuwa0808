@@ -309,7 +309,7 @@ public class Main {
     5. Dependency Inversion Principle
     
 10.  How can you achieve thread-safe singleton patterns in Java ?
-    
+    We can use the "Synchronized" keyword to apply the lock to the constructor of the singleton instance to achieve a thread-safe singleton pattern.
     
 11.  What do you understand by the Open-Closed Principle (OCP) ?
     In object-oriented programming, the open–closed principle states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code.
