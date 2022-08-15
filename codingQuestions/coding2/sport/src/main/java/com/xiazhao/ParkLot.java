@@ -1,11 +1,10 @@
+package com.xiazhao;
+
 import com.xiazhao.spot.CompactSpot;
 import com.xiazhao.spot.LargeSpot;
 import com.xiazhao.spot.MotorcycleSpot;
 import com.xiazhao.spot.Spot;
-import com.xiazhao.vehicle.Bus;
-import com.xiazhao.vehicle.Car;
-import com.xiazhao.vehicle.Motorcycle;
-import com.xiazhao.vehicle.Vehicle;
+import com.xiazhao.vehicle.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
