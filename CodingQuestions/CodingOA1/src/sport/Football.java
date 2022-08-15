@@ -3,7 +3,7 @@ package sport;
 import java.util.Arrays;
 
 public class Football implements Sport{
-  private int count;
+  private final int count;
   private int[] playerIDs;
 
   public Football() {
