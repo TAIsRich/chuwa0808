@@ -1,3 +1,5 @@
+package sport;
+
 public class Client {
     public static void main(String[] args) {
         Cricket cricket = new Cricket();
