@@ -31,8 +31,9 @@
    4. Interface Segregation Principle. A client should never be forced to implement an interface that it doesn’t use, or clients shouldn’t be forced to depend on methods they do not use.
    5. Dependency Inversion Principle. Entities must depend on abstractions, not on concretions. It states that the high-level module must not depend on the low-level module, but they should depend on abstractions.
 10. How can you achieve thread-safe singleton patterns in Java ?
-    *To make a singleton class thread safe, getInstance() method is made synchronized so that multiple threads can't access it simultaneously.
+    * To make a singleton class thread safe, getInstance() method is made synchronized so that multiple threads can't access it simultaneously.
 11. What do you understand by the Open-Closed Principle (OCP) ?
+    * The open–closed principle states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"
 12. Liskov’s substitution principle states that if class B is a subtype of class A, then object of type A may be substituted with any object of type B. What does this actually mean? (from OA ) choose your answer.
-    * 3. It means if a method is present in class A, it should also be present in class B so that the object of type B could substitute object of type A.
+    * 1.It means that if the object of type A can do something, the object of type B could also be able tp perform the same thing.
 13. Watch the design pattern video, and type the code, submit it to MavenProject folder singleton: https://www.bilibili.com/video/BV1Np4y1z7BU?p=22 Factory: https://www.bilibili.com/video/BV1Np4y1z7BU?p=35&vd_source=310561eab1216a27f7accf859bf7f6d9 Builder: https://www.bilibili.com/video/BV1Np4y1z7BU?p=50&vd_source=310561eab1216a27f7accf859bf7f6d9 Publisher_Subscriber: https://www.bilibili.com/video/BV1Np4y1z7BU?p=114&vd_source=310561eab1216a27f7accf859bf7f6d9
