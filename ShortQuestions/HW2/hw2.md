@@ -203,7 +203,8 @@ abstraction:
 - we can achieve abstraction with either abstract classes or interfaces, an abstract class cannot be used to create objects (to access an abstract class, it must be inherited by another concrete class), and an interface also cannot be used to create objects
 
 abstract class: 
-- a class that contains at least one abstract method, an abstract class can have abstract methods and / or non-abstract methods
+- a class that contains at least one abstract method
+- an abstract class can only have abstract methods, or have both abstract methods and non-abstract methods 
 - a non-abstract class can only have non-abstract methods
 - an abstract method does not have a body, the body is provided by the subclass inheriting from the abstract class
 
@@ -214,11 +215,10 @@ interface:
 
 difference between an abstract class and an interface:
 - an interface is abstract by default, then the modifier abstract is optional for an interface; the abstract modifier is necessary for an abstract class
-- an interface cannot contain a constructor (as it cannot be used to create objects);
-an abstract class can contain a constructor as a regular class
+- an interface cannot contain a constructor (as it cannot be used to create objects), but note Functional Interface in Java 8: there could be private constructor(s); an abstract class can contain a constructor as a regular class
 - all interface attributes are public, static and final by default, then the modifier public, static and final are optional (as an interface can only declare constants but not instance variables); for all abstract class attributes, the modifier public, default, protected, private, static and final must be shown explicitly if required
-- in Java 8, all non-default methods of interface are public and abstract by default, then the modifier public and abstract are optional, but default methods or static default methods are not abstract but concrete methods; for all abstract class methods, the modifier public, protected, private and abstract must be shown explicitly if required
-- we cannot define non-abstract methods in an interface, as all interface methods do not have a body, and the body is provided by the "implement" class; we can define abstract and / or non-abstract methods in an abstract class
+- before Java 8, we cannot define non-abstract methods in an interface, as all interface methods do not have a body, and the body is provided by the "implement" class; we can define abstract and non-abstract methods in an abstract class
+- in Java 8, all methods with default or satic keyword of an interface are concrete (static and default cannot be used together), all methods without default and satic keyword are public and abstract by default, then the modifier public and abstract are optional; for all abstract class methods, the modifier public, protected, private and abstract must be shown explicitly if required
 - an interface can extend single or multiple interfaces using the keyword entends; a (abstract or non-abstract) class can only extend a single abstract class using the keyword extends
 - an interface cannot implement single or multiple abstract classes; a (abstract or non-abstract) class can implement single or multiple interfaces with the
 keyword implements

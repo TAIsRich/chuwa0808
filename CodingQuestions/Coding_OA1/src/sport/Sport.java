@@ -5,7 +5,7 @@ import java.util.OptionalDouble;
 
 /**
  * @author Flora Zhong
- * @date 8/15/22
+ * @date 8/15/2022
  * @reference https://java2blog.com/format-double-to-2-decimal-places-java/
  */
 
