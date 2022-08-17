@@ -1,3 +1,5 @@
+package sport;
+
 import java.util.Arrays;
 
 public class Football implements Sport {
