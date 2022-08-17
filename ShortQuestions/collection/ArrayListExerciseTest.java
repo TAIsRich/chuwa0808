@@ -162,23 +162,23 @@ public class ArrayListExerciseTest {
             System.out.println(i.next());
         }
 
-           // sort
-            ArrayList<String> list2 = new ArrayList<String>();
-            list2.add("Volkswagen");
-            list2.add("Toyota");
-            System.out.println("Before Sorting: "+ list2);
-            Collections.sort(list);
-            System.out.println("After Sorting: "+ list2);
-
-            //Comparator.reverseOrder()
-         List<Integer> values
-                = Arrays.asList(212, 324,
-                435, 566,
-                133, 100,
-                121);
-
-         values.sort(Comparator.reverseOrder());
-         System.out.println(values);
+//           // sort
+//            ArrayList<String> list2 = new ArrayList<String>();
+//            list2.add("Volkswagen");
+//            list2.add("Toyota");
+//            System.out.println("Before Sorting: "+ list2);
+//            Collections.sort(list);
+//            System.out.println("After Sorting: "+ list2);
+//
+//            //Comparator.reverseOrder()
+//         List<Integer> values
+//                = Arrays.asList(212, 324,
+//                435, 566,
+//                133, 100,
+//                121);
+//
+//         values.sort(Comparator.reverseOrder());
+//         System.out.println(values);
 
 
 
