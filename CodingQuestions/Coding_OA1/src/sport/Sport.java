@@ -12,6 +12,7 @@ import java.util.OptionalDouble;
 public interface Sport {
   default void calculateAvgAge(int[] ages) {
     OptionalDouble opt = Arrays.stream(ages).average();
+
     if (opt.isPresent()) {
       double ave = opt.getAsDouble();
       System.out.println("The average age of thr team is " + String.format("%.2f", ave));
