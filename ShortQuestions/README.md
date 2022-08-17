@@ -240,3 +240,94 @@ public class Main {
         System.out.println("End ...");
     }
 }
+
+# HW3 # Template
+1.  What is the checked exception and unchecked exception in Java, could you give one example?
+    A checked exception is caught at compile time whereas a runtime or unchecked exception is, as it states, at runtime. A checked exception must be handled either by re-throwing or with a try catch block, whereas an unchecked isn't required to be handled.
+    
+    Examples:
+    Checked exception: IOException(e.g. FileNotFound) and SQLException(e.g. id/data does not exist)
+    Unchecked Exception: NullPointerException and IndexOutOfBoundException
+    
+2.  Can there be multiple finally blocks?
+    No
+ 
+3.  When both catch and finally return values, what will be the final result?
+    The returned value from the finally block.
+
+4.  What is optional? why do you use it? write an optional example
+    Finally is optional in the try-catch block. The finally block always executes when the try block exits. This ensures that the finally block is executed even if an unexpected exception occurs.Finally is useful for more than just exception handling — it allows the programmer to avoid having cleanup code accidentally bypassed by a return , continue , or break . Putting cleanup code in a finally block is always a good practice, even when no exceptions are anticipated.
+    Example:
+    try{
+    
+    }catch(Exception e){
+
+    }finally{
+
+    }
+    
+5.  Why finally always be executed?
+    The finally block executes regardless of whether an exception is thrown or caught. The finally block is usually used for clean-up purpose.
+    
+6.  Practice collection problems here: 
+    https://github.com/TAIsRich/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/exercise/collection
+
+    （Done separately)
+ 
+7.  What is Java 8 new features?
+    （Reference link: https://www.softwaretestinghelp.com/java/prominent-java-8-features/)
+    
+    Among the major changes, the following are the notable features that were added to this release.
+
+        Functional Interfaces and Lambda Expressions
+        forEach() method in Iterable interface
+        Optional class,
+        default and static methods in Interfaces
+        Method references
+        Java Stream API for Bulk Data Operations on Collections
+        Java Date Time API
+        Collection API improvements
+        Concurrency API improvements
+        Java IO improvements
+        Nashorn JavaScript engine
+        Base64 Encode Decode
+        Miscellaneous Core API improvements
+
+8.  What are the types of design patterns in Java ?
+    （Further reference link: https://springframework.guru/gang-of-four-design-patterns/)
+    There are three common types of design patterns in Java: 
+        1. Creational: These design patterns are all about class instantiation or object creation; 
+        2. Structural: These design patterns are about organizing different classes and objects to form larger structures and provide new functionality; and 
+        3. Behavioral: These patterns are designed depending on how one class communicates with others.
+
+9.  What are the SOLID Principles ?
+    SOLID principles are object-oriented design concepts relevant to software development.
+    1. Single Responsibility Principle
+    2. Open-Closed Principle
+    3. Liskov Substitution Principle
+    4. Interface Segregation Principle
+    5. Dependency Inversion Principle
+    
+10.  How can you achieve thread-safe singleton patterns in Java ?
+    We can use the "Synchronized" keyword to apply the lock to the constructor of the singleton instance to achieve a thread-safe singleton pattern.
+    
+11.  What do you understand by the Open-Closed Principle (OCP) ?
+    In object-oriented programming, the open–closed principle states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code.
+    
+12.  Liskov’s substitution principle states that if class B is a subtype of class A, then object of type A may be 
+substituted with any object of type B. What does this actually mean? (from OA ) choose your answer. （3）
+    1.  It mean that if the object of type A can do something, the object of type B could also be able to 
+    perform the same thing
+    2.  It means that all the objects of type A could execute all the methods present in its subtype B
+    3.  It means if a method is present in class A, it should also be present in class B so that the object of 
+    type B could substitute object of type A.
+    4.  It means that for the class B to inherit class A, objects of type B and objects of type A must be same.
+    
+13.  Watch the design pattern video, and type the code, submit it to MavenProject folder
+   singleton: https://www.bilibili.com/video/BV1Np4y1z7BU?p=22
+   Factory: https://www.bilibili.com/video/BV1Np4y1z7BU?p=35&vd_source=310561eab1216a27f7accf859bf7f6
+d9
+   Builder: https://www.bilibili.com/video/BV1Np4y1z7BU?p=50&vd_source=310561eab1216a27f7accf859bf7f6
+d9
+   Publisher_Subscriber: https://www.bilibili.com/video/BV1Np4y1z7BU?p=114&vd_source=310561eab1216a27f
+7accf859bf7f6d9
