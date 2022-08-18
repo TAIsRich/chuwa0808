@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamApiIntermediateOperation {
@@ -48,6 +49,24 @@ public class StreamApiIntermediateOperation {
     }
 
     @Test
-    public void 
+    public void testDistinct() {
+        int[] arr = new int[]{1, 2, 3, 4, 4, 3, 5};
+        IntStream intStream = Arrays.stream(arr);
+        intStream.distinct().forEach(System.out::println);
+    }
+
+    @Test
+    public void testMap() {
+        List<String> list = Arrays.asList("aa", "bb", "cc");
+        list.stream().map(String::toUpperCase).forEach(System.out::println);
+    }
+
+    @Test
+    public void testFlatMap() {
+        List<String> list = Arrays.asList("aa", "bb", "cc", "dd");
+
+        System.out.println("****** 使用map ********");
+
+     }
 
 }
