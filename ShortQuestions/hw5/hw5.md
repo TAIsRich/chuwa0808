@@ -1,124 +1,169 @@
-### 1. What is wrapper class in Java and Why we need wrapper class?
+### 2. Explain volatile variables in java? (we also use it in Singleton)
 ```
-A Wrapper class is a class whose object wraps or contains primitive data types. 
-
-Wrapper class is needed, because:
-1. They convert primitive data types into objects. Objects are needed if we wish to modify the arguments passed into a method (because primitive types are passed by value)
-2. The classes in java.util package handles only objects and hence wrapper classes help in this case also.
-3. Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
-4. An object is needed to support synchronization in multithreading.
+Volatile is a way of making class thread-safe
+The volatile instance can be used by multiple threads at the same time without any problem
 ```
 
-### 2. What is the difference between HashMap and HashTable?
+### 3. how to create a new thread(Please also consider Thread Pool case)?
 ```
-1. HashMap is non-synchronized, while HashTable is synchronized
-2. HashMap’s object is not thread-safe (multiple threads can operate simultaneously), while HashTable is thread-safe (At a time only one thread is allowed to operate the Hashtable’s object)
-3. HashMap has higher performance because threads are not required to wait, while HashTable has lower performance because it increases the waiting time of the thread
-4. HashMap allows Null for both key and value, while HashTable doesn't allow Null for either key and value
-5. HashMap is non-legacy, while HashTable is is legacy
+public class MyThread extends Thread{
+    @override
+    public void run() {
+        System.out.println("New thread");
+    }
+}
+
+Thread t = new MyThread();
+t.start();
 ```
 
-### 3. What is String pool in Java and why we need String pool
 ```
-String pool is a separate place in the heap memory where the values of all the strings which are defined in the program are stored.
-We need it because Strings are immutable and the String Pool helps increase performance and decrease memory overhead.
+public class MyRunnable implements Runnable{
+    @override
+    public void run(){
+        System.out.println("New thread");
+    }
+}
+
+Thread t = new Thread(MyRunnable());
+t.start();
 ```
 
-### 4. What is Java garbage collection?
 ```
-Garbage collection in Java is the process by which Java programs perform automatic memory management. The garbage collector finds these unused objects and deletes them to free up memory.
-```
-
-### 5. What are access modifiers and their scopes in Java?
-```
-Access modifiers in Java helps to restrict the scope of a class, constructor, variable, method, or data member. 
-There are 4 types of access modifiers:
-1. Default - visible only within the package (package private)
-2. Private - visible only within the class
-3. Protected - visible within the package or all subclasses
-4. Public - visible everywhere
+public class MyCallable implements Callable<String>{
+    @override
+    public String call() throw Exception{
+        "New thread";
+    }
+}
 ```
 
-### 6. What is final key word? (Filed, Method, Class)
 ```
-The final keyword is a non-access modifier that makes object non-changeable
-```
-
-### 7. What is static keyword? (Filed, Method, Class). When do we usually use it?
-```
-The static keyword is a non-access modifier that can be accessed without creating an object of a class.
-The static keyword belongs to the class instead of an object, so it is mainly used for memory management. 
+// create a thread pool with four threads
+ExecutorService es = Executors.newFixedThreadPool(4);
 ```
 
-### 8. What is the differences between overriding and overloading? 
+### 4. Difference between Runnable and Callable
 ```
-Overriding - the method signature (name and parameters) are the same in the superclass and the child class
-Overloading - two or more methods in the same class have the same name but different parameters
-```
-
-### 9. What is the differences between super and this?
-```
-this refers to the current class
-super refers to the parent class
+Runnable has no returns, while Callable has return
 ```
 
-### 10. What is the Java load sequence?
+### 5. what is the diff between t.start() and t.run()?
 ```
-static variable/block -> constructo -> non static variable
-```
-
-### 11. What is Polymorphism? And how Java implements it?
-```
-Polymorphism refers to the same object exhibiting different forms and behaviors. 
-There are two ways of implements it:
-- Static Polymorphism - Overload (same class) - compile time
-- Dynamic Polymorphism - Override (child class) - run tim
+t.start() starts a new thread, while t.run() only runs it at the current thread
 ```
 
-### 12. What is Encapsulation? How Java implements it? And why we need encapsulation?
+### 6. Which way of creating threads is better: Thread class or Runnable interface?
 ```
-Encapsulation in OOP refers to binding the data and the methods to manipulate that data together in a single unit (class)
-We can use access modifiers to impletemnt it
-Encapsulation is a way of restricting the access of our data members by hiding the implementation details. Encapsulation also improves the re-usability and is easy to change with new requirements.
+Implementing Runnable is better because it allows us to extend any other class
 ```
 
-### 13. What is Interface and what is abstract class? What are the differences between them?
+### 7. what is the thread status?
 ```
-An Interface is defined as an abstract type used to specify the behavior of a class. 
-An abstract class is a normal class that is declared using the abstract keyword. It permits you to make functionality that subclasses can implement or override
-
-Differences:
-1. A class can extend only one abstract class while a class can implement multiple interfaces.
-2. Interface can only contains abstract methods, but abstract class can contain both abstract and concrete methods
-3. You cannot use access modifiers in Interface, but you can in abstract class
-4. An interface can have only public abstract methods.	An abstract class has protected and public abstract methods
-```
-
-### 15. What are Queue interface implementations and what are the differences and when to use what?
-```
-A queue is a linear data structure or a collection that stores elements in a FIFO (First In, First Out) order. 
-The two most common implementations are PriorityQueue and LinkedList.
-
-LinkedList is a linear data structure where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. 
-
-A PriorityQueue is used when the objects are supposed to be processed based on the priority. The PriorityQueue is based on the priority heap. The elements of the priority queue are ordered according to the natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used.  
+There are six different thread status:
+- New (thread object has been created but haven't used the start method)
+- Runnable (thread is running or it's ready to take task)
+- Blocked (blocked at lock)
+- Waiting (thread is waiting)
+- Timed-waiting (return after certain time of waiting)
+- Terminated (thread is terminated)
 ```
 
-### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
+### 8. difference between wait() and sleep() method 
 ```
-Unchecked Exceptions are the exceptions that occurs at the time of execution
-Checked Exceptions are the exceptions that are checked at compile time and must be handled
-```
-
-### 17. what is the difference between throw and throws?
-```
-Both throw and throws are concepts of exception handling in Java. 
-The throws keyword is used to declare which exceptions can be thrown from a method
-The throw keyword is used to explicitly throw an exception within a method or block of code
+Wait() releases the lock while sleep() does NOT release the lock
 ```
 
-### 18. Run the below three pieces codes, Noticed the printed exceptions. why do we put the Null/Runtime exception before Exception
+### 9. What is deadlock?
 ```
-Exception is the parent class for all other kinds of exceptions, which includes the Null/Runtime exception.
-If put Exception before the Null/Runtime exception, the Null/Runtime exception will not be reached since Exception will catch all exceptions.
+Deadlock is a status when the two locks are accquired by two different thread, which leads to no thread is able to use the method
+```
+
+### 10. how do threads communicate with each other?
+```
+All the threads in the same program share the same memory space. 
+If an object is accessible to various threads then these threads share access to that object's data member and thus communicate each other. 
+The second way for threads to communicate is by using thread control methods.
+```
+
+### 11. what is join() method?
+```
+When main thread calls t.join(), it stops and waits for t thread end. The main thread is in Timed-Waiting status.
+```
+
+### 12. what is yield() method
+```
+The yield() means that the thread is not doing anything particularly important and if any other threads or processes need to be run, they should run. 
+Otherwise, the current thread will continue to run.
+```
+
+### 13. Explain thread pool
+```
+A thread pool reuses previously created threads to execute current tasks 
+and offers a solution to the problem of thread cycle overhead and resource thrashing. 
+Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, 
+making the application more responsive.
+```
+
+### 14. What is Executor Framework in Java, its different types and how to create these executors?
+```
+Executor Framework provides factory methods that are being used to create ThreadPools and efficiently manage multiple threads.
+
+Some types of Executor Framework:
+- FixedThreadPool：线程数固定的线程池；
+- CachedThreadPool：线程数根据任务动态调整的线程池；
+- SingleThreadExecutor：仅单线程执行的线程池。
+
+to create a executor:
+ExecutorService executor = Executors.newFixedThreadPool(2);
+ExecutorService executor = Executors.newSingleThreadExecutor();
+ExecutorService executor = Executors.newCachedThreadPool();
+```
+
+### 15. Difference between shutdown() and shutdownNow() methods of executor
+```
+shutdown() will allow previously submitted tasks to execute before terminating and will not accept new tasks
+shutdownNow() does what shutdown() doese and also attempts to stop currently executing tasks.
+```
+
+### 16. What is Atomic classes? when do we use it?
+```
+Objects of Atomic classes represent the atomic variable and this ensures the multithread safety.
+We can use it on number counter and accumulator
+```
+
+### 17. What is the cocurrent collections?
+```
+All the classes present in Concurrent Collections are synchronized in nature, so we don't have to take care about Thread-safety.
+
+List  ArrayList             CopyOnWriteArrayList
+Map   HashMap               ConcurrentHashMap
+Set   HashSet/TreeSet       CopyOnWriteArraySet
+Queue ArrayDeque/LinkedList ArrayBlockingQueue/LinkedBlockingQueue
+Deque ArrayDeque/LinkedList LinkedBlockingDeque
+```
+
+### 18. what kind of locks you know?
+```
+- ReentrantLock: allows threads to enter into the lock on a resource more than once
+- ReadWriteLock: allows only one thread to write, but when several threads request to read, it will allow if no thread is writing
+- StampedLock: perform optimistic reads - allows writing when reading
+```
+
+### 19. What is the difference between class lock and object lock?
+```
+Object Locks − It can be used when you want non-static method or non-static block of the code should be accessed by only one thread. 
+Class locks − It can be used when we want to prevent multiple threads to enter the synchronized block in any of all available instances on runtime.
+```
+
+### 20. What is future and completableFuture?
+```
+When the call() method completes, answer must be stored as a Future object for the main thread to use further
+CompletableFuture is used for asynchronous programming which is a means of writing non-blocking code by running a task on a separate thread 
+than the main application thread and notifying the main thread about its progress, completion, or failure.
+```
+
+### 21. what is ThreadLocal?
+```
+The TheadLocal construct allows us to store data that will be accessible only by a specific thread.
 ```
