@@ -1,0 +1,39 @@
+# 4. 
+
+Runtime Exception: run the code then know if there is an error.
+
+NPE and IndexOutOfBound
+
+##### 5. LinkedList, ListNode.next, if ListNode is null, then it will NPE
+
+# 6. Optional is a container object used to contain not-null objects. Optional object is used to represent null with absent value. This class has various utility methods to facilitate code to handle values as ‘available’ or ‘not available’ instead of checking null values.
+
+
+# 7. Functional Interface – an annotation for interface
+Has only one abstract method
+Has a lot default methods
+Will have a sanity check
+Lambda is the implementation of the abstract method
+
+# 8. Lambda
+Replace anonymous inner class
+Work with functional interface
+内部可以调用的object – final修饰 || 从来没有改变过值的object || object地址没变
+
+# 9. Method Reference
+
+Method references are a special type of lambda expressions. They're often used to create simple lambda expressions by referencing existing methods.
+
+There are four kinds of method references:
+Static methods
+Instance methods of particular objects
+Instance methods of an arbitrary object of a particular type
+Constructor
+
+
+# 10. Java 8 new features that we need to know:
+Functional Interfaces.
+Lambda expressions.
+
+
+# 11. Yes. The object didn’t change. 
