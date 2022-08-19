@@ -1,0 +1,8 @@
+/*
+write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print
+2,4,6,8,10.
+
+a. One solution use synchronized and wait notify
+b. One solution use ReentrantLock and await, signal
+
+ */

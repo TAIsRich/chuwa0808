@@ -1,0 +1,18 @@
+23. write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print
+2,4,6,8,10. (solution is in
+com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
+    a. One solution use synchronized and wait notify
+    b. One solution use ReentrantLock and await, signal
+
+    Thread-0: 1
+    Thread-1: 2
+    Thread-0: 3
+    Thread-1: 4
+    Thread-0: 5
+    Thread-1: 6
+    Thread-0: 7
+    Thread-1: 8
+    Thread-0: 9
+    Thread-1: 10
+    Process finished with exit code 0
+

@@ -398,4 +398,157 @@ a. https://blog.devgenius.io/15-practical-exercises-help-you-master-java-stream-
     Below are the major Java 8 new features: 1) Default methods and static methods in interface; 2) Lambda and Functional Interface; 3) Optional Class; 4) Method Reference; 5) Stream APIs.
 
 11. Lambda can use unchanged variable outside of lambda? what is the details?
-    Yes, lambda can use unchanged variable outside of lambda, as long as the variable is final or effectively final (non-final variables however never changed); for object variable, if it is changed, it cannot be used in lambda. 
+    Yes, lambda can use unchanged variable outside of lambda, as long as the variable is final or effectively final (non-final variables however never changed); for object variable, if it is changed, it cannot be used in lambda.
+    
+
+# HW5 # Template
+HW24 (HW5)
+
+1.  remeber pull the new code from that repo
+2.  Explain volatile variables in java? (we also use it in Singleton)
+    The Java volatile keyword guarantees variable visibility across threads, meaning reads and writes are visible across threads.
+    
+3.  how to create a new thread(Please also consider Thread Pool case)?
+    There are three different ways to creat a new thread:
+        1. Extends thread class
+        2. Implements Runnable
+        3. Implements Callable
+        (detailed codes under codingQuestion)
+        
+4.  Difference between Runnable and Callable
+    Runnable has no return while callable has return.
+    
+5.  what is the diff between t.start() and t.run()?
+    t.start() starts a new thread to execute the task (defined under run()); 
+    t.run() executes the task in the current thread.
+    
+6.  Which way of creating threads is better: Thread class or Runnable interface?
+    Implementing the runnable interface is preferred as it allows more flexibility. While implementing Runnable interface, we can extend any other class; if we extend Thread, then the action we are doing is always going to be in a thread.
+    
+7.  what is the thread status?
+    A thread can be in only one state at a given point of time. The different status of a thread include the following: New, Runnable, Blocked, Waiting, Timed_Waiting, and Terminated.
+    
+8.  difference between wait() and sleep() method
+    For wait() method, thread goes in waiting state and it won’t come back automatically until we call the notify() or notifyAll(); however, sleep() can be used to pause the process for few seconds or the time we want to. The major difference is that wait() releases the lock or monitor while sleep() doesn’t releases the lock or monitor while waiting. wait() is used for inter-thread communication while sleep() is used to introduce pause on execution, generally.
+
+9.  What is deadlock?
+    Deadlock is a condition where two or more threads are blocked forever, waiting for each other. This usually happens when multiple threads need the same locks but obtain them in different orders. 
+    
+10. how do threads communicate with each other?
+    If an object is accessible to various threads then these threads share access to that object's data member and thus communicate each other. The second way for threads to communicate is by using thread control methods: 1) wait(); 2)notify(); and 3) notifyAll().
+
+11. what is join() method?
+    Join method in Java allows one thread to wait until another thread completes its execution. In simpler words, it means it waits for the other thread to die. It has a void type and throws InterruptedException.
+    Example as follows:
+    1. Main thread call t.join()
+    2. Main thread will stop and wait for thread t complets its task
+    3. Main thread will continue after t finished its task
+    
+12. what is yield() method
+    A yield() method is a static method of Thread class, and it can stop the currently executing thread and will give a chance to other waiting threads of the same priority. If in case there are no waiting threads or if all the waiting threads have low priority, then the same thread will continue its execution.
+    
+13. Explain thread pool
+    A thread pool is a collection of pre-initialized threads. Generally, the collection size is fixed, but it is not mandatory. It facilitates the execution of N number of tasks using the same threads. If there are more tasks than threads, then tasks need to wait in a queue like structure (FIFO – First in first out).
+    
+    A thread pool reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing*.
+    
+    *Thrashing is a state in which our CPU perform 'productive' work less and 'swapping' more. CPU is busy in swapping pages, so much that it can not respond to user program as much as required. Why it occurs : In our system, Thrashing occurs when there are too much pages in our memory, and each page refers to another page.
+    
+14. What is Executor Framework in Java, its different types and how to create these executors?
+    The Executor Framework contains a bunch of components that are used to efficiently manage multiple threads. Executor service manage thread in asynchronous way. Executor is a very simple interface with a single execute method accepting Runnable instances for execution.
+    
+    The common classes for implementation of Executor interfaces are as follows:
+        1. Fixed Thread Pool : A thread pool with a fixed number of threads. If a thread is not available for the task, the task is put in queue waiting for an other task to ends. Method : Executors.newFixedThreadPool()
+        2. Cached Thread Pool : A thread pool that creates as many threads it needs to execute the task in parrallel. The old available threads will be reused for the new tasks. If a thread is not used during 60 seconds, it will be terminated and removed from the pool. Method : Executors.newCachedThreadPool()
+        3. Single Thread Executor : A thread pool with only one thread. So all the submitted tasks will be executed sequentially. Method : Executors.newSingleThreadExecutor()
+        4. Scheduled Thread Pool : A thread pool made to schedule future task. Method : Executors.newScheduledThreadPool()
+        5. Single Thread Scheduled Pool : A thread pool with only one thread to schedule future task. Method : Executors.newSingleThreadScheduledExecutor()
+
+15. Difference between shutdown() and shutdownNow() methods of executor
+    The shutdown() method will allow previously submitted tasks to execute before terminating, while the shutdownNow() method prevents waiting tasks from starting and attempts to stop currently executing tasks.
+
+16. What is Atomic classes? when do we use it?
+    The atomic classes provide a lock-free and thread-safe environment or programming on a single variable. It also supports atomic operations.Atomic operations are those operations that always execute together. All the atomic classes have the get() and set() methods that work on the volatile variable. The method works the same as read and writes on volatile variables.
+    
+17. What is the cocurrent collections?
+    Concurrent package includes a number of additions to the Java Collections Framework. Using the concurrent collections can achieve thread-safety by dividing their data into segments. 
+
+18. what kind of locks you know? 
+    1. ReentrantLock
+    2. ReadWriteLock
+    3. StampedLock
+    
+19. What is the difference between class lock and object lock?
+    Object Level Locks − Object level lock is mechanism when we want to synchronize a non-static method or non-static code block such that only one thread will be able to execute the code block on given instance of the class. This should always be done to make instance level data thread safe. It can be used when you want non-static method or non-static block of the code should be accessed by only one thread. 
+    Class Level locks − Class level lock prevents multiple threads to enter in synchronized block in any of all available instances of the class on runtime. Class level locking should always be done to make static data thread safe. It can be used when we want to prevent multiple threads to enter the synchronized block in any of all available instances on runtime.J
+
+20. What is future and completableFuture?
+
+    A Future represents the result of an asynchronous computation. The Future interface is an interface that represents a result that will eventually be returned in the future. After we submit a callable task, we will get a Future object. When we call the get() method of the Future object, we can get the result of asynchronous computation. If the asynchronous task has been completed, we will get the result; otherwise, the get() method would be blocked and will only return the result when the task is completed.
+
+    A CompletableFuture class is also a Future class. It implements the Future interface. CompletableFuture is used for asynchronous programming in Java. Asynchronous programming is a means of writing non-blocking code by running a task on a separate thread than the main application thread and notifying the main thread about its progress, completion or failure. ComletableFuture reduces blocking operations because you don't have to wait for the completion explicitly at each stage. When the asynchronous task is completed or encounter any exception, the CompletableFuture class can automatically call the callback method of the callback object. 
+    
+
+21. what is ThreadLocal?
+
+    The ThreadLocal class is used to create thread local variables which can only be read and written by the same thread. For example, if two threads are accessing code having reference to same threadLocal variable then each thread will be independent from the other and will not see any modification to threadLocal variable done by other thread.
+    
+    When using ThreadLocal, we will need to use the try-finally blocks and execute a clean-up in the finally block.
+
+22. Type the code by your self and try to understand it. (package: com.chuwa.tutorial.t08_multithreading)
+        Done separately under  codingQuestions.
+
+23. write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. (solution is in 
+com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
+    
+        Done separately under  codingQuestions.
+    
+    a. One solution use synchronized and wait notify 
+    b. One solution use ReentrantLock and await, signal
+        Thread-0: 1
+        Thread-1: 2
+        Thread-0: 3
+        Thread-1: 4
+        Thread-0: 5
+        Thread-1: 6
+        Thread-0: 7
+        Thread-1: 8
+        Thread-0: 9
+        Thread-1: 10
+        Process finished with exit code 0
+    
+24. create 3 threads, one thread ouput 1-10, one thread output 11-20, one thread output 21-22. threads run sequence is random. (solution is in com.chuwa.exercise.t08_multithreading.PrintNumber1)
+
+        Done separately under  codingQuestions.
+
+    Thread-0: 1
+    Thread-0: 2
+    Thread-0: 3
+    Thread-0: 4
+    Thread-0: 5
+    Thread-0: 6
+    Thread-0: 7
+    Thread-0: 8
+    Thread-0: 9
+    Thread-0: 10
+    Thread-2: 11
+    Thread-2: 12
+    Thread-2: 13
+    Thread-2: 14
+    Thread-2: 15
+    Thread-2: 16
+    Thread-2: 17
+    Thread-2: 18
+    Thread-2: 19
+    Thread-2: 20
+    Thread-1: 21
+    Thread-1: 22
+    Thread-1: 23
+    Thread-1: 24
+    Thread-1: 25
+    Thread-1: 26
+    Thread-1: 27
+    Thread-1: 28
+    Thread-1: 29
+    Thread-1: 30
+

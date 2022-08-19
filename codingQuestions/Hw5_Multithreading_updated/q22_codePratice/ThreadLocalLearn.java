@@ -1,0 +1,35 @@
+package Hw5_Multithreading_updated.q22_codePratice;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ThreadLocalLearn {
+    public static void main(String[] args) {
+        MyData myData = new MyData();
+
+        ExecutorService threadPool = Executors.newFixedThreadPool(3);
+
+        try {
+            for (int i = 0; i < 3; i++) {
+                threadPool.submit(() -> {
+                    try {
+                        for (int j = 0; j < 5; j++) {
+                            Integer beforeInt = myData.threadLocalField.get();
+                            myData.add();
+                            Integer afterInt = myData.threadLocalField.get();
+                            System.out.println(Thread.currentThread().getName() + "\t" + "beforeInt:" + beforeInt + "\t afterInt: " + afterInt);
+                        }
+                    } finally {
+                        // The current thread's value for this thread-local variable must be removed,
+                        // or it may cause memory leaks.
+                        myData.threadLocalField.remove();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            threadPool.shutdown();
+        }
+    }
+}
