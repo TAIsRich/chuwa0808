@@ -331,3 +331,71 @@ d9
 d9
    Publisher_Subscriber: https://www.bilibili.com/video/BV1Np4y1z7BU?p=114&vd_source=310561eab1216a27f
 7accf859bf7f6d9
+
+
+# HW4 # Template
+HW23 (HW4)
+1.  Read those codes and type it one by one by yourself. the push the code to your branch.
+https://github.com/TAIsRich/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8
+
+    Done separately under CodingQuestions.
+    
+2.  practice stream API at least 3 times
+a. https://blog.devgenius.io/15-practical-exercises-help-you-master-java-stream-api-3f9c86b1cf82
+
+    Done separately under CodingQuestions.
+    
+3.  Write the Singleton design pattern include eager load and lazy load. 
+        Eager Load:
+        public class Singleton{
+            private static Singleton instance = new Singleton();
+            
+            private Singleton(){}
+            
+            public static Singleton getInstance(){
+                return instance;
+            }
+        }
+
+        Lazy Load:
+        public class Singleton{
+            private static volatile Singleton instance;
+                
+            private Singleton(){}
+                
+            public static Singleton getInstance(){
+            
+                if(instance == null){
+                    synchronized(Singleton.class){
+                        if(instance == null){
+                            instance = new Singleton();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+4.  What is Runtime Exception? could you give me some examples?
+    A runtime or unchecked exception is caught at runtime.More specifically, RuntimeException is the superclass of those exceptions that can be thrown during the normal operation of the Java Virtual Machine. Some common Runtime exceptions are as follows: NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException, ClassCastException, DateTimeException, NegativeArraySizeException, and etc. (reference link: https://www.theserverside.com/tip/Fix-these-10-common-examples-of-the-RuntimeException-in-Java)
+
+5.  Could you give me one example of NullPointerException?
+    When we are iterating an LinkedList and reached the end node, which is null, we will get the NPE if we try to call node.next as the current node is a null.  
+6.  What is the Optional class?
+    Optional class is a new feature introduced in Java 8. It is a container that can hold, at max, one value and gracefully deals with null values, and it is used to avoid Null checks and runtime NPEs.
+    
+7. What is the @FunctionalInterface?
+    A functional interface in Java is an interface that contains only a single abstract (unimplemented) method. A functional interface can contain default and static methods which do have an implementation, in addition to the single unimplemented method. Lambda is the implementation of the abstract method.
+    
+8.  What is lambda?
+    A lambda expression is a short block of code which takes in parameters and returns a value. Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method. Lambda enables to treat functionality as a method argument, or code as data.
+    
+    Lambda expressions can replace many usage of anonymous inner class, and they are mainly used with functional interfaces. 
+    
+9.  What is Method Reference?
+    Method references are a special type of lambda expressions. They are used to refer method of functional interface, and they are compact and easy form of lambda expression. (Further reference link: https://www.baeldung.com/java-method-references)
+
+10. What is Java 8 new features?
+    Below are the major Java 8 new features: 1) Default methods and static methods in interface; 2) Lambda and Functional Interface; 3) Optional Class; 4) Method Reference; 5) Stream APIs.
+
+11. Lambda can use unchanged variable outside of lambda? what is the details?
+    Yes, lambda can use unchanged variable outside of lambda, as long as the variable is final or effectively final (non-final variables however never changed); for object variable, if it is changed, it cannot be used in lambda. 
