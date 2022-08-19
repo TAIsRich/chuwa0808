@@ -1,0 +1,22 @@
+package com.xiazhao.newfeature.optional.mobile7;
+
+public class ScreenResolution {
+    private int width;
+    private int height;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+}
