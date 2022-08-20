@@ -117,17 +117,17 @@ why to use it:
 
 example:
 public class OptionalDemo {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         String[] words = new String[10];
-        Optional<String> checkNull
-            = Optional.ofNullable(words[5]);
+        Optional<String> checkNull = Optional.ofNullable(words[5]);
+            
         if (checkNull.isPresent()) {
             String word = words[5].toLowerCase();
             System.out.print(word);
         }
-        else
+        else {
             System.out.println("word is null");
+        } 
     }
 }
 ```
@@ -223,22 +223,23 @@ D - Dependency Inversion Principle:
 ```
 
 ### 10. How can you achieve the thread-safe singleton pattern in Java?
+#### https://www.baeldung.com/java-singleton-double-checked-locking
 
-- Eager initialization (eager load) may or may not declare getInstance() synchronized directly, only one thread can access getInstance(), but may decrease the performance.
+- Eager initialization (eager load) declare getInstance() synchronized directly, only one thread can access getInstance(), but may decrease the performance.
 ```
 public class Singleton {
-    private static test instance;
+    private static Singleton instance;
  
     private test() {
     }
  
-    // 有无synchronized都可
-    synchronized public static Singleton getInstance() {
+    public static synchronized Singleton getInstance() {
         if (instance == null) {
-            instance = new test();
+            instance = new Singleton();
         }
+        
         return instance;
-  }
+    }
 }
 ```
 
@@ -247,26 +248,38 @@ public class Singleton {
 public class Singleton {
 
     // use keyword: static, volatile
-    private static Singleton instance;
+    private static volatile Singleton instance;
  
     // make constructor private: make sure this class cannot be instantiated using new(), because once it can be instantiated, there will be many objects, which violates the definition of singleton
     private Singleton() {
     }
   
-    // static synchronized getInstance() method: static makes sure this method can be called without an object
+    // static synchronized getInstance() method: static makes sure this method can be called without an object, which leads to the variable instance must be static as well, because getInstance() will use the variable instance
     public static Singleton getInstance() {
-        if (instance == null) { // 可能是多个thread, 一旦确定其中某个thread已经让instance不为null了(keyword volatile makes sure instance这个variable是线程同步的)，就不必再进入下一步的synchronized()进而进入并锁住一个thread了，synchronized()消耗很大，这样可以improve performence, 可以说这个if-statement是为了check要不要进入一个thread并上锁
-            synchronized(Singleton.class or this){ // 保证进入一个thread并上锁
+        if (instance == null) { // 可能是多个thread, 一旦确定其中某个thread已经让instance不为null了(keyword volatile makes sure instance这个variable是线程同步的)，就不必再进入下一步的synchronized()了，synchronized()消耗很大，这样可以improve performence, 可以说这个if-statement是为了check要不要让另一个thread进门并上锁来拿资源
+            synchronized(Singleton.class or this){ // 保证一个thread进门并上锁来拿资源：synchronized是门，Singleton.class or this是锁，门里有资源
+                                              
                 if(instance == null){ // 这个if-statement是真正为了assign variable instance a non-null value
                     instance = new Singleton();
                 }
             }
         }
+        
         return instance;
     }
 }
+```
 
+```
 note: synchronized(Singleton.class)与synchronized(this)有何不同？
+
+this: current object of this class
+Singleton.class: 
+- .class is a built-in language feature (a class literal) that looks like a public static final field.
+- Singleton.class is an object that represents the class Singleton on runtime, and it is the same object that is returned by the getClass() method of any (direct) instance of Singleton.
+    Singleton sgt = new Singleton();
+    System.out.println(Singleton.class.getName());
+    System.out.println(sgt.getClass().getName());
 ```
 
 ### 11. What do you understand by the Open-Closed Principle (OCP)?

@@ -149,17 +149,19 @@ Example: think of a superclass called Animal, it has a method called animalSound
 
 class Animal {
     public void animalSound() { 
-        System.out.println("The animal makes a sound");
+        System.out.println("The animal makes a sound.");
     } 
 }
+
 class Pig extends Animal { 
     public void animalSound() {
-        System.out.println("The pig says: wee wee"); 
+        System.out.println("The pig says: wee wee."); 
     }
 }
+
 class Dog extends Animal { 
     public void animalSound() {
-        System.out.println("The dog says: bow wow"); 
+        System.out.println("The dog says: bow wow."); 
     }
 }
 
@@ -167,15 +169,16 @@ class Main {
     public static void main(String[] args) {
         Animal myAnimal = new Animal(); // Create a Animal object 
         Animal myPig = new Pig(); // Create a Pig object
-        Animal myDog = new Dog(); // Create a Dog object myAnimal.animalSound();
+        Animal myDog = new Dog(); // Create a Dog object 
+        myAnimal.animalSound();
         myPig.animalSound();
         myDog.animalSound(); 
     }
 }
 
-The animal makes a sound 
-The pig says: wee wee 
-The dog says: bow wow
+The animal makes a sound. 
+The pig says: wee wee. 
+The dog says: bow wow.
 ```
 
 ### 12. What is Encapsulation? How does Java implement it? Why do we need encapsulation?
