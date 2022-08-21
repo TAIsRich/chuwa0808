@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.OptionalDouble;
 
 /**
- * @author: Flora Zhong
- * @date: 8/15/2022
- * @reference: https://java2blog.com/format-double-to-2-decimal-places-java/
+ * @author Flora Zhong
+ * @date 8/15/2022
+ * @reference https://java2blog.com/format-double-to-2-decimal-places-java/
  */
 
 public interface Sport {
