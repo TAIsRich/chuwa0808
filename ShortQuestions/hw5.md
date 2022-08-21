@@ -188,18 +188,27 @@ ThreadLocal variables are special kinds of variables created and provided by the
 
 ```
 
-### 22. Type the code by your self and try to understand it. (package
-com.chuwa.tutorial.t08_multithreading)
+### 22. Type the code by your self and try to understand it. (package com.chuwa.tutorial.t08_multithreading)
 
-### 23. write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print
-2,4,6,8,10. (solution is in
-com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
-a. One solution use synchronized and wait notify
-b. One solution use ReentrantLock and await, signal
+### 23. write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. (solution is in com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter) 
+- a. One solution use synchronized and wait notify 
+- b. One solution use ReentrantLock and await, signal
+```
+Thread-0: 1
+Thread-1: 2
+Thread-0: 3
+Thread-1: 4
+Thread-0: 5
+Thread-1: 6
+Thread-0: 7
+Thread-1: 8
+Thread-0: 9
+Thread-1: 10
+Process finished with exit code 0
+```
 
-### 24. create 3 threads, one thread ouput 1-10, one thread output 11-20, one thread
-output 21-22. threads run sequence is random. (solution is in
-com.chuwa.exercise.t08_multithreading.PrintNumber1)
+### 24. create 3 threads, one thread ouput 1-10, one thread output 11-20, one thread output 21-22. threads run sequence is random. (solution is in com.chuwa.exercise.t08_multithreading.PrintNumber1)
+```
 Thread-0: 1
 Thread-1: 2
 Thread-0: 3
@@ -283,3 +292,4 @@ Thread-1: 30
 28
 29
 30
+```
