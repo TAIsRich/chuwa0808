@@ -134,7 +134,7 @@ public class OptionalDemo {
 
 ### 6. Practice collection problems here: https://github.com/TAIsRich/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/exercise/collection
 
-[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw3/CodingQuestions/Coding_Exercise1/src/collection)
+[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw3_updater/CodingQuestions/Coding_Exercise/src/collection)
 
 ### 7. What are Java 8 new features?
 
@@ -307,4 +307,5 @@ answer: 1
 #### Builder: https://www.bilibili.com/video/BV1Np4y1z7BU?p=50&vd_source=310561eab1216a27f7accf859bf7f6d9
 #### Publisher_Subscriber: https://www.bilibili.com/video/BV1Np4y1z7BU?p=114&vd_source=310561eab1216a27f7accf859bf7f6d9
 
-[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw3/MavenProject/Design_Pattern/src/designPattern)
+[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw3_updater/MavenProject/Design_Pattern/src/main/java/creationalDesignPattern)
+
