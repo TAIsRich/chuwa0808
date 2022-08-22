@@ -1,3 +1,4 @@
+
 create database oms;
 use oms;
 create table oms_company_address(id	bigint, address_name varchar(200), send_status int(1), receive_status int(1), name varchar(64), phone varchar(64), province varchar(64), city varchar(64), region varchar(64), detail_address varchar(200), primary key(id));
@@ -17,3 +18,8 @@ select * from oms_company_address;
 select  *  from oms_company_address limit 3;
 update oms_company_address set phone = '666-666-8888' where id <> 0;
 delete from oms_company_address where id = 1;
+
+
+
+
+

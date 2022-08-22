@@ -67,4 +67,3 @@ db.oms_company_address.findOne({id : 1})
 db.oms_company_address.find()
 db.oms_company_address.update({'id':1}, {$set:{'name':'Mike'}})
 db.oms_company_address.remove({'name':'Ben'})
-
