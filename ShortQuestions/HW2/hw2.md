@@ -229,7 +229,7 @@ keyword implements
 
 ### 14. Design a parking lot (put the code to CodingQuestions/Coding1 folder). If you have no ability to design it, please find the solution in the internet, then **understand** it, then **type** it, **do not just copy and paste**.
 
-[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw2/CodingQuestions/Coding1/parkingLlot)
+[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/notes/CodingQuestions/Coding1/parkingLlot)
 
 ### 15. What are Queue interface implementations and what are the differences and when to use what?
 
