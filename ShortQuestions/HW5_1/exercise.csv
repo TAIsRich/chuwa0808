@@ -1,0 +1,5 @@
+"id";"address";"send_status";"receive_status";"name";"phone";"province";"city";"region";"detail_address"
+1;"home";1;0;"Ana";"5102228900";"CA";"Fremont";"US";"234 city R"
+2;"Office";0;0;"Lily";"9408902788";"MT";"Missoula";"US";"8900 Ducan Dr"
+3;"Home";1;1;"Peter";"9092293909";"CA";"San Josse";"US";"839 arrow Rd"
+4;"Home";1;1;"mary";"3333333";"PT";"piont";"US";"333 fall Dr"
