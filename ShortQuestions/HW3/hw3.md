@@ -107,18 +107,22 @@ finally {
 ```
 public final class Optional<T> extends Object: 
 - a container object which may or may not contain a non-null value
-- If a value is present, isPresent() will return true and get() will return the value
+- if a value is present, isPresent() will return true and get() will return the value
 
 why to use it:
 - it is very hard to avoid NullPointerException without using too many null checks
-- to overcome it, Java 8 has introduced a new class Optional in java.util package
-- it can help to write a neat code without using too many null checks to avoid NullPointerException 
+- to overcome it, Java 8 has introduced a new class Optional in java.util package, it can help to write a neat code without using too many null checks to avoid NullPointerException 
 - we can specify alternate values to return or alternate code to run for null, which makes the code more readable because the facts which were hidden are now visible to the developer
+```
 
+```
 example:
+
 public class OptionalDemo {
     public static void main(String[] args) {
         String[] words = new String[10];
+        // public static Optional<T> ofNullable(T value) {}: Optional.ofNullable() is used to get an instance of the Optional class with the specified value of the specified type
+        // if the specified value is null, then this method returns an empty instance of Optional class
         Optional<String> checkNull = Optional.ofNullable(words[5]);
             
         if (checkNull.isPresent()) {
@@ -134,7 +138,7 @@ public class OptionalDemo {
 
 ### 6. Practice collection problems here: https://github.com/TAIsRich/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/exercise/collection
 
-[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw3_updater/CodingQuestions/Coding_Exercise/src/collection)
+[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/notes/CodingQuestions/Coding_Exercise/src/collection)
 
 ### 7. What are Java 8 new features?
 
@@ -307,5 +311,5 @@ answer: 1
 #### Builder: https://www.bilibili.com/video/BV1Np4y1z7BU?p=50&vd_source=310561eab1216a27f7accf859bf7f6d9
 #### Publisher_Subscriber: https://www.bilibili.com/video/BV1Np4y1z7BU?p=114&vd_source=310561eab1216a27f7accf859bf7f6d9
 
-[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/hw3_updater/MavenProject/Design_Pattern/src/main/java/creationalDesignPattern)
+[CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/notes/MavenProject/Design_Pattern/src/main/java/creationalDesignPattern)
 

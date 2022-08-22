@@ -3,7 +3,7 @@
 ### 1. Learn **MarkDown** and show all of basic usage in the **ShortQuestions/README.md**.
 #### https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
-[README](https://github.com/TAIsRich/chuwa0808/blob/Flora_Zhong/hw1/ShortQuestions/HW1/README.md)
+[README](https://github.com/TAIsRich/chuwa0808/blob/Flora_Zhong/notes/ShortQuestions/HW1/README.md)
 
 ### 2. Practice git using the platform. List the git commands you learned.
 #### https://learngitbranching.js.org/
@@ -157,6 +157,6 @@ List of a few common plugins:
 #### 1. groupID: com.chuwa.learn
 #### 2. artifactID: java-core
 
-[Maven Module](https://github.com/TAIsRich/chuwa0808/blob/Flora_Zhong/hw1/MavenProject/module/pom.xml)
+[Maven Module](https://github.com/TAIsRich/chuwa0808/blob/Flora_Zhong/notes/MavenProject/module/pom.xml)
 
 ### 14. Do Code Review: Go over the PRs in your repo, tried to leave some useful or useful comments in other students' PR, please **do not** merge it.
