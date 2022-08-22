@@ -220,7 +220,9 @@ String hello = foo.method("hello");
 - Also, an outside object variable used in Lambda should not be allocated a new memory to result the value of the outside object variable being changed.
 ```
 [Example Code 1](./example_code1.png)
+
 [Example Code 2](./example_code2.png)
+
 [Example Code 3](./example_code3.png)
 
 ### 10. What is Method Reference?
