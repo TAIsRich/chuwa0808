@@ -551,4 +551,354 @@ com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
     Thread-1: 28
     Thread-1: 29
     Thread-1: 30
+    
+# HW6 # Template    
+Part I : SQL Practice
+(commands reference: http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm)
+1. Create oms_company_address table
+Commands on terminal:
+    mysql -u root -p
+    mysql> create database test1;
+    mysql> use test1
+    Database changed
+    mysql> CREATE TABLE oms_company_address(id int(50) auto_increment primary key, address_name varchar(200),send_status int(1),receive_status int(1),name varchar(64),phone varchar(64),province varchar(64),city varchar(64),region varchar(64),detail_address varchar(200));
+    Query OK, 0 rows affected, 3 warnings (0.16 sec)
+    mysql> describe oms_company_address;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| id             | int          | NO   | PRI | NULL    | auto_increment |
+| address_name   | varchar(200) | YES  |     | NULL    |                |
+| send_status    | int          | YES  |     | NULL    |                |
+| receive_status | int          | YES  |     | NULL    |                |
+| name           | varchar(64)  | YES  |     | NULL    |                |
+| phone          | varchar(64)  | YES  |     | NULL    |                |
+| province       | varchar(64)  | YES  |     | NULL    |                |
+| city           | varchar(64)  | YES  |     | NULL    |                |
+| region         | varchar(64)  | YES  |     | NULL    |                |
+| detail_address | varchar(200) | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.09 sec)
+
+2. Insert some random data to oms_company_address table
+mysql> INSERT INTO oms_company_address VALUES(1, 'add1', 1, 1, 'xuan', '1231231234','CA','Santa Clara', 'CA', '888 Main St');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> INSERT INTO oms_company_address VALUES(2, 'add2', 1, 1, 'yu', '12313454','CA','Santa Clara', 'CA', '556 Main St');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO oms_company_address VALUES(3, 'add3', 1, 1, 'jeremy', '15689234','CA','Santa Clara', 'CA', '888 Oakload AV');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO oms_company_address VALUES(4, 'add4', 1, 1, 'lin', '788113454','CA','Cupertino', 'CA', '1000 Cherry St');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO oms_company_address VALUES(5, 'add5', 1, 1, 'rosie', '78567980','NY','New York', 'CA', '666 Broadway');
+Query OK, 1 row affected (0.01 sec)
+
+
+3. Write a SQL query to fetch all data from oms_company_address`table
+SELECT * FROM oms_company_address oca;
++----+--------------+-------------+----------------+--------+------------+----------+-------------+--------+----------------+
+| id | address_name | send_status | receive_status | name   | phone      | province | city        | region | detail_address |
++----+--------------+-------------+----------------+--------+------------+----------+-------------+--------+----------------+
+|  1 | add1         |           1 |              1 | xuan   | 1231231234 | CA       | Santa Clara | CA     | 888 Main St    |
+|  2 | add2         |           1 |              1 | yu     | 12313454   | CA       | Santa Clara | CA     | 556 Main St    |
+|  3 | add3         |           1 |              1 | jeremy | 15689234   | CA       | Santa Clara | CA     | 888 Oakload AV |
+|  4 | add4         |           1 |              1 | lin    | 788113454  | CA       | Cupertino   | CA     | 1000 Cherry St |
+|  5 | add5         |           1 |              1 | rosie  | 78567980   | NY       | New York    | CA     | 666 Broadway   |
++----+--------------+-------------+----------------+--------+------------+----------+-------------+--------+----------------+
+5 rows in set (0.00 sec)
+
+
+4. Write a SQL query to fetch top 3 records from oms_company_address table
+mysql> SELECT * FROM oms_company_address LIMIT 3;
++----+--------------+-------------+----------------+--------+------------+----------+-------------+--------+----------------+
+| id | address_name | send_status | receive_status | name   | phone      | province | city        | region | detail_address |
++----+--------------+-------------+----------------+--------+------------+----------+-------------+--------+----------------+
+|  1 | add1         |           1 |              1 | xuan   | 1231231234 | CA       | Santa Clara | CA     | 888 Main St    |
+|  2 | add2         |           1 |              1 | yu     | 12313454   | CA       | Santa Clara | CA     | 556 Main St    |
+|  3 | add3         |           1 |              1 | jeremy | 15689234   | CA       | Santa Clara | CA     | 888 Oakload AV |
++----+--------------+-------------+----------------+--------+------------+----------+-------------+--------+----------------+
+3 rows in set (0.01 sec)
+
+5. Update oms_company_address table to set all phoneto 666-6666-8888
+mysql> UPDATE oms_company_address
+    -> SET phone = '666-6666-8888';
+Query OK, 5 rows affected (0.02 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+6. Delete one entry from oms_company_address table
+mysql> DELETE FROM oms_company_address
+    -> WHERE id = 4;
+Query OK, 1 row affected (0.01 sec)
+
+7. (Optional) You can also try to create other tables that listed above
+
+Part II:
+take below examples, 
+Each example with 404, 401,500 and any http status codes you know
+
+1. 5 GET APIs with different response type
+    https://reqres.in/api/users?page=2 (200 OK)
+    https://reqres.in/api/users/2 (200 OK)
+    https://reqres.in/api/users/27 (404 Not Found)
+    https://reqres.in/api/unknown (200 OK)
+    https://reqres.in/api/unknown/30 (404 Not Found)
+    
+2. 5 Post API with json request body, please also paste the response here
+    https://reqres.in/api/users (201 Created)
+    Body: (raw -> JSON)
+    {
+        "name": "theresa",
+        "job": "leader"
+    }
+    Response:
+    {
+        "name": "theresa",
+        "job": "leader",
+        "id": "63",
+        "createdAt": "2022-08-22T18:54:57.541Z"
+    }
+    
+    
+    https://reqres.in/api/register (200 OK)
+    Body: (raw -> JSON)
+    {
+        "email": "eve.holt@reqres.in",
+        "password": "pistol"
+    }
+    Response:
+     {
+        "id": 4,
+        "token": "QpwL5tke4Pnpja7X4"
+    }  
+    
+    https://reqres.in/api/register (400 Bad Request)
+        Body: (raw -> JSON)
+    {
+        "email": "happy@gmail.com",
+        "password": "123456"
+    }
+    Response:
+     {
+        "error": "Note: Only defined users succeed registration"
+    }
+    
+    https://reqres.in/api/register (400 Bad Request)
+        Body: (raw -> JSON)
+    {
+        "email": "happy@gmail.com",
+    }
+    Response:
+     {
+        "error": "Missing password"
+    }
+    
+    https://reqres.in/api/register (200 OK)
+        Body: (raw -> JSON)
+    {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+    }
+    Response:
+     {
+        "token": "QpwL5tke4Pnpja7X4"
+    }
+    
+3. 3 PUT API with json request body, please also paste the response here
+    https://reqres.in/api/users/2 (200 OK)
+        Body: (raw -> JSON)
+    {
+        "name": "morpheus",
+        "job": "zion resident"
+    }
+    Response:
+     {
+        "name": "morpheus",
+        "job": "zion resident",
+        "updatedAt": "2022-08-22T19:06:58.934Z"
+    }
+    
+    https://reqres.in/api/users/63 (200 OK)
+        Body: (raw -> JSON)
+    {
+        "name": "theresa",
+        "job": "senior"
+    }
+    Response:
+     {
+        "name": "theresa",
+        "job": "senior",
+        "updatedAt": "2022-08-22T19:08:31.988Z"
+    }
+    
+    https://reqres.in/api/users/67 (200 OK)
+        Body: (raw -> JSON)
+    {
+        "name": "happy",
+        "job": "manager"
+    }
+    Response:
+     {
+        "name": "happy",
+        "job": "manager"
+        "updatedAt": "2022-08-22T19:09:34.547Z"
+    }
+    
+4. 2 DELETE API
+    https://reqres.in/api/users/63 (204 No Content)
+    https://reqres.in/api/users/2 (204 No Content)
+
+
+
+Part III: API Pratice
+1.  Find 2 collection of APIs example. ie. Twitter, Paypal, Youtube etc.  -- 命名规范
+1.1 Twitter: https://developer.twitter.com/en/docs/api-reference-index#twitter-api-v2
+    https://api.twitter.com/
+    Tweets
+        Bookmarks
+        DELETE /2/users/:id/bookmarks/:tweet_id
+        GET /2/users/:id/bookmarks
+        POST /2/users/:id/bookmarks
+        COVID-19 stream
+        GET /labs/1/tweets/stream/compliance
+        GET /labs/1/tweets/stream/covid19
+        Filtered stream
+        GET /2/tweets/search/stream
+        GET /2/tweets/search/stream/rules
+        POST /2/tweets/search/stream/rules
+        Hide replies
+        PUT /2/tweets/:id/hidden
+        Likes
+        DELETE /2/users/:id/likes/:tweet_id
+        GET /2/tweets/:id/liking_users
+        GET /2/users/:id/liked_tweets
+        POST /2/users/:id/likes
+        Manage Tweets
+        DELETE /2/tweets/:id
+        POST /2/tweets
+        Quote Tweets
+        GET /2/tweets/:id/quote_tweets
+        Retweets
+        DELETE /2/users/:id/retweets/:source_tweet_id
+        GET /2/tweets/:id/retweeted_by
+        POST /2/users/:id/retweets
+        Search Tweets
+        GET /2/tweets/search/all
+        GET /2/tweets/search/recent
+        Timelines
+        GET /2/users/:id/mentions
+        GET /2/users/:id/timelines/reverse_chronological
+        GET /2/users/:id/tweets
+        Tweet counts
+        GET /2/tweets/counts/all
+        GET /2/tweets/counts/recent
+        Tweets lookup
+        GET /2/tweets
+        GET /2/tweets/:id
+        Volume streams
+        GET /2/tweets/sample/stream
+    Users
+        Blocks
+        DELETE /2/users/:source_user_id/blocking/:target_user_id
+        GET /2/users/:id/blocking
+        POST /2/users/:id/blocking
+        Follows
+        DELETE /2/users/:source_user_id/following/:target_user_id
+        GET /2/users/:id/followers
+        GET /2/users/:id/following
+        POST /2/users/:id/following
+        Mutes
+        DELETE /2/users/:source_user_id/muting/:target_user_id
+        GET /2/users/:id/muting
+        POST /2/users/:id/muting
+        Users lookup
+        GET /2/users
+        GET /2/users/:id
+        GET /2/users/by
+        GET /2/users/by/username/:username
+        GET /2/users/me
+    Spaces
+        Search Spaces
+        GET /2/spaces/search
+        Spaces lookup
+        GET /2/spaces
+        GET /2/spaces/:id
+        GET /2/spaces/:id/buyers
+        GET /2/spaces/:id/tweets
+        GET /2/spaces/by/creator_ids
+    Lists
+        List Tweets lookup
+        GET /2/lists/:id/tweets
+        List follows
+        DELETE /2/users/:id/followed_lists/:list_id
+        GET /2/lists/:id/followers
+        GET /2/users/:id/followed_lists
+        POST /2/users/:id/followed_lists
+        List lookup
+        GET /2/lists/:id
+        GET /2/users/:id/owned_lists
+        List members
+        DELETE /2/lists/:id/members/:user_id
+        GET /2/lists/:id/members
+        GET /2/users/:id/list_memberships
+        POST /2/lists/:id/members
+        Manage Lists
+        DELETE /2/lists/:id
+        PUT /2/lists/:id
+        POST /2/lists
+        Pinned Lists
+        DELETE /2/users/:id/pinned_lists/:list_id
+        GET /2/users/:id/pinned_lists
+        POST /2/users/:id/pinned_lists
+    Compliance
+        Batch compliance
+        GET /2/compliance/jobs
+        GET /2/compliance/jobs/:id
+        POST /2/compliance/jobs
+
+2.2 Paypal: https://developer.paypal.com/api/rest/
+Orders: https://developer.paypal.com/docs/api/orders/v2/
+
+    Create order: POST /v2/checkout/orders
+    Update order: PATCH /v2/checkout/orders/{id}
+    Show order details: GET /v2/checkout/orders/{id}
+    Authorize payment for order: POST /v2/checkout/orders/{id}/authorize
+    Capture payment for order: POST /v2/checkout/orders/{id}/capture
+    Confirm the Order: POST /v2/checkout/orders/{id}/confirm-payment-source
+
+2.  Design a collection of APIS for a Blog Website, please specify GET POST PUT DELETE
+    Basic use modules under the mock blog website: user, blogs, posts, and comments
+    
+    https://www.mockblog.com/api
+    
+    User:
+        Create a user account: POST /v1/users
+        Update user info: PUT /v1/users/{user_id}
+        Delete an user account: DELETE /v1/users/{user_id}
+    
+    Blogs:
+        
+        Create a new blog: POST /v1/users/{user_id}/blogs
+        Retrieve a list of blogs under sites accessable to the user: GET /v1/users/{user_id}/sites/{site_id}/blogs
+        Retrive a specific blog: GET /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}
+    
+    Posts:
+        Retrieve a list of posts under a blog: GET /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts
+        Retrive a specific blog: GET /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}
+        Add a post: POST /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts
+        Update a post: PATCH /v1/sites/users/{user_id}/{site_id}/blogs/{blog_id}/posts/{post_id}
+        Delete a post: DELETE /v1/sites/users/{user_id}/{site_id}/blogs/{blog_id}/posts/{post_id}
+    
+    Comments:
+        Retrieve a list of posts under a post: GET /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments
+        Retrive a specific comments: GET /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments/{comment_id}
+        Add a comment: POST /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments
+        Update a post: PATCH /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments/{comment_id}
+        Delete a post: DELETE /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments/{comment_id}
+    
+
+
+
 
