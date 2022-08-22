@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS test;
+CREATE DATABASE test;
+USE test;
+CREATE TABLE IF NOT EXISTS oms_company_address (
+id bigint,
+address_name varchar(200),
+send_status int(1),
+receive_status int(1),
+name varchar(64),
+phone varchar(64),
+province varchar(64),
+city varchar(64),
+region varchar(64),
+detail_address varchar(200),
+PRIMARY KEY(id));
+
+INSERT INTO oms_company_address
+VALUES (0001, 'time square', 0, 0, 'mike', '123-456-7890', 'new york', 'new york', 'new york', 'falasheng'),
+	(0002, 'silicon valley', 1, 1, 'Cai', '234-567-8901', 'california', 'san jose', 'california', 'zhongxin'),
+	(0003, 'china', 1, 0, 'Zhang', '345-678-9012', 'hubei', 'wuhan', 'jiangan', 'jiangtan'),	
+	(0004, 'texas', 0, 1, 'lucas', '456-789-0123', 'dallas', 'dallas', 'texas', 'village');
+
+SELECT * FROM oms_company_address WHERE id = 0001;
+
+
+UPDATE oms_company_address
+SET name = 'wang'
+WHERE id = 0001;
+
+SELECT * FROM oms_company_address;
+
+DELETE FROM oms_company_address WHERE id = 0001;
