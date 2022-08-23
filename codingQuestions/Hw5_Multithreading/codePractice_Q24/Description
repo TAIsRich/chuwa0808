@@ -1,0 +1,34 @@
+24. create 3 threads, one thread ouput 1-10, one thread output 11-20, one thread
+output 21-22. threads run sequence is random. (solution is in
+https://github.com/TAIsRich/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/exercise/t08_multithreading)
+
+Thread-0: 1
+Thread-0: 2
+Thread-0: 3
+Thread-0: 4
+Thread-0: 5
+Thread-0: 6
+Thread-0: 7
+Thread-0: 8
+Thread-0: 9
+Thread-0: 10
+Thread-2: 11
+Thread-2: 12
+Thread-2: 13
+Thread-2: 14
+Thread-2: 15
+Thread-2: 16
+Thread-2: 17
+Thread-2: 18
+Thread-2: 19
+Thread-2: 20
+Thread-1: 21
+Thread-1: 22
+Thread-1: 23
+Thread-1: 24
+Thread-1: 25
+Thread-1: 26
+Thread-1: 27
+Thread-1: 28
+Thread-1: 29
+Thread-1: 30
