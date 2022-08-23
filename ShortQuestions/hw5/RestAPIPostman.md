@@ -18,28 +18,44 @@ Each example with 404, 401,500 and any http status codes you know
 ```
 201 Created: POST https://reqres.in/api/users
 ```
+<img width="1001" alt="1" src="https://user-images.githubusercontent.com/87605453/186130383-677a7950-5aa9-44bb-90de-c302d959011e.png">
+
 ```
 200 OK: POST https://reqres.in/api/register
 ```
+<img width="719" alt="2" src="https://user-images.githubusercontent.com/87605453/186130438-298db96f-03e0-48ac-ac2f-27f9b902fba4.png">
+
 ```
 400 Bad Request: POST https://reqres.in/api/register
 ```
+<img width="716" alt="3" src="https://user-images.githubusercontent.com/87605453/186130462-0c456e24-d6ae-4629-ab69-8d8cd3bfdf2b.png">
+
 ```
 200 OK: POST https://reqres.in/api/login
 ```
+<img width="717" alt="4" src="https://user-images.githubusercontent.com/87605453/186130494-23f58892-809e-4789-99b9-d521ce587dc9.png">
+
 ```
 400 Bad Request: POST https://reqres.in/api/login
 ```
+<img width="720" alt="5" src="https://user-images.githubusercontent.com/87605453/186130529-4ad7fe4c-858e-4881-9a7e-59f899cb3720.png">
+
 ### Put:
 ```
 404 Not Found: PUT https://reqres.in/api/users
 ```
+<img width="710" alt="6" src="https://user-images.githubusercontent.com/87605453/186130566-db57a577-b8d8-4260-b591-f200afac9c08.png">
+
 ```
 200 OK: PUT https://reqres.in/api/users/2
 ```
+<img width="715" alt="7" src="https://user-images.githubusercontent.com/87605453/186130615-e22491f9-b437-415c-afd3-79c6ed1d4e04.png">
+
 ```
 200 OK: PUT https://reqres.in/api/users/3
 ```
+<img width="720" alt="8" src="https://user-images.githubusercontent.com/87605453/186130646-94980329-7bbb-4617-b175-68ff380fee73.png">
+
 ### Delete:
 ```
 204 Not Content: DELETE https://reqres.in/api/users
