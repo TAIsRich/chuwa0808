@@ -13,4 +13,3 @@
 200 OK: GET https://ghibliapi.herokuapp.com/locations/?climate=Mild&&terrain=Marsh
 404 Not Found: GET https://ghibliapi.herokuapp.com/location
 ```
-<img width="1001" alt="1" src="https://user-images.githubusercontent.com/87605453/186038562-445d7c1d-254b-4fb3-ad2b-270f50cc996e.png">
