@@ -1,0 +1,34 @@
+-- use database hw5
+USE hw5;
+
+-- create a table from database
+CREATE TABLE oms_company_address
+(id int, address_name varchar(255), send_status int, receive_status int, phone varchar(64));
+
+-- inserting datas into tables
+INSERT INTO oms_company_address(id, address_name, send_status, receive_status, phone)
+VALUE(1, "1514 14th Ave", 0, 0, "123-456-7890");
+INSERT INTO oms_company_address(id, address_name, send_status, receive_status, phone)
+VALUE(2, "1513 14th Ave", 1, 0, "123-856-7890");
+INSERT INTO oms_company_address(id, address_name, send_status, receive_status, phone)
+VALUE(3, "1512 14th Ave", 0, 1, "123-496-7890");
+
+-- select all value from table
+SELECT * FROM oms_company_address;
+
+-- select top x from the table
+SELECT * FROM oms_company_address LIMIT 3;
+
+-- update all phone from table
+UPDATE oms_company_address	
+SET phone = "666-6666-8888";
+
+-- delete one row from table
+DELETE FROM oms_company_address WHERE id = 2;
+
+
+
+
+
+
+
