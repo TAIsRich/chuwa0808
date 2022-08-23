@@ -1,0 +1,229 @@
+Get method
+1. https://ghibliapi.herokuapp.com/locations?name=Irontown
+[
+    {
+        "id": "11014596-71b0-4b3e-b8c0-1c4b15f28b9a",
+        "name": "Irontown",
+        "climate": "Continental",
+        "terrain": "Mountain",
+        "surface_water": "40",
+        "residents": [
+            "https://ghibliapi.herokuapp.com/people/ba924631-068e-4436-b6de-f3283fa848f0",
+            "https://ghibliapi.herokuapp.com/people/030555b3-4c92-4fce-93fb-e70c3ae3df8b"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/0440483e-ca0e-4120-8c50-4c8cd9b965d6"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/11014596-71b0-4b3e-b8c0-1c4b15f28b9a"
+    }
+]
+
+2. https://ghibliapi.herokuapp.com/locations?climate=Mild
+[
+    {
+        "id": "56e423c4-d9a1-44c4-8bdb-1cab45fbf63e",
+        "name": "The Marsh House",
+        "climate": "Mild",
+        "terrain": "Marsh",
+        "surface_water": "60",
+        "residents": [],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/5fdfb320-2a02-49a7-94ff-5ca418cae602"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/56e423c4-d9a1-44c4-8bdb-1cab45fbf63e"
+    },
+    {
+        "id": "c57fb2cb-ea85-4d73-8808-cf5dcd28c22e",
+        "name": "Koriko",
+        "climate": "Mild",
+        "terrain": "Hill",
+        "surface_water": "50",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/ea660b10-85c4-4ae3-8a5f-41cea3648e3e"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/c57fb2cb-ea85-4d73-8808-cf5dcd28c22e"
+    },
+    {
+        "id": "62346d33-caa0-4c17-8016-0aca56f3066b",
+        "name": "Karikiya",
+        "climate": "Mild",
+        "terrain": "City",
+        "surface_water": "30",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/ea660b10-85c4-4ae3-8a5f-41cea3648e3e"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/62346d33-caa0-4c17-8016-0aca56f3066b"
+    },
+    {
+        "id": "ee897b2a-405e-42b9-bff4-8b51b0f03cab",
+        "name": "Satsuki's School House",
+        "climate": "Mild",
+        "terrain": "River",
+        "surface_water": "60",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/ee897b2a-405e-42b9-bff4-8b51b0f03cab"
+    },
+    {
+        "id": "469b14bd-5565-4436-bbed-c2036f42cc99",
+        "name": "Himawari Nursery School",
+        "climate": "Mild",
+        "terrain": "Ocean",
+        "surface_water": "50",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/758bf02e-3122-46e0-884e-67cf83df1786"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/469b14bd-5565-4436-bbed-c2036f42cc99"
+    },
+    {
+        "id": "b6bac992-a858-4d57-8477-9652d73caaa1",
+        "name": "Ingary",
+        "climate": "Mild",
+        "terrain": "Hill",
+        "surface_water": "30",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/cd3d059c-09f4-4ff3-8d63-bc765a5184fa"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/b6bac992-a858-4d57-8477-9652d73caaa1"
+    },
+    {
+        "id": "398e3e1e-9912-4eb6-91fe-a9f8b932b67d",
+        "name": "St. Morwald's Home for Children",
+        "climate": "Mild",
+        "terrain": "City",
+        "surface_water": "",
+        "residents": [
+            "https://ghibliapi.herokuapp.com/people/2d66e2eb-5a74-4721-a5b3-c556497bdb66",
+            "https://ghibliapi.herokuapp.com/people/835f8c7c-2fc6-4f54-b545-c02ab066cd69"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/790e0028-a31c-4626-a694-86b7a8cada40"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/398e3e1e-9912-4eb6-91fe-a9f8b932b67d"
+    }
+]
+3. https://ghibliapi.herokuapp.com/locations?terrain=River
+[
+    {
+        "id": "37d13a96-a03a-451d-8871-80be0495486e",
+        "name": "Bathhouse",
+        "climate": "Continental",
+        "terrain": "River",
+        "surface_water": "70",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/dc2e6bd1-8156-4886-adff-b39e6043af0c"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/37d13a96-a03a-451d-8871-80be0495486e"
+    },
+    {
+        "id": "6fc21b76-78fb-4451-98f7-857e32a23e85",
+        "name": "Matsugo",
+        "climate": "Continental",
+        "terrain": "River",
+        "surface_water": "60",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/6fc21b76-78fb-4451-98f7-857e32a23e85"
+    },
+    {
+        "id": "dbeeaecb-7817-4b8b-90ca-edc432d3033e",
+        "name": "Taeko's House",
+        "climate": "Continental",
+        "terrain": "River",
+        "surface_water": "40",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/4e236f34-b981-41c3-8c65-f8c9000b94e7"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/dbeeaecb-7817-4b8b-90ca-edc432d3033e"
+    },
+    {
+        "id": "34df8f25-8f80-4823-8f01-bf9852039987",
+        "name": "Piccolo S.P.A.",
+        "climate": "Continental",
+        "terrain": "River",
+        "surface_water": "40",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/ebbb6b7c-945c-41ee-a792-de0e43191bd8"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/34df8f25-8f80-4823-8f01-bf9852039987"
+    },
+    {
+        "id": "ee897b2a-405e-42b9-bff4-8b51b0f03cab",
+        "name": "Satsuki's School House",
+        "climate": "Mild",
+        "terrain": "River",
+        "surface_water": "60",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/ee897b2a-405e-42b9-bff4-8b51b0f03cab"
+    }
+]
+4. https://ghibliapi.herokuapp.com/locations?name=Ursula's Log Cabin
+[
+    {
+        "id": "fb083a4e-77b2-4623-a2e0-6bbca5bfd5b2",
+        "name": "Ursula's Log Cabin",
+        "climate": "TODO",
+        "terrain": "TODO",
+        "surface_water": "40",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/ea660b10-85c4-4ae3-8a5f-41cea3648e3e"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/fb083a4e-77b2-4623-a2e0-6bbca5bfd5b2"
+    }
+]
+5. https://ghibliapi.herokuapp.com/locations?name=Piccolo S.P.A.
+[
+    {
+        "id": "34df8f25-8f80-4823-8f01-bf9852039987",
+        "name": "Piccolo S.P.A.",
+        "climate": "Continental",
+        "terrain": "River",
+        "surface_water": "40",
+        "residents": [
+            "TODO"
+        ],
+        "films": [
+            "https://ghibliapi.herokuapp.com/films/ebbb6b7c-945c-41ee-a792-de0e43191bd8"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/locations/34df8f25-8f80-4823-8f01-bf9852039987"
+    }
+]
+
+

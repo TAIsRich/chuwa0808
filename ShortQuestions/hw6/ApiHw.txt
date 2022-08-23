@@ -1,0 +1,19 @@
+API
+Twitter
+Get tweet 		https://api.twitter.com/GET/2/tweets
+Post a tweet	https://api.twitter.com/POST /2/tweets
+Delete a tweet 	https://api.twitter.com/DELETE /2/tweets/:id
+get timeline	https://api.twitter.com/GET/2/users/:id/timelines/reverse_chronological
+		https://api.twitter.com/GET/2/users/:id/tweets
+
+Youtube API
+Search		GET https://www.googleapis.com/youtube/v3/search
+POST		POST https://www.googleapis.com/upload/youtube/v3/videos
+PUT		PUT  https://www.googleapis.com/youtube/v3/videos
+DELETE		DELETE https://www.googleapis.com/youtube/v3/videos
+
+My API design for a blog website
+GET	 https://myWebSite.com/Get
+POST	 https://myWebSite.com/Post
+PUT	 https://myWebSite.com/PUT
+DELETE	 https://myWebSite.com/DELETE
