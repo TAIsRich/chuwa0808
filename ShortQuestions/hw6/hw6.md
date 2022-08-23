@@ -1,118 +1,244 @@
-### 1. What is wrapper class in Java and Why we need wrapper class?
+# REST API Postman
+
+
+### 5 GET APIs with different response type
+```
+200 OK : GET https://ghibliapi.herokuapp.com/locations
+404 Not Found : GET https://ghibliapi.herokuapp.com/locations/1
+405 Method Not Allowed : GET http://localhost:8080/api/v1/posts
+204 No Content : 
+500 server error :
 ```
 
+### 5 Post API with json request body, please also paste the response here
+
+- POST https://reqres.in/api/users
+```
+// request body
+{
+    "Name" : "XYZ",
+    "Job" : "Student"
+}
+
+// response - 201 Created
+{
+    "Name": "XYZ",
+    "Job": "Student",
+    "id": "384",
+    "createdAt": "2022-08-23T05:32:41.056Z"
+}
 ```
 
-### 2. What is the difference between HashMap and HashTable?
+- POST https://reqres.in/api/users
 ```
-1. HashMap is non-synchronized, while HashTable is synchronized
-2. HashMap’s object is not thread-safe (multiple threads can operate simultaneously), while HashTable is thread-safe (At a time only one thread is allowed to operate the Hashtable’s object)
-3. HashMap has higher performance because threads are not required to wait, while HashTable has lower performance because it increases the waiting time of the thread
-4. HashMap allows Null for both key and value, while HashTable doesn't allow Null for either key and value
-5. HashMap is non-legacy, while HashTable is is legacy
+// request body
+{
+    "Name" : "CCC",
+    "Job" : "Student",
+    "Gender" : "Male"
+}
+
+// response - 201 Created
+{
+    "Name": "CCC",
+    "Job": "Student",
+    "Gender": "Male",
+    "id": "910",
+    "createdAt": "2022-08-23T05:36:27.747Z"
+}
 ```
 
-### 3. What is String pool in Java and why we need String pool
+- POST https://reqres.in/api/login
 ```
-String pool is a separate place in the heap memory where the values of all the strings which are defined in the program are stored.
-We need it because Strings are immutable and the String Pool helps increase performance and decrease memory overhead.
+// request body
+{
+    "Name" : "CCC",
+    "password" : "123"
+}
+
+// response - 400 Bad Request
+{
+    "error": "Missing email or username"
+}
 ```
 
-### 4. What is Java garbage collection?
+- POST https://reqres.in/api/register
 ```
-Garbage collection in Java is the process by which Java programs perform automatic memory management. The garbage collector finds these unused objects and deletes them to free up memory.
+// request body
+{
+    "email": "eve.holt@reqres.in",
+     "password": "pistol"
+}
+
+// response - 200 OK
+{
+    "id": 4,
+    "token": "QpwL5tke4Pnpja7X4"
+}
 ```
 
-### 5. What are access modifiers and their scopes in Java?
+- POST https://reqres.in/api/login
 ```
-Access modifiers in Java helps to restrict the scope of a class, constructor, variable, method, or data member. 
-There are 4 types of access modifiers:
-1. Default - visible only within the package (package private)
-2. Private - visible only within the class
-3. Protected - visible within the package or all subclasses
-4. Public - visible everywhere
+// request body
+{
+    "password" : "12345"
+}
+
+// response - 400 Bad Request
+{
+    "error": "Missing email or username"
+}
 ```
 
-### 6. What is final key word? (Filed, Method, Class)
+### 3 PUT API with json request body, please also paste the response here
+
+- PUT https://reqres.in/api/users/
 ```
-The final keyword is a non-access modifier that makes object non-changeable
+// request body
+{
+    "name" : "qwe",
+    "job" : "12"
+}
+
+// response - 200 OK
+{
+    "name": "qwe",
+    "job": "12",
+    "updatedAt": "2022-08-23T05:52:04.254Z"
+}
 ```
 
-### 7. What is static keyword? (Filed, Method, Class). When do we usually use it?
+- PUT https://reqres.in/api/users/578
 ```
-The static keyword is a non-access modifier that can be accessed without creating an object of a class.
-The static keyword belongs to the class instead of an object, so it is mainly used for memory management. 
+// request body
+null
+
+// response - 400 Bad Request
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Error</title>
+</head>
+
+<body>
+	<pre>Bad Request</pre>
+</body>
+
+</html>
 ```
 
-### 8. What is the differences between overriding and overloading? 
+- PUT https://reqres.in/api/users/578
 ```
-Overriding - the method signature (name and parameters) are the same in the superclass and the child class
-Overloading - two or more methods in the same class have the same name but different parameters
+// request body
+{
+    "name" : "qqq",
+    "job" : "teacher"
+}
+
+// response - 200 OK
+{
+    "name": "qqq",
+    "job": "teacher",
+    "updatedAt": "2022-08-23T05:55:14.229Z"
+}
 ```
 
-### 9. What is the differences between super and this?
+### 2 DELETE API
+
+- DELETE https://reqres.in/api/users/578
 ```
-this refers to the current class
-super refers to the parent class
+// response - 204 No Content
+null
 ```
 
-### 10. What is the Java load sequence?
+- DELETE https://leetcode.com/problemset/all/?search=208&page=1
 ```
-static variable/block -> constructo -> non static variable
+// response - 405Method Not Allowed
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta charSet="utf-8" />
+	<script>
+		!function(){try {var d=document.documentElement.classList;d.remove('light','dark');var e=localStorage.getItem('lc-dark-side');if("system"===e||(!e&&true)){var t="(prefers-color-scheme: dark)",m=window.matchMedia(t);m.media!==t||m.matches?d.add('dark'):d.add('light')}else if(e) d.add(e)}catch(e){}}()
+	</script>
+	<title>405: Method Not Allowed</title>
+	<meta name="next-head-count" content="4" />
+	<link rel="preload" href="/_next/static/css/1e948112a7a14c10.css" as="style" />
+	<link rel="stylesheet" href="/_next/static/css/1e948112a7a14c10.css" data-n-g="" /><noscript
+		data-n-css=""></noscript>
+	<script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script>
+	<script src="/_next/static/chunks/webpack-6b9225f2056b6e4d.js" defer=""></script>
+	<script src="/_next/static/chunks/framework-560765ab0625ba27.js" defer=""></script>
+	<script src="/_next/static/chunks/main-2752c6213a177432.js" defer=""></script>
+	<script src="/_next/static/chunks/pages/_app-9c9301424837f15a.js" defer=""></script>
+	<script src="/_next/static/chunks/pages/_error-d5e199e0b01a6787.js" defer=""></script>
+	<script src="/_next/static/Ldb_Fcc-UKa_pLAqMwyAp/_buildManifest.js" defer=""></script>
+	<script src="/_next/static/Ldb_Fcc-UKa_pLAqMwyAp/_ssgManifest.js" defer=""></script>
+	<script src="/_next/static/Ldb_Fcc-UKa_pLAqMwyAp/_middlewareManifest.js" defer=""></script>
+</head>
+
+<body>
+	<div id="__next" data-reactroot="">
+		<div
+			style="color:#000;background:#fff;font-family:-apple-system, BlinkMacSystemFont, Roboto, &quot;Segoe UI&quot;, &quot;Fira Sans&quot;, Avenir, &quot;Helvetica Neue&quot;, &quot;Lucida Grande&quot;, sans-serif;height:100vh;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+			<div>
+				<style>
+					body {
+						margin: 0
+					}
+				</style>
+				<h1
+					style="display:inline-block;border-right:1px solid rgba(0, 0, 0,.3);margin:0;margin-right:20px;padding:10px 23px 10px 0;font-size:24px;font-weight:500;vertical-align:top">
+					405</h1>
+				<div style="display:inline-block;text-align:left;line-height:49px;height:49px;vertical-align:middle">
+					<h2 style="font-size:14px;font-weight:normal;line-height:inherit;margin:0;padding:0">Method Not
+						Allowed
+						<!-- -->.</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="__NEXT_DATA__" type="application/json">
+		{"props":{"pageProps":{"statusCode":405}},"page":"/_error","query":{},"buildId":"Ldb_Fcc-UKa_pLAqMwyAp","isFallback":false,"gip":true,"scriptLoader":[]}
+	</script>
+</body>
+
+</html>
 ```
 
-### 11. What is Polymorphism? And how Java implements it?
+### Find 2 collection of APIs example. ie. Twitter, Paypal, Youtube etc.  -- 命名规范
+- Paypal
 ```
-Polymorphism refers to the same object exhibiting different forms and behaviors. 
-There are two ways of implements it:
-- Static Polymorphism - Overload (same class) - compile time
-- Dynamic Polymorphism - Override (child class) - run tim
-```
-
-### 12. What is Encapsulation? How Java implements it? And why we need encapsulation?
-```
-Encapsulation in OOP refers to binding the data and the methods to manipulate that data together in a single unit (class)
-We can use access modifiers to impletemnt it
-Encapsulation is a way of restricting the access of our data members by hiding the implementation details. Encapsulation also improves the re-usability and is easy to change with new requirements.
+User info - GET  {{base_url}}/v1/identity/oauth2/userinfo?schema=paypalv1.1\
+Create order - POST {{base_url}}/v2/checkout/orders
+Show order detail - GET {{base_url}}/v2/checkout/orders/:order_id
+update order - PATCH {{base_url}}/v2/checkout/orders/:order_id
+Authorize payment for order - POST {{base_url}}/v2/checkout/orders/:order_id/authorize
+Capture payment for order - POST {{base_url}}/v2/checkout/orders/:order_id/capture
+Show refund details - GET {{base_url}}/v2/payments/refunds/:refund_id
+Refund captured payment POST {{base_url}}/v2/payments/captures/:capture_id/refund
 ```
 
-### 13. What is Interface and what is abstract class? What are the differences between them?
+- YouTuBe
 ```
-An Interface is defined as an abstract type used to specify the behavior of a class. 
-An abstract class is a normal class that is declared using the abstract keyword. It permits you to make functionality that subclasses can implement or override
-
-Differences:
-1. A class can extend only one abstract class while a class can implement multiple interfaces.
-2. Interface can only contains abstract methods, but abstract class can contain both abstract and concrete methods
-3. You cannot use access modifiers in Interface, but you can in abstract class
-4. An interface can have only public abstract methods.	An abstract class has protected and public abstract methods
-```
-
-### 15. What are Queue interface implementations and what are the differences and when to use what?
-```
-A queue is a linear data structure or a collection that stores elements in a FIFO (First In, First Out) order. 
-The two most common implementations are PriorityQueue and LinkedList.
-
-LinkedList is a linear data structure where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. 
-
-A PriorityQueue is used when the objects are supposed to be processed based on the priority. The PriorityQueue is based on the priority heap. The elements of the priority queue are ordered according to the natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used.  
+Caption list - GET https://www.googleapis.com/youtube/v3/captions
+Caption insert - POST https://www.googleapis.com/upload/youtube/v3/captions
+Caption update - PUT https://www.googleapis.com/upload/youtube/v3/captions
+Caption download - GET https://www.googleapis.com/youtube/v3/captions/id
+Caption delete - DELETE https://www.googleapis.com/youtube/v3/captions
+Subscription list - GET https://www.googleapis.com/youtube/v3/subscriptions
+Subscription insert - POST https://www.googleapis.com/youtube/v3/subscriptions
+Subscription delete - DELETE https://www.googleapis.com/youtube/v3/subscriptions
 ```
 
-### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
+### Design a collection of APIS for a Blog Website, please specify GET POST PUT DELETE 
 ```
-Unchecked Exceptions are the exceptions that occurs at the time of execution
-Checked Exceptions are the exceptions that are checked at compile time and must be handled
-```
-
-### 17. what is the difference between throw and throws?
-```
-Both throw and throws are concepts of exception handling in Java. 
-The throws keyword is used to declare which exceptions can be thrown from a method
-The throw keyword is used to explicitly throw an exception within a method or block of code
-```
-
-### 18. Run the below three pieces codes, Noticed the printed exceptions. why do we put the Null/Runtime exception before Exception
-```
-Exception is the parent class for all other kinds of exceptions, which includes the Null/Runtime exception.
-If put Exception before the Null/Runtime exception, the Null/Runtime exception will not be reached since Exception will catch all exceptions.
+read a post - GET http://www.bblloogg.com/user/v2/blogs/blogID/post
+create a post - POST http://www.bblloogg.com/user/v2/blogs/blogID/post
+update a post - PUT http://www.bblloogg.com/user/v2/blogs/blogID/post
+delete a post - DELETE http://www.bblloogg.com/user/v2/blogs/blogID/post
 ```
