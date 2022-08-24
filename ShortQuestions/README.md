@@ -899,6 +899,80 @@ Orders: https://developer.paypal.com/docs/api/orders/v2/
         Delete a post: DELETE /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments/{comment_id}
     
 
+# HW7 # Template
 
+1.  create a file to list all of the annotaitons you learned and known, and explain the 
+usage and how do you understand it. you need to update it when you learn a new 
+annotation. Please organize those annotations well, like annotations used by 
+entity, annotations used by controller.
+    a. File name: annotations.md
+    b. you'd better also list a code example under the annotations.
+    
+    Please see the separate file Annotations.md under ShortQuestions
+    
+2.  Explain how the below annotaitons specify the table in database?
+    @Column(columnDefinition = "varchar(255) default 'John Snow'") //The "name" column has a input limitation of 255 for characters, and its default value is John Snow.
+    private String name;
+      
+    @Column(name="STUDENT_NAME", length=50, nullable=false, unique=false) //The "studentName" field will be mapped to a column named "STUDENT_NAME"; the length limitation of the input is 50, and it cannot be null and does not have to be unique. 
+    private String studentName;
+
+    
+3.  What is the default column names of the table in database for  @Column?
+
+    The field names.
+
+    @Column
+    private String firstName;
+    @Column
+    private String operatingSystem;
+
+4.  What are the layers in springboot application? what is the role of each layer?
+    
+    Presentation layer: 
+        The presentation layer handles the HTTP requests, translates the JSON parameter to object, and authenticates the request and transfer it to the business layer. In short, it consists of views i.e., frontend part.
+    Business layer: 
+        The business layer handles all the business logic. It consists of service classes and uses services provided by data access layers. It also performs authorization and validation.
+    Persistent layer: The persistence layer contains all the storage logic and translates business objects from and to database rows. (e.g., Data Access Object("DAO"))
+    Database: 
+        It is where the data is ultimately stored. In the database layer, CRUD (create, retrieve, update, delete) operations are performed.
+        
+        (reference link: https://www.javatpoint.com/spring-boot-architecture)
+
+5.  Describe the flow in all of the layers if an API is called by Postman.
+
+        When an API is called by Postman, it will first reach the controller(i.e., presenrtation layer), and based on the request type and parameter(s), the controller will direct it to the correct method (for further process) defined under the service layer (i.e., business layer), which will then call the methods provided by the persistent layer (i.e., DAO) to properly perform the respective CRUD operation to the database. Once done, based on the status, the service layer will also return a request response back to the controller and ultimtately to the client.
+
+
+6.  What is the application.properties? do you know application.yml?
+
+    Spring Boot Framework comes with a built-in mechanism for application configuration using a file called application. properties. It is located inside the src/main/resources folder. Properties files are used to keep ‘N’ number of properties in a single file to run the application in a different environment. In Spring Boot, properties are kept in the application.properties file under the classpath.
+    
+    YAML is a configuration language and is heavily used for configuring the various properties while developing the applications. Spring Boot supports YAML based properties configurations to run the application. Instead of application.properties, we can use application.yml file. This YAML file also should be kept inside the classpath.
+    
+    One advantage that you may see out of using the YAML(.yml) file is if you are using more than one application that read the same configuration file. you may see better support in other languages for YAML(.yml) as opposed to .properties.
+
+7. Create a Project, name it with mongo-blog, write a POST API for mongo-blog, change database to MongoDB;
+    a. https://www.mongodb.com/compatibility/spring-boot
+    
+    Done - saved under project "mongo-blog".
+    
+8.  In your redbook application, write the code for RUD APIs. 
+
+    Done - saved under folder "redbook2-mysql-blog".
+    
+    a. https://github.com/TAIsRich/springboot-redbook.git
+    i.  Branch: 02_post_RUD
+    b. you need to call the new APIs in your postman.
+    @Column(columnDefinition = "varchar(255) default 
+    'John Snow'")
+    private String name;
+      
+    @Column(name="STUDENT_NAME", length=50, 
+    nullable=false, unique=false)
+    private String studentName;
+
+    c.  You need to type it line by line and try your best to understand it. DO 
+    NOT COPY PASTE
 
 
