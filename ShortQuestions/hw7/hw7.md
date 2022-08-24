@@ -1,21 +1,11 @@
 ### 1. What is wrapper class in Java and Why we need wrapper class?
 ```
-A Wrapper class is a class whose object wraps or contains primitive data types. 
 
-Wrapper class is needed, because:
-1. They convert primitive data types into objects. Objects are needed if we wish to modify the arguments passed into a method (because primitive types are passed by value)
-2. The classes in java.util package handles only objects and hence wrapper classes help in this case also.
-3. Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
-4. An object is needed to support synchronization in multithreading.
 ```
 
 ### 2. What is the difference between HashMap and HashTable?
 ```
-1. HashMap is non-synchronized, while HashTable is synchronized
-2. HashMap’s object is not thread-safe (multiple threads can operate simultaneously), while HashTable is thread-safe (At a time only one thread is allowed to operate the Hashtable’s object)
-3. HashMap has higher performance because threads are not required to wait, while HashTable has lower performance because it increases the waiting time of the thread
-4. HashMap allows Null for both key and value, while HashTable doesn't allow Null for either key and value
-5. HashMap is non-legacy, while HashTable is is legacy
+
 ```
 
 ### 3. What is String pool in Java and why we need String pool
