@@ -1,43 +1,34 @@
 package com.chuwa.mongoblog.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(
-        name = "posts",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"title"})
-        }
-)
+@Document(collection = "posts")
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "content", nullable = false)
     private String content;
 
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createDateTime;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     private LocalDateTime updateDateTime;
 
     public Post() {
     }
 
-    public Post(Long id, String title, String description, String content, LocalDateTime createDateTime, LocalDateTime updateDateTime) {
+    public Post(String id, String title, String description, String content, LocalDateTime createDateTime, LocalDateTime updateDateTime) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -46,11 +37,11 @@ public class Post {
         this.updateDateTime = updateDateTime;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
