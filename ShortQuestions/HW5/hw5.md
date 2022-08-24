@@ -260,6 +260,8 @@ Implement the inner-thread communication using three methods:
 
 - Join is a final method in java.lang.Thread class and you cannot override it.
 
+[join()](./join().png)
+
 ### 11. What is the yield() method?
 
 - The yield() method is a static method of the Thread class.
