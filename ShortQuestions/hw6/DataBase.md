@@ -52,37 +52,45 @@ delete from oms_company_address where name = 'kev';
 # MongoDB Practice
  
 
-### Create testDB
+### Create test DB
 ```
-delete from oms_company_address where name = 'kev';
-```
-
-### Delete one entry from oms_company_address table
-```
-delete from oms_company_address where name = 'kev';
+use test
 ```
 
-### Delete one entry from oms_company_address table
+### Create oms_company_address collection (method: createCollection() )
 ```
-delete from oms_company_address where name = 'kev';
-```
-
-### Delete one entry from oms_company_address table
-```
-delete from oms_company_address where name = 'kev';
+db.createCollection("oms_company_address");
 ```
 
-### Delete one entry from oms_company_address table
+### Insert few random entries to oms_company_address collection (method: insert() )
 ```
-delete from oms_company_address where name = 'kev';
+db.oms_company_address.insert({"id": 00001, "address_name" : "ABC", "send_status": 1, "receive_status": 1, "name" : "Tina", "phone" : 123456, "province" : "WA", "city" : "Seattle", "region" : "uw", "detail_address" : "123efdfg 4rfdv"});
+
+
+db.oms_company_address.insert({"id": 00002, "address_name" : "DEF", "send_status": 0, "receive_status": 0, "name" : "Rog", "phone" : 234567, "province" : "WA", "city" : "Bothell", "region" : "bt", "detail_address" : "4rf 67hhng"});
+
+
+db.oms_company_address.insert({"id": 00003, "address_name" : "GHI", "send_status": 0, "receive_status": 1, "name" : "Pho", "phone" : 3456789, "province" : "CA", "city" : "San Jose", "region" : "sjsu", "detail_address" : "56dfg 78gb"});
 ```
 
-### Delete one entry from oms_company_address table
+### Read one entry from oms_company_address collection (method: find() )
 ```
-delete from oms_company_address where name = 'kev';
+db.oms_company_address.find({
+    name: "Tina"
+  });
 ```
 
-### Delete one entry from oms_company_address table
+### Read all entries from oms_company_address collection (method: find() )
 ```
-delete from oms_company_address where name = 'kev';
+db.oms_company_address.find();
+```
+
+### Update one entry from oms_company_addresscollection (method: update() or save() )
+```
+db.oms_company_address.update({name : "Rog"}, {$set: {phone: 232323}});
+```
+
+### Remove one entry from oms_company_addresscollection (method: remove() )
+```
+db.oms_company_address.remove({name: "Pho"});
 ```
