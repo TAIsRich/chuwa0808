@@ -228,6 +228,7 @@ keyword implements
 ```
 
 ### 14. Design a parking lot (put the code to CodingQuestions/Coding1 folder). If you have no ability to design it, please find the solution in the internet, then **understand** it, then **type** it, **do not just copy and paste**.
+#### https://www.educative.io/courses/grokking-the-object-oriented-design-interview/gxM3gRxmr8Z
 
 [CODE](https://github.com/TAIsRich/chuwa0808/tree/Flora_Zhong/notes/CodingQuestions/Coding1/parkingLlot)
 

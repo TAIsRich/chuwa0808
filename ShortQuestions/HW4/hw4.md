@@ -182,6 +182,7 @@ interface Sayable extends Doable{
 ```
 Lambda expression is a new and important feature introduced by Java 8:
 - It provides a clear and concise way to implement an abstract method of functional interface using an expression, and we do not need to define the method again for providing the implementation (@Override).
+- It supports only those functional interfaces. 
 - It is very useful in collection library. It helps to iterate, filter and extract data from collection.
 - Java Lambda expression is treated as a function, so compiler does not create .class file.
 ```
