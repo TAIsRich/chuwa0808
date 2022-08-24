@@ -40,4 +40,6 @@
 
    It is where we configure database and sersers. yml is just another file format.
 
+7. https://github.com/TAIsRich/chuwa0808/tree/FranklinYao/hw40/mongo-blog
+
 7. 
