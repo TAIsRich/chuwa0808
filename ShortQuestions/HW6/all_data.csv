@@ -1,0 +1,21 @@
+id,address_name,send_status,receive_status,name,phone,province,city,region,detail_address
+1,"62117 Berge Stravenue Apt. 275
+Lydamouth, MA 32445-1216",0,0,Summer,+75(0)0190092215,Pennsylvania,"Lake Daren",NULL,NULL
+2,"28195 Becker River
+East Keiratown, AL 78374",0,1,Mireille,(807)054-0180x5068,Kansas,Schmittchester,NULL,NULL
+3,"92127 Arlie Square Suite 639
+Port Stephan, SD 28855-0544",1,1,Kattie,+56(8)3627152212,NewMexico,Hudsonville,NULL,NULL
+4,"77964 Aufderhar Grove Apt. 208
+Powlowskihaven, CO 91725",1,0,Kelsie,1-937-328-0265x0387,Colorado,Donnellyberg,NULL,NULL
+5,"695 Alexandra Parks Suite 056
+Ernserview, VT 20935",0,0,Allie,1-069-482-3378x9318,Nevada,Hudsonburgh,NULL,NULL
+6,"019 Steuber Place
+Port Matilde, MN 37054-6646",1,1,Kennedy,654-780-6240,Pennsylvania,Alyssonshire,NULL,NULL
+7,"921 Destany Spur
+Jacobiton, ID 01212-4106",1,0,Sandra,1-289-075-8308x263,Louisiana,Ondrickaborough,NULL,NULL
+8,"497 Boyer Cliff
+West Luciousberg, MA 72817-0474",1,0,Darron,972.755.2705,Colorado,Anabelchester,NULL,NULL
+9,"08928 Kulas Station
+West Rhianna, KY 39016-1617",0,1,Oran,606.556.4348x59603,California,Mercedesbury,NULL,NULL
+10,"2285 Isabel Trail Suite 342
+East Donald, VA 58943",0,1,Jackson,1-539-519-7702x377,Tennessee,"North Katheryn",NULL,NULL
