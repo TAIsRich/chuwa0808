@@ -8,6 +8,8 @@ public class PostDto {
 
     private String description;
 
+    private String content;
+
     @Override
     public String toString() {
         return "PostDto{" +
@@ -59,6 +61,4 @@ public class PostDto {
 
     public PostDto() {
     }
-
-    private String content;
 }
