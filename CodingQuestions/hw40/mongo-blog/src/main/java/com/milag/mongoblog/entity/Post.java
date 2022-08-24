@@ -20,8 +20,10 @@ public class Post {
 
     private String content;
 
-    private LocalDateTime createDateTime;  //create_date_time
+    @CreatedDate
+    private LocalDateTime createDateTime;
 
+    @LastModifiedDate
     private LocalDateTime updateDateTime;
 
     public Post() {
