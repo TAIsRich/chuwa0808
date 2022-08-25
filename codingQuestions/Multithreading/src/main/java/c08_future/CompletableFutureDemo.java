@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c08_future;
+package c08_future;
 
 import java.util.Arrays;
 import java.util.List;

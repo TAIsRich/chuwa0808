@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c09_ForkJoin;
+package c09_ForkJoin;
 
 import org.junit.Test;
 

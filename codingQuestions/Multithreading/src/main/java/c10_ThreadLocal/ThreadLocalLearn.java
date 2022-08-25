@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c10_ThreadLocal;
+package c10_ThreadLocal;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

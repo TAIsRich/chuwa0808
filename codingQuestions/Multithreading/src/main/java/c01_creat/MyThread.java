@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c01_creat;
+package c01_creat;
 
 /**
  * @author b1go

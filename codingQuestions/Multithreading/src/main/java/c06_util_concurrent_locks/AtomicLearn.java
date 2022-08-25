@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c06_util_concurrent_locks;
+package c06_util_concurrent_locks;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;

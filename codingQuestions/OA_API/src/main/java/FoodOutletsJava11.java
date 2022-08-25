@@ -1,6 +1,3 @@
-package com.chuwa.exercise.oa.api;
-
-
 import com.google.gson.*;
 
 import java.io.IOException;
