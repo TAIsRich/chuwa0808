@@ -1,114 +1,43 @@
-### 1. What is wrapper class in Java and Why we need wrapper class?
+### 2. explain how the below annotaitons specify the table in database?
+```
+1. it defines the "name" column, whose string type is varchar(255) and default value "John Snow"
+2. it defines the "studentName" column, whose value length is 50, value can not be null, and don't need to be unique
 ```
 
+### 3. What is the default column names of the table in database for  @Column?
+```
+1. firstName
+2. operatingSystem
 ```
 
-### 2. What is the difference between HashMap and HashTable?
+### 4. What are the layers in springboot application? what is the role of each layer?
+```
+1. Presentation Layer - controller, handles the HTTP requests and performs authentication. It is responsible for converting the JSON field’s parameter to Java Objects and vice-versa.
+2. Business Layer - service class, contains all the business logic. 
+3. Persistence Layer - contains all the database storage logic. It is responsible for converting business objects to the database row and vice-versa.
+4. Database Layer - contains all the databases (can be more than one)
 ```
 
+### 5. Describe the flow in all of the layers if an API is called by Postman.
+```
+buiild project:
+- Initializing a Spring Boot Project
+- Connecting to the Database
+- Creating a User Model
+- Creating Repository Classes
+- Creating a Controller
+- Compile, Build and Run.
+
+when an API is called:
+- controller layer receive the request
+- send request to the service layer for further process
+- Dao manage the data stored in database per request
+- return result
 ```
 
-### 3. What is String pool in Java and why we need String pool
+### 6. What is the application.properties? do you know application.yml?
 ```
-String pool is a separate place in the heap memory where the values of all the strings which are defined in the program are stored.
-We need it because Strings are immutable and the String Pool helps increase performance and decrease memory overhead.
-```
+application.properties files are used to keep 'N' number of properties/configuration in a single file to run the application in a different environment. The application.properties file is located in the src/main/resources directory.
 
-### 4. What is Java garbage collection?
-```
-Garbage collection in Java is the process by which Java programs perform automatic memory management. The garbage collector finds these unused objects and deletes them to free up memory.
-```
-
-### 5. What are access modifiers and their scopes in Java?
-```
-Access modifiers in Java helps to restrict the scope of a class, constructor, variable, method, or data member. 
-There are 4 types of access modifiers:
-1. Default - visible only within the package (package private)
-2. Private - visible only within the class
-3. Protected - visible within the package or all subclasses
-4. Public - visible everywhere
-```
-
-### 6. What is final key word? (Filed, Method, Class)
-```
-The final keyword is a non-access modifier that makes object non-changeable
-```
-
-### 7. What is static keyword? (Filed, Method, Class). When do we usually use it?
-```
-The static keyword is a non-access modifier that can be accessed without creating an object of a class.
-The static keyword belongs to the class instead of an object, so it is mainly used for memory management. 
-```
-
-### 8. What is the differences between overriding and overloading? 
-```
-Overriding - the method signature (name and parameters) are the same in the superclass and the child class
-Overloading - two or more methods in the same class have the same name but different parameters
-```
-
-### 9. What is the differences between super and this?
-```
-this refers to the current class
-super refers to the parent class
-```
-
-### 10. What is the Java load sequence?
-```
-static variable/block -> constructo -> non static variable
-```
-
-### 11. What is Polymorphism? And how Java implements it?
-```
-Polymorphism refers to the same object exhibiting different forms and behaviors. 
-There are two ways of implements it:
-- Static Polymorphism - Overload (same class) - compile time
-- Dynamic Polymorphism - Override (child class) - run tim
-```
-
-### 12. What is Encapsulation? How Java implements it? And why we need encapsulation?
-```
-Encapsulation in OOP refers to binding the data and the methods to manipulate that data together in a single unit (class)
-We can use access modifiers to impletemnt it
-Encapsulation is a way of restricting the access of our data members by hiding the implementation details. Encapsulation also improves the re-usability and is easy to change with new requirements.
-```
-
-### 13. What is Interface and what is abstract class? What are the differences between them?
-```
-An Interface is defined as an abstract type used to specify the behavior of a class. 
-An abstract class is a normal class that is declared using the abstract keyword. It permits you to make functionality that subclasses can implement or override
-
-Differences:
-1. A class can extend only one abstract class while a class can implement multiple interfaces.
-2. Interface can only contains abstract methods, but abstract class can contain both abstract and concrete methods
-3. You cannot use access modifiers in Interface, but you can in abstract class
-4. An interface can have only public abstract methods.	An abstract class has protected and public abstract methods
-```
-
-### 15. What are Queue interface implementations and what are the differences and when to use what?
-```
-A queue is a linear data structure or a collection that stores elements in a FIFO (First In, First Out) order. 
-The two most common implementations are PriorityQueue and LinkedList.
-
-LinkedList is a linear data structure where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. 
-
-A PriorityQueue is used when the objects are supposed to be processed based on the priority. The PriorityQueue is based on the priority heap. The elements of the priority queue are ordered according to the natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used.  
-```
-
-### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
-```
-Unchecked Exceptions are the exceptions that occurs at the time of execution
-Checked Exceptions are the exceptions that are checked at compile time and must be handled
-```
-
-### 17. what is the difference between throw and throws?
-```
-Both throw and throws are concepts of exception handling in Java. 
-The throws keyword is used to declare which exceptions can be thrown from a method
-The throw keyword is used to explicitly throw an exception within a method or block of code
-```
-
-### 18. Run the below three pieces codes, Noticed the printed exceptions. why do we put the Null/Runtime exception before Exception
-```
-Exception is the parent class for all other kinds of exceptions, which includes the Null/Runtime exception.
-If put Exception before the Null/Runtime exception, the Null/Runtime exception will not be reached since Exception will catch all exceptions.
+As well as Java properties files, we can also use YAML-based configuration files in our Spring Boot application. YAML is a convenient format for specifying hierarchical configuration data. This can be more readable than its property file alternative since it does not contain repeated prefixes.
 ```
