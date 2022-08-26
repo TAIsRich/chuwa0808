@@ -1,124 +1,117 @@
- ### 1. What is wrapper class in Java and Why we need wrapper class?
+### 2.  how do you do the debug? 
 ```
-A Wrapper class is a class whose object wraps or contains primitive data types. 
-
-Wrapper class is needed, because:
-1. They convert primitive data types into objects. Objects are needed if we wish to modify the arguments passed into a method (because primitive types are passed by value)
-2. The classes in java.util package handles only objects and hence wrapper classes help in this case also.
-3. Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
-4. An object is needed to support synchronization in multithreading.
+1. check the error message which points to the problem in your code
+2. based on the information and your analysis, locate where the problem might be, mark the code, and start debug
+3. step over each time to check if we are getting desired. if not, we found the bug
 ```
 
-### 2. What is the difference between HashMap and HashTable?
+### 3. What is DTO, VO, Payload, DO?
 ```
-1. HashMap is non-synchronized, while HashTable is synchronized
-2. HashMap’s object is not thread-safe (multiple threads can operate simultaneously), while HashTable is thread-safe (At a time only one thread is allowed to operate the Hashtable’s object)
-3. HashMap has higher performance because threads are not required to wait, while HashTable has lower performance because it increases the waiting time of the thread
-4. HashMap allows Null for both key and value, while HashTable doesn't allow Null for either key and value
-5. HashMap is non-legacy, while HashTable is is legacy
-```
-
-### 3. What is String pool in Java and why we need String pool
-```
-String pool is a separate place in the heap memory where the values of all the strings which are defined in the program are stored.
-We need it because Strings are immutable and the String Pool helps increase performance and decrease memory overhead.
+DTO - Data Transfer Object, carries useful data between processes/systems
+VO - Value Object, a small object holds values
+Payload - contains the data that could be stored or updated (the body of your request and response message)
+DO - Data object, a collection of one or more data points that create meaning as a whole.
 ```
 
-### 4. What is Java garbage collection?
+### 4. What is @JsonProperty("description_yyds")?
 ```
-Garbage collection in Java is the process by which Java programs perform automatic memory management. The garbage collector finds these unused objects and deletes them to free up memory.
+The @JsonProperty annotation is used to map property names with JSON keys during serialization and deserialization. 
+By default, if you try to serialize a POJO, the generated JSON will have keys mapped to the fields of the POJO 
+
+description_yyds: Through JsonProperty, the API of key and value can be generated in the Controller layer first
+At this time, it has not passed to the service layer and cannot be generated in the database
 ```
 
-### 5. What are access modifiers and their scopes in Java?
+### 5. do you know what is jackson?
 ```
-Access modifiers in Java helps to restrict the scope of a class, constructor, variable, method, or data member. 
-There are 4 types of access modifiers:
-1. Default - visible only within the package (package private)
-2. Private - visible only within the class
-3. Protected - visible within the package or all subclasses
-4. Public - visible everywhere
+Jackson is a very popular and efficient java based library to serialize or map java objects to JSON and vice versa
 ```
 
-### 6. What is final key word? (Filed, Method, Class)
+### 6. What is spring-boot-stater? what dependecies in the below starter? do you know any starters?
 ```
-The final keyword is a non-access modifier that makes object non-changeable
+Spring Boot Starters are dependency descriptors that can be added under the <dependencies> section in pom.xml. 
+There are around 50+ Spring Boot Starters for different Spring and related technologies. 
+
+The below starter is spring-boot-starter-web, which is for the web development. 
+It by default uses Spring MVC, REST and Tomcat as a default embedded server.
+
+spring-boot-starter-data-jpa
+spring-boot-starter-data-mongodb
 ```
 
-### 7. What is static keyword? (Filed, Method, Class). When do we usually use it?
+### 7. do you know  `@RequestMapping(value = "/users", method = RequestMethod.POST)` ? could you list CRUD by this style?
 ```
-The static keyword is a non-access modifier that can be accessed without creating an object of a class.
-The static keyword belongs to the class instead of an object, so it is mainly used for memory management. 
+Use the @RequestMapping annotation to map different HTTP requests to their respective controller methods.
+
+@RequestMapping(value = "/users", method = RequestMethod.POST)
+@RequestMapping(value = "/users", method = RequestMethod.GEt)
+@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
+@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
 ```
 
-### 8. What is the differences between overriding and overloading? 
+### 8. What is ResponseEntity? why do we need it?
 ```
-Overriding - the method signature (name and parameters) are the same in the superclass and the child class
-Overloading - two or more methods in the same class have the same name but different parameters
-```
-
-### 9. What is the differences between super and this?
-```
-this refers to the current class
-super refers to the parent class
+ResponseEntity represents the whole HTTP response: status code, headers, and body. 
+We can use it to fully configure the HTTP response.
 ```
 
-### 10. What is the Java load sequence?
+### 9. What is ResultSet in jdbc? and describe the flow how to get data using JDBC
 ```
-static variable/block -> constructo -> non static variable
+ResultSet represents the result set of a database query. A ResultSet object maintains a cursor that points to the current row in the result set. 
+
+JDBC consists of 7 elements that are known as connection steps:
+1	Import the package 
+2	Load and Register the drivers 
+3	Establish the connection 
+4	Create the statement 
+5	Execute the statement 
+6	Process Result
+7	Close/terminate
 ```
 
-### 11. What is Polymorphism? And how Java implements it?
+### 10. What is the ORM framework?
 ```
-Polymorphism refers to the same object exhibiting different forms and behaviors. 
-There are two ways of implements it:
-- Static Polymorphism - Overload (same class) - compile time
-- Dynamic Polymorphism - Override (child class) - run tim
+ORM stands for object–relational mapping. 
+It is a programming technique for converting data between type systems using object-oriented programming languages.
 ```
 
-### 12. What is Encapsulation? How Java implements it? And why we need encapsulation?
+### 12. What is the serialization and desrialization?
 ```
-Encapsulation in OOP refers to binding the data and the methods to manipulate that data together in a single unit (class)
-We can use access modifiers to impletemnt it
-Encapsulation is a way of restricting the access of our data members by hiding the implementation details. Encapsulation also improves the re-usability and is easy to change with new requirements.
+Serialization is the process of converting a data object — a combination of code and data represented within a region of data storage — into a series of bytes that saves the state of the object in an easily transmittable form.
+
+The deserialization process recreates the object, thus making the data easier to read and modify as a native structure in a programming language.
 ```
 
-### 13. What is Interface and what is abstract class? What are the differences between them?
+### 13. use stream api to get the average of the array [20, 3, 78, 9, 6, 53, 73, 99, 24, 32]
 ```
-An Interface is defined as an abstract type used to specify the behavior of a class. 
-An abstract class is a normal class that is declared using the abstract keyword. It permits you to make functionality that subclasses can implement or override
+import java.util.*;
 
-Differences:
-1. A class can extend only one abstract class while a class can implement multiple interfaces.
-2. Interface can only contains abstract methods, but abstract class can contain both abstract and concrete methods
-3. You cannot use access modifiers in Interface, but you can in abstract class
-4. An interface can have only public abstract methods.	An abstract class has protected and public abstract methods
-```
-
-### 15. What are Queue interface implementations and what are the differences and when to use what?
-```
-A queue is a linear data structure or a collection that stores elements in a FIFO (First In, First Out) order. 
-The two most common implementations are PriorityQueue and LinkedList.
-
-LinkedList is a linear data structure where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. 
-
-A PriorityQueue is used when the objects are supposed to be processed based on the priority. The PriorityQueue is based on the priority heap. The elements of the priority queue are ordered according to the natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used.  
+public class MyClass {
+     public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(20, 3, 78, 9, 6, 53, 73, 99, 24, 32);
+        
+        double ans = list.stream()
+            .mapToDouble(Integer :: intValue)
+            .average()
+            .getAsDouble();
+    
+        System.out.println(ans);
+    }
+}
 ```
 
-### 16. What is Runtime/unchecked exception? what is Compile/Checked Exception?
 ```
-Unchecked Exceptions are the exceptions that occurs at the time of execution
-Checked Exceptions are the exceptions that are checked at compile time and must be handled
-```
+import java.util.*;
+import java.util.stream.IntStream;
 
-### 17. what is the difference between throw and throws?
-```
-Both throw and throws are concepts of exception handling in Java. 
-The throws keyword is used to declare which exceptions can be thrown from a method
-The throw keyword is used to explicitly throw an exception within a method or block of code
-```
-
-### 18. Run the below three pieces codes, Noticed the printed exceptions. why do we put the Null/Runtime exception before Exception
-```
-Exception is the parent class for all other kinds of exceptions, which includes the Null/Runtime exception.
-If put Exception before the Null/Runtime exception, the Null/Runtime exception will not be reached since Exception will catch all exceptions.
+public class MyClass {
+     public static void main(String[] args) {
+        IntStream stream = IntStream.of(20, 3, 78, 9, 6, 53, 73, 99, 24, 32);
+        
+        double ans = stream.average()
+            .getAsDouble();
+    
+        System.out.println(ans);
+    }
+}
 ```
