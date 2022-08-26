@@ -44,10 +44,10 @@ The database layer contains all the databases such as MySql, MongoDB, etc. This 
 ```
 
 ### 5. Describe the flow in all of the layers if an API is called by Postman.
-```
+
+![See Image](https://user-images.githubusercontent.com/32309156/186969859-07f4f818-c4f9-4f5f-a2f9-0c9b03e632f9.png)
  
 
-```
 
 ### 6. What is the application.properties? do you know application.yml?
 ```
@@ -65,6 +65,10 @@ port: 9090
 ### 7. Create a Project, name it with mongo-blog, write a POST API for mongo-blog,
 change database to MongoDB;
 a. https://www.mongodb.com/compatibility/spring-boot
+
+```
+See MavenProject mongo-blog
+```
 
 ### 8. In your redbook application, write the code for RUD APIs.
 a. https://github.com/TAIsRich/springboot-redbook.git
