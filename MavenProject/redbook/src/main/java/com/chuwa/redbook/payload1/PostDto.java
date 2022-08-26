@@ -1,30 +1,27 @@
-package com.chuwa.redbook.payload;
+package com.chuwa.redbook.payload1;
 
-/**
- * @author b1go
- * @date 8/22/22 6:52 PM
- */
 public class PostDto {
-    private Long id;
+    private long id;
     private String title;
     private String description;
     private String content;
 
     public PostDto() {
+
     }
 
-    public PostDto(Long id, String title, String description, String content) {
+    public PostDto(long id, String title, String description, String content) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.content = content;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,15 +47,5 @@ public class PostDto {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "PostDto{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", content='" + content + '\'' +
-                '}';
     }
 }
