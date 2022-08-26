@@ -5,10 +5,6 @@ import com.chuwa.redbook.payload.PostResponse;
 
 import java.util.List;
 
-/**
- * @author b1go
- * @date 8/22/22 6:51 PM
- */
 public interface PostService {
 
     PostDto createPost(PostDto postDto);
