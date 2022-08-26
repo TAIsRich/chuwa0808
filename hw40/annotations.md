@@ -26,7 +26,7 @@
 
 - Autowired：用在JavaBean中的注解，通过byType形式，用来给指定的字段或方法注入所需的外部资源
 
-- PostMapping：映射方法到指定url
+- PostMapping：映射Post方法到指定url
 
   ```
   @RestController
@@ -41,6 +41,28 @@
           return new ResponseEntity<>(postResponse, HttpStatus.CREATED);
       }
   }
+  ```
+
+- GetMapping: 映射Get方法到指定url
+
+- DeleteMapping: 映射Delete方法到指定url
+
+- PathVariable: URL参数
+
+- RequestBody: request 来的数据
+
+  ```
+      public ResponseEntity<PostDto> updatePostById(@RequestBody PostDto postDto, @PathVariable(name = "id") long id) {
+          PostDto postResponse = postService.updatePost(postDto, id);
+          return new ResponseEntity<>(postResponse, HttpStatus.OK);
+      }
+  ```
+
+- ResponseStatus
+
+  ```
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  public class ResourceNotFoundException extends RuntimeException{
   ```
 
 - Entity
@@ -81,5 +103,6 @@
   private LocalDateTime updateDateTime;
   ```
 
-  
+
+- 
 
