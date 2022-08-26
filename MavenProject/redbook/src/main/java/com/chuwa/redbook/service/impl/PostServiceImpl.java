@@ -109,7 +109,7 @@ public class PostServiceImpl implements PostService {
         return post;
     }
 
-    private static ResourceNotFoundException postNotFindException(long id) {
+    static ResourceNotFoundException postNotFindException(long id) {
         return new ResourceNotFoundException("Post", "id", id);
     }
 }
