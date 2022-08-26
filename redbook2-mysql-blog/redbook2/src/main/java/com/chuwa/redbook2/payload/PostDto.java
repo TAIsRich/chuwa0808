@@ -1,9 +1,12 @@
 package com.chuwa.redbook2.payload;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PostDto {
 
     private Long id;
     private String title;
+    //@JsonProperty("description_yyds")//if use "description" as the JSON field name, there will be an 500 internal error
     private String description;
     private String content;
 

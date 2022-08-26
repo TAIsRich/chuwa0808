@@ -46,6 +46,20 @@ Spring RestController annotation is a convenience annotation that is itself anno
     e.g.,
     @GetMapping("/{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id){}
+    
+####@RequestParam
+    The @RequestParam is used to read the HTML form data provided by a user and bind it to the request parameter. @RequestParam annotation enables spring to extract input data that may be passed as a query, form data, or any arbitrary custom data.
+    
+    e.g.,
+    @GetMapping()
+    public PostResponse getAllPosts(
+            @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIR, required = false) String sortDir
+    ) {
+        return postService.getAllPost(pageNo, pageSize, sortBy, sortDir);
+    }
 
 ####@PutMapping()
     It is used to handle PUT type of request method.
@@ -59,6 +73,16 @@ Spring RestController annotation is a convenience annotation that is itself anno
     
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id){}
+
+##Payload/DTO
+
+####@JsonProperty("description_yyds")
+    The @JsonProperty annotation is used to map property names with JSON keys during serialization and deserialization. The content of the field with this annotion will be mapped from the "description_yyds" field passed by the JSON.
+    
+    e.g.,
+    @JsonProperty("description_yyds")
+    private String description;
+    
 
 ##Entity
 The annotations used under entity may vary based on the type of database used for the application
