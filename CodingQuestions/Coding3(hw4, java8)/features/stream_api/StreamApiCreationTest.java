@@ -35,7 +35,6 @@ public class StreamApiCreationTest {
         // 返回一个顺序流
         Stream<Integer> stream = col.stream();
         System.out.println("Stream object:      " + stream);
-
         // 返回一个并行流
         Stream<Integer> parallelStream = col.parallelStream();
         System.out.println("Parallel Stream object:     " + parallelStream);
