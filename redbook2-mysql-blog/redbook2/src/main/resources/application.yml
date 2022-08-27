@@ -1,0 +1,7 @@
+spring:
+    datasource:
+      url: jdbc:mysql://localhost:3306/redbook?useSSL=false&serverTimezone=UTC
+      username: root
+      password: Hellous2020!
+    jpa:
+      properties：

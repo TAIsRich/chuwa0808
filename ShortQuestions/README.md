@@ -899,6 +899,211 @@ Orders: https://developer.paypal.com/docs/api/orders/v2/
         Delete a post: DELETE /v1/users/{user_id}/sites/{site_id}/blogs/{blog_id}/posts/{post_id}/comments/{comment_id}
     
 
+# HW7 # Template
+
+1.  create a file to list all of the annotaitons you learned and known, and explain the 
+usage and how do you understand it. you need to update it when you learn a new 
+annotation. Please organize those annotations well, like annotations used by 
+entity, annotations used by controller.
+    a. File name: annotations.md
+    b. you'd better also list a code example under the annotations.
+    
+    Please see the separate file Annotations.md under ShortQuestions
+    
+2.  Explain how the below annotaitons specify the table in database?
+    @Column(columnDefinition = "varchar(255) default 'John Snow'") //The "name" column has a input limitation of 255 for characters, and its default value is John Snow.
+    private String name;
+      
+    @Column(name="STUDENT_NAME", length=50, nullable=false, unique=false) //The "studentName" field will be mapped to a column named "STUDENT_NAME"; the length limitation of the input is 50, and it cannot be null and does not have to be unique. 
+    private String studentName;
+
+    
+3.  What is the default column names of the table in database for  @Column?
+
+    The field names.
+
+    @Column
+    private String firstName;
+    @Column
+    private String operatingSystem;
+
+4.  What are the layers in springboot application? what is the role of each layer?
+    
+    Presentation layer: 
+        The presentation layer handles the HTTP requests, translates the JSON parameter to object, and authenticates the request and transfer it to the business layer. In short, it consists of views i.e., frontend part.
+    Business layer: 
+        The business layer handles all the business logic. It consists of service classes and uses services provided by data access layers. It also performs authorization and validation.
+    Persistent layer: The persistence layer contains all the storage logic and translates business objects from and to database rows. (e.g., Data Access Object("DAO"))
+    Database: 
+        It is where the data is ultimately stored. In the database layer, CRUD (create, retrieve, update, delete) operations are performed.
+        
+        (reference link: https://www.javatpoint.com/spring-boot-architecture)
+
+5.  Describe the flow in all of the layers if an API is called by Postman.
+
+        When an API is called by Postman, it will first reach the controller(i.e., presenrtation layer), and based on the request type and parameter(s), the controller will direct it to the correct method (for further process) defined under the service layer (i.e., business layer), which will then call the methods provided by the persistent layer (i.e., DAO) to properly perform the respective CRUD operation to the database. Once done, based on the status, the service layer will also return a request response back to the controller and ultimtately to the client.
+
+
+6.  What is the application.properties? do you know application.yml?
+
+    Spring Boot Framework comes with a built-in mechanism for application configuration using a file called application. properties. It is located inside the src/main/resources folder. Properties files are used to keep ‘N’ number of properties in a single file to run the application in a different environment. In Spring Boot, properties are kept in the application.properties file under the classpath.
+    
+    YAML is a configuration language and is heavily used for configuring the various properties while developing the applications. Spring Boot supports YAML based properties configurations to run the application. Instead of application.properties, we can use application.yml file. This YAML file also should be kept inside the classpath.
+    
+    One advantage that you may see out of using the YAML(.yml) file is if you are using more than one application that read the same configuration file. you may see better support in other languages for YAML(.yml) as opposed to .properties.
+
+7. Create a Project, name it with mongo-blog, write a POST API for mongo-blog, change database to MongoDB;
+    a. https://www.mongodb.com/compatibility/spring-boot
+    
+    Done - saved under project "mongo-blog".
+    
+8.  In your redbook application, write the code for RUD APIs. 
+
+    Done - saved under folder "redbook2-mysql-blog".
+    
+    a. https://github.com/TAIsRich/springboot-redbook.git
+    i.  Branch: 02_post_RUD
+    b. you need to call the new APIs in your postman.
+    @Column(columnDefinition = "varchar(255) default 
+    'John Snow'")
+    private String name;
+      
+    @Column(name="STUDENT_NAME", length=50, 
+    nullable=false, unique=false)
+    private String studentName;
+
+    c.  You need to type it line by line and try your best to understand it. DO 
+    NOT COPY PASTE
+    
+
+# HW8 # Template
+（HW41)
+
+1.  List all of the new annotations to your annotaitons.md and explain its role.
+    Updated in Annotation file.
+    
+2.  how do you do the debug?
+    If encounter issue when starting the application, we will need to check the logs in the console for the error information, and we will need to pay attention to some lines highlighted in blue that indicate the specific lines that caused the failure.
+    For a more general debugging operation, we can add break points to our code to further examine line by line.
+     
+3.  What is DTO, VO, Payload, DO?
+    
+    A data transfer object (DTO) is an object that carries data between processes. 
+    A Value Object or VO is an object such as java.lang.Integer that hold values (hence value objects). A VO should always override the equals() and hashCode() methods. VOs generally encapsulate small objects such as numbers, dates, strings, and more. They follow the value semantics, i.e., they directly change the object's value and pass copies around instead of references. It's a good practice to make Value Objects immutable. 
+    In computer networking, data to be transmitted is the payload. 
+    Java Data Objects (JDO) is a specification of Java object persistence. Java Data Objects (JDO) is an application program interface (API) that enables a Java programmer to access a database implicitly - that is, without having to make explicit Structured Query Language (SQL) statements.
+    
+4.  What is @JsonProperty("description_yyds")?
+    The content of the field with this annotion will be mapped from the "description_yyds" field passed by the JSON.
+
+5.  Do you know what is jackson?
+    Jackson is a very popular and efficient java based library to serialize or map java objects to JSON and vice versa. It is one such Java Json library used for parsing and generating Json files. It has built in Object Mapper class which parses json files and deserializes it to custom java objects. It helps in generating json from java objects.
+
+6.  What is spring-boot-starter?
+    
+    Spring Boot Starters are dependency descriptors that can be added under the <dependencies> section in pom. xml. There are around 50+ Spring Boot Starters for different Spring and related technologies. These starters give all the dependencies under a single name. Spring Boot starters can help to reduce the number of manually added dependencies just by adding one dependency. So instead of manually specifying the dependencies just add one starter.
+    
+    In the Spring Boot Framework, all the starters follow a similar naming pattern: spring-boot-starter-*, where * denotes a particular type of application. For example, if we want to use Spring and JPA for database access, we need to include the spring-boot-starter-data-jpa dependency in our pom.xml file of the project.
+
+    a. what dependecies in the below starter? do you know any starters?
+    
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        The single spring-boot-starter-web dependency can pull in all dependencies related to web development. 
+        
+        Some other common startes we use for web application development are as folows:
+            spring-boot-starter-test
+            spring-boot-starter-data-jpa
+            spring-boot-starter-data-redis
+            spring-boot-starter-web-services
+            spring-boot-starter-data-elasticsearch
+            spring-boot-starter-websocket
+
+7. Do you know  @RequestMapping(value = "/users", method = RequestMethod.POST) ? could you list CRUD by this style?
+
+    The @PathMapping annotation is the specialized version of the @RequestMapping annotation which acts as a shortcut for @RequestMapping(method=RequestMethod=POST).
+    
+    CRUD of this style:
+        @PostMapping
+        @PutMapping
+        @DeleteMapping
+        @GetMapping
+
+8.  What is ResponseEntity? why do we need it?
+
+        new ResponseEntity<>(postResponse, HttpStatus.OK);
+        new ResponseEntity<>(postResponse, HttpStatus.CREATED);
+        ResponseEntity.ok(postService.getPostById(id));
+        
+    ResponseEntity represents the whole HTTP response: status code, headers, and body. As a result, we can use it to fully configure the HTTP response. If we want to use it, we have to return it from the endpoint; Spring takes care of the rest. ResponseEntity is a generic type.
+      
+    ResponseEntity<> is a generic class with a type parameter, you can specify what type of object to be serialized into the response body. @ResponseBody is an annotation, indicates that the return value of a method will be serialized into the body of the HTTP response.  
+        
+
+9.  What is ResultSet in jdbc? and describe the flow how to get data using JDBC
+
+    A ResultSet object is a table of data representing a database result set, which is usually generated by executing a statement that queries the database. For example, the CoffeeTables. viewTable method creates a ResultSet , rs , when it executes the query through the Statement object, stmt .
+    (TODO)
+
+10. What is the ORM framework?
+    Object Relational Mapping (ORM) is a technique (Design Pattern) of accessing a relational database from an object-oriented language. Basically, the ORM framework/software generates objects (as in OOP) that virtually map (like the map of a city) the tables in a database. Then we as a programmer, would use these objects to interact with the database. So the main idea, is to try and shield the programmer from having to write optimized SQL code – the ORM generated objects take care of that for us.
+
+11. Learn how to use ObjectMapper by this example.
+    a. https://github.com/TAIsRich/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java/com/chuwa/exercise/oa/api/FoodOutletJackson.java
+    
+    FoodOutlet foodOutlet = objectMapper.readValue(resBody, FoodOutlet.class);
+    String s = objectMapper.writeValueAsString(foodOutlet);
+    objectMapper.readTree() // learn how to use it?
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.13.3</version>
+      <scope>compile</scope>
+    </dependency>
+
+
+12. What is the serialization and desrialization?
+    a. https://hazelcast.com/glossary/serialization/
+    
+    Serialization and deserialization work together to transform/recreate data objects to/from a portable format.
+    
+    Serialization is the process of converting a data object—a combination of code and data represented within a region of data storage—into a series of bytes that saves the state of the object in an easily transmittable form. In this serialized form, the data can be delivered to another data store (such as an in-memory computing platform), application, or some other destination.
+    
+    The reverse process—constructing a data structure or object from a series of bytes—is deserialization. The deserialization process recreates the object, thus making the data easier to read and modify as a native structure in a programming language.
+    
+13. Use stream api to get the average of the array [20, 3, 78, 9, 6, 53, 73, 99, 24, 32].
+    
+    public class Test{
+        
+        public static void main(String[] args){
+        
+            Integer[] array = new Integer[]{20, 3, 78, 9, 6, 53, 73, 99, 24, 32}; //error reported if we use int[] instead of Integer[]
+            List<Integer> list = Arrays.asList(array);
+            double res = list
+                .stream()
+                .mapToDouble(Integer::intValue)
+                .average()
+                .getAsDouble();
+            
+            System.out.println(res);
+        
+        }
+    }
+
+14. 抄写，https://github.com/TAIsRich/springboot-redbook/tree/03_post_pageable，你也可以像我一样分branch添加新代码。
+
+    Added to redbook2 project.
+
+15. (Optional) 抄写 https://github.com/TAIsRich/springboot-redbook/tree/04_comment你也可以像我一样分branch添加新代码。
+
+16. (Optional) Try to write the CRUD api for a new application Cassandra-Blog
+    a. spring 提供了相关dependency,(https://start.spring.io/)
+    i.  Spring Data for Apache Cassandra
+    b. Cassandra十分流行，且面试问的多。
+
 
 
 
