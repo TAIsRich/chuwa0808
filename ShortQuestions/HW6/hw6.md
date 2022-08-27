@@ -1,3 +1,34 @@
+## Database
+- **mySQL**: 
+1. Create oms_company_address table
+    - CREATE TABLE oms_company_address(id bigint primary key,address_name varchar(200),name varchar(64),phone varchar(64));
+2. Insert some random data to oms_company_address table
+    - insert into oms_company_address values (00001, '600 epic st', 'Tom', '1111111111');
+3. Write a SQL query to fetch all data from oms_company_address `table
+    - select * from oms_company_address;
+4. Write a SQL query to fetch top 3 records from oms_company_address table
+    - select * from oms_company_address limit 3;
+5. Update oms_company_address table to set all phoneto 666-6666-8888
+    - update oms_company_address set phone = 666-6666-8888;
+6. Delete one entry from oms_company_address table
+    - delete from oms_company_address where id = 00001;
+
+- **mongoDB**:
+1. Create testDB
+    - use testDB
+2. Create oms_company_address collection (method: createCollection())
+    - db.createCollection("oms_company_address")
+3. Insert few random entries to oms_company_address collection (method: insert())
+    - db.oms_company_address.insert({address:"a ave", name: 'Luis', phone:"2222222222" })
+4. Read one entry from oms_company_address collection (method: find())
+    - db.oms_company_address.findOne({"id":00001});
+5. Read all entries from oms_company_address collection (method: find())
+    - db.oms_company_address.find({"name":"Tom"}).pretty;
+6. Update one entry from oms_company_addresscollection (method: update() or save())
+    - db.oms_company_address.update({"name":"Luis"},{$set:{phone:"3333333333"}});
+7. Remove one entry from oms_company_addresscollection (method: remove())
+    - db.oms_company_address.remove({"name":"Luis"}) 
+
 ## REST API Postman
 
 take below examples,
