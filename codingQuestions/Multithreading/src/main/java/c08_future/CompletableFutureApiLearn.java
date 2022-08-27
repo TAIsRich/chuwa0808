@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c08_future;
+package c08_future;
 
 import org.junit.Test;
 

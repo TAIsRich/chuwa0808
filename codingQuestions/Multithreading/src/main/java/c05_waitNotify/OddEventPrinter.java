@@ -1,4 +1,4 @@
-package com.chuwa.tutorial.t08_multithreading.c05_waitNotify;
+package c05_waitNotify;
 
 /**
  * @author b1go
