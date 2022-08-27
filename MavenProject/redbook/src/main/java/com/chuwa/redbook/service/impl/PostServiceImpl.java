@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getAllPost() {
-        return postRepository.findAll().stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        return postRepository.findAll().stream().map(PostServiceImpl::mapToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class PostServiceImpl implements PostService {
 
         PageRequest pageRequest = PageRequest.of(pageNo, pageSize, sort);
         Page<Post> posts = postRepository.findAll(pageRequest);
-        List<PostDto> content = posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        List<PostDto> content = posts.stream().map(PostServiceImpl::mapToDTO).collect(Collectors.toList());
 
         PostResponse postResponse = new PostResponse();
         postResponse.setContent(content);
@@ -62,6 +62,7 @@ public class PostServiceImpl implements PostService {
         postResponse.setTotalElements(posts.getTotalElements());
         postResponse.setTotalPages(posts.getTotalPages());
         postResponse.setLast(posts.isLast());
+
         return postResponse;
     }
 
@@ -71,7 +72,7 @@ public class PostServiceImpl implements PostService {
 //        post.orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
 //
 //        Post post = postRepository.findById(id).get();
-        return mapToDTO(postRepository.findById(id).orElseThrow(() -> postNotFindException(id)));
+        return mapToDTO(postRepository.findPostById(id).orElseThrow(() -> postNotFindException(id)));
     }
 
     @Override
@@ -89,7 +90,18 @@ public class PostServiceImpl implements PostService {
         postRepository.delete(postRepository.findById(id).orElseThrow(() -> postNotFindException(id)));
     }
 
-    private PostDto mapToDTO(Post post) {
+    @Override
+    public List<PostDto> searchPost(String keyword) {
+        return postRepository.searchPostsByTitleContainsOrDescriptionContainsOrContentContains(
+                    keyword,
+                    keyword,
+                    keyword
+                ).stream()
+                .map(PostServiceImpl::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private static PostDto mapToDTO(Post post) {
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());
         postDto.setTitle(post.getTitle());
@@ -99,7 +111,7 @@ public class PostServiceImpl implements PostService {
         return postDto;
     }
 
-    private Post mapToEntity(PostDto postDto) {
+    private static Post mapToEntity(PostDto postDto) {
         Post post = new Post();
         post.setId(postDto.getId());
         post.setTitle(postDto.getTitle());

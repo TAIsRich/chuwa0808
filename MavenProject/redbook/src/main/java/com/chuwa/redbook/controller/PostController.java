@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/posts")
 public class PostController {
@@ -55,5 +57,10 @@ public class PostController {
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
         postService.deletePostById(id);
         return ResponseEntity.ok("Post entity deleted successfully.");
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<PostDto>> getPostById4(@RequestParam(value = "keyword") String keyword) {
+        return ResponseEntity.ok(postService.searchPost(keyword));
     }
 }
