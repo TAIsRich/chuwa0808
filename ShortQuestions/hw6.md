@@ -14,7 +14,7 @@ CREATE DATABASE test;
 USE test;
 
 CREATE TABLE oms_company_address(id bigint primary key,
-								address_name varchar(200),
+				address_name varchar(200),
                                 send_status int(1),
                                 receive_status int(1),
                                 name varchar(64),
@@ -112,7 +112,6 @@ db.oms_company_address.insertMany([{
 db.oms_company_address.find({“city”: “nb”}).pretty();
 
 db.oms_company_address.find().update({name: “sef”}, {$set: {phone: “6666666666”}})
-
 
 db.oms_company_address.remove({“city”: ”nb”}, true)
 ```
