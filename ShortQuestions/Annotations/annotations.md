@@ -49,3 +49,24 @@ public class Post {
 
     @Column(name = "title" ,nullable = false)
     private String title;
+
+
+8.@Requestbody:
+  the @RequestBody annotation maps the HttpRequest body to a transfer or domain object, enabling automatic deserialization of the inbound HttpRequest body onto a Java object
+
+  @PostMapping("/request")
+  public ResponseEntity postController(
+    @RequestBody LoginForm loginForm) {
+ 
+    exampleService.fakeAuthenticate(loginForm);
+    return ResponseEntity.ok(HttpStatus.OK);
+  }
+
+
+9.@pathvariable:
+   @PathVariable annotation can be used to handle template variables in the request URI mapping, and set them as method parameters.
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok(postService.getPostById(id));
+    }
