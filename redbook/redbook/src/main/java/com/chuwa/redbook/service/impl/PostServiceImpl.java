@@ -72,7 +72,7 @@ public class PostServiceImpl implements PostService {
     }
     @Override
     public PostDto updatePost(PostDto postDto, long id) {
-        //  Question, why do we need to find it out firstly?
+//          Question, why do we need to find it out firstly?
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         post.setTitle(postDto.getTitle());
         post.setDescription(postDto.getDescription());
@@ -84,7 +84,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePostById(long id) {
-        //  Question, why do we need to find it out firstly?
+//          Question, why do we need to find it out firstly?
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         postRepository.delete(post);
     }
@@ -102,7 +102,7 @@ public class PostServiceImpl implements PostService {
 //        PageRequest pageRequest = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
         Page<Post> pagePosts = postRepository.findAll(pageRequest);
 
-        // get content for page abject
+//         get content for page abject
         List<Post> posts = pagePosts.getContent();
         List<PostDto> postDtos = posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
 
@@ -131,5 +131,20 @@ public class PostServiceImpl implements PostService {
         post.setContent(postDto.getContent());
 
         return post;
+    }
+
+    @Override
+    public PostResponse searchPostByContentContains(String content) {
+
+        List<Post> posts = postRepository.searchPostsByContentContains(content);//leverage the JPA method provided by Java Spring
+        List<PostDto> postDtos = posts
+                .stream()
+                .map(post -> mapToDTO(post))
+                .collect(Collectors.toList());
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+
+        return postResponse;
     }
 }

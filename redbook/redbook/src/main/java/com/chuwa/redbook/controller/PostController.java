@@ -23,6 +23,10 @@ public class PostController {
         return new ResponseEntity<>(postResponse, HttpStatus.CREATED);
     }
 
+    @GetMapping("/search")
+    public PostResponse searchByContentContains(@RequestParam("keyword") String content){
+        return postService.searchPostByContentContains(content);
+    }
     @GetMapping
     public PostResponse getAllPosts(
         @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,

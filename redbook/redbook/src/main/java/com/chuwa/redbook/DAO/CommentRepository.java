@@ -1,12 +1,12 @@
 package com.chuwa.redbook.DAO;
 
-import com.chuwa.redbook.entity.Post;
+import com.chuwa.redbook.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
-    public List<Post> searchPostsByContentContains(String content);
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+    List<Comment> findByPostId(long postId);
 }
