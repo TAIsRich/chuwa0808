@@ -5,6 +5,7 @@ import com.chuwa.redbook2.payload.PostResponse;
 import com.chuwa.redbook2.service.PostService;
 import com.chuwa.redbook2.util.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,15 @@ public class PostController {
         return new ResponseEntity<>(postResponse, HttpStatus.CREATED);//201
     }
 
+    //PRACTICE exercise
+    @GetMapping("/search")
+    public PostResponse searchByContentContains(@RequestParam("keyword") String content){
+        return postService.searchPostByContentContains(content);
+    }
+    //http://localhost:8080/api/v1/posts/search?keyword=test
+    //RequestParam vs Pathvariable
+    //reference link: https://javarevisited.blogspot.com/2017/10/differences-between-requestparam-and-pathvariable-annotations-spring-mvc.html#axzz7dNwUpc2o
+
     @GetMapping
     //public List<PostDto> getAllPosts(){
       //  return postService.getAllPost();
@@ -38,7 +48,7 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id){
+    public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id){ //将annotation上"id"传进的内容作为input: id
         return ResponseEntity.ok(postService.getPostById(id));
     }
 

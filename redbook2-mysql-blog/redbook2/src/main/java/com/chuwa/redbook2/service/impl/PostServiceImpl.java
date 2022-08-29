@@ -95,9 +95,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto getPostById(long id) {
 
-        //Optional<Post> post = postRepository.findById(id);
-        //post.orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
-        //Post post = postRepository.findById(id).get();
+        //Optional<Post> post = postRepository.findById(id);//repository返回的是一个Optional，允许null； 否则为null的话会是个NPE，是个runtime error，程序会终止
+        //post.orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));//optional的方法：orElseThrow
+            //除了orElseThrow()去throw exception以外，可以用orElse赋以默认值
+        //Post post = postRepository.findById(id).get(); //从optional里面把东西取出来
 
         Post post = postRepository
                 .findById(id)
@@ -109,7 +110,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto updatePost(PostDto postDto, long id) {
 
-        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));//这样连着写就不用再写.get()了，因为it either throws exception or return
         post.setTitle(postDto.getTitle());
         post.setDescription(postDto.getDescription());
         post.setContent(postDto.getContent());
@@ -152,6 +153,21 @@ public class PostServiceImpl implements PostService {
 
         return post;
 
+    }
+
+    @Override
+    public PostResponse searchPostByContentContains(String content) {
+
+        List<Post> posts = postRepository.searchPostsByContentContains(content);//leverage the JPA method provided by Java Spring
+        List<PostDto> postDtos = posts
+                .stream()
+                .map(post -> mapToDTO(post))
+                .collect(Collectors.toList());
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+
+        return postResponse;
     }
 
 }
