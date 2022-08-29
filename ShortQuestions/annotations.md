@@ -150,5 +150,15 @@ Annotations
 
    Spring Boot @SpringBootApplication annotation is used **to mark a configuration class that declares one or more @Bean methods and also triggers auto-configuration and component scanning**.
 
+### Spring Boot
 
+1. **@GeneratedValue annotation is **to configure the way of increment of the specified column(field)**. For example when using Mysql , you may specify auto_increment in the definition of table to make it self-incremental, and then use @GeneratedValue(strategy = GenerationType.IDENTITY)
+2. **@Column annotation is **used for Adding the column the name in the table of a particular MySQL database.
+3. **@JoinColumn** marks a column as a join column for an entity association or an element collection.
+4. **@JoinTable** annotation to specify the mapping of a many-to-many table relationship:
+   - the name of the link table and
+   - the two Foreign Key columns
 
+5. **@Query annotation in Spring Data JPA to execute both JPQL and native SQL queries.**
+
+   
