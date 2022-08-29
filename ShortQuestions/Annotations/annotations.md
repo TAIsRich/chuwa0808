@@ -70,3 +70,19 @@ public class Post {
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
+
+10.@JsonProperty
+@JsonProperty(name), tells Jackson ObjectMapper to map the JSON property name to the annotated Java field's name.
+    @JsonProperty("name")
+    private String name;
+
+11.@ManyToOne(fetch = FetchType.LAZY)
+   tables and tables show many to one
+
+12.@JoinColumn(name = "post_id", nullable = false)
+   how to map
+
+13.@CreationTimestamp @UpdateTimestamp
+
+14.@Repository 
+   dao layer (jpaRepository<object, long>) 
