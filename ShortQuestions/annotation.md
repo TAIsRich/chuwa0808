@@ -48,3 +48,13 @@ Used to map web requests
 
 @RequestBody
 Put the return value in the response body
+
+
+@GetMapping
+    The GetMapping annotation is used to process HTTP GET requests and map requests to specific processing methods.
+@PutMapping
+    The PutMapping annotation is used to process HTTP PUT requests and map requests to specific processing methods
+@DeleteMapping
+    The DeleteMapping annotation is used to handle HTTP DELETE requests and map requests to delete methods.
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+    The ResponseStatus annotation can annotate the request processing method. Using this annotation, the HTTP STATUS required for the response can be specified. In particular, we can use the HttpStauts class to assign values to the value attribute of this annotation.
