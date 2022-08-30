@@ -251,6 +251,63 @@ public void setPerson(Person person) {
  @Size(min=3)
  private String institute;
 ```
+### @RequestParam
+- A Simple Mapping
+  - used @RequestParam to extract the id query parameter.
+```
+@GetMapping("/api/foos")
+@ResponseBody
+public String getFoos(@RequestParam String id) {
+    return "ID: " + id;
+}
+```
+- Specifying the Request Parameter Name
+  - Sometimes we want these to be different, though. Or, if we aren't using Spring Boot, we may need to do special compile-time configuration or the parameter names won't actually be in the bytecode.
+  - Fortunately, we can configure the @RequestParam name using the name attribute
+  - We can also do @RequestParam(value = “id”) or just @RequestParam(“id”).
+```
+@PostMapping("/api/foos")
+@ResponseBody
+public String addFoo(@RequestParam(name = "id") String fooId, @RequestParam String name) { 
+    return "ID: " + fooId + " Name: " + name;
+}
+```
+- Optional Request Parameters
+```
+GET /api/foos HTTP/1.1
+-----
+400 Bad Request
+Required String parameter 'id' is not present
+```
+  - We can configure our @RequestParam to be optional, though, with the required attribute:
+```
+@GetMapping("/api/foos")
+@ResponseBody
+public String getFoos(@RequestParam(required = false) String id) { 
+    return "ID: " + id;
+}
+
+
+--------
+http://localhost:8080/spring-mvc-basics/api/foos?id=abc
+----
+ID: abc
+```
+- A Default Value for the Request Parameter
+  - We can also set a default value to the @RequestParam by using the defaultValue attribute:
+```
+@GetMapping("/api/foos")
+@ResponseBody
+public String getFoos(@RequestParam(defaultValue = "test") String id) {
+    return "ID: " + id;
+}
+
+
+-------
+http://localhost:8080/spring-mvc-basics/api/foos
+----
+ID: test
+```
 
 ---
 
