@@ -102,3 +102,10 @@
     顾名思义它是local variable（线程局部变量）。它的功⽤⾮常简单，就是为每⼀个使⽤该变量的线程都提供⼀个变量值的副本，是每⼀个线程都可以独⽴地改变⾃⼰的副本，⽽不会和其它线程的副本冲突。从线程的⾓度看，就好像每⼀个线程都完全拥有该变量。
 
 22. Type the code by your self and try to understand it. (package com.chuwa.tutorial.t08_multithreading)
+
+23. write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. 
+
+    Plz check ./multithreading/src/main/java/wait_notify/
+
+24. create 3 threads, one thread ouput 1-10, one thread output 11-20, one thread output 21-22. threads run sequence is random.
+25. 

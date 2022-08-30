@@ -1,4 +1,4 @@
-package until_concurent_locks;
+package util_concurent_locks;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
