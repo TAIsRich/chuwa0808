@@ -38,63 +38,59 @@
 
   - Jackson is a very popular and efficient java based library to serialize or map java objects to JSON and vice versa.
 
-  ![](/Users/xiazhao/repo/chuwa0808/ShortQuestions/Image/8-1.png)
+  ![](../Image/8-1.png)
 
 6. What is spring-boot-stater? 
   - Spring Boot Starters are dependency descriptors that can be added under the **<dependencies>** section in pom.xml. There are around 50+ Spring Boot Starters for different Spring and related technologies. These starters give all the dependencies under a single name. For example, if you want to use Spring Data JPA for database access, you can include **spring-boot-starter-data-jpa** dependency. 
 
   - The advantages of using Starters are as follows:
-  	- Increase productivity by decreasing the Configuration time for developers.
-  	- Managing the POM is easier since the number of dependencies to be added is decreased.
-  	-  Tested, Production-ready**,** and supported dependency configurations.
-  	-  No need to remember the name and version of the dependencies.
+    - Increase productivity by decreasing the Configuration time for developers.
+    - Managing the POM is easier since the number of dependencies to be added is decreased.
+    -  Tested, Production-ready**,** and supported dependency configurations.
+    -  No need to remember the name and version of the dependencies.
   
   -  what dependecies in the below starter? do you know any starters?
+![](../Image/8-2.png)
+- Spring boot starter web dependecy
+- Spring Boot Application Starters
 
-  	![](/Users/xiazhao/repo/chuwa0808/ShortQuestions/Image/8-2.png)
-  	
-  	- Spring boot starter web dependecy
-  	
-  	- Spring Boot Application Starters
-  	
-  	  | Name                                            | Description                                                  |
-  	  | ----------------------------------------------- | ------------------------------------------------------------ |
-  	  | **spring-boot-starter**                         | Core starter, including auto-configuration support, logging, and YAML |
-  	  | **spring-boot-starter-activemq**                | Starter for JMS messaging using Apache ActiveMQ              |
-  	  | **spring-boot-starter-amqp**                    | Starter for using Spring AMQP and Rabbit MQ                  |
-  	  | **spring-boot-starter-aop**                     | Starter for aspect-oriented programming with Spring AOP and AspectJ |
-  	  | **spring-boot-starter-artemis**                 | Starter for JMS messaging using Apache Artemis               |
-  	  | **spring-boot-starter-batch**                   | Starter for using Spring Batch                               |
-  	  | **spring-boot-starter-cache**                   | Starter for using Spring Framework’s caching support         |
-  	  | **spring-boot-starter-data-cassandra**          | Starter for using Cassandra distributed database and Spring Data Cassandra |
-  	  | **spring-boot-starter-data-cassandra-reactive** | Starter for using Cassandra distributed database and Spring Data Cassandra Reactive |
-  	  | **spring-boot-starter-data-couchbase**          | Starter for using Couchbase document-oriented database and Spring Data Couchbase |
-  	  | **spring-boot-starter-data-couchbase-reactive** | Starter for using Couchbase document-oriented database and Spring Data Couchbase Reactive |
-  	  | **spring-boot-starter-data-elasticsearch**      | Starter for using Elasticsearch search and analytics engine and Spring Data Elasticsearch |
-  	  | **spring-boot-starter-data-jdbc**               | Starter for using Spring Data JDBC                           |
-  	  | **spring-boot-starter-data-jpa**                | Starter for using Spring Data JPA with Hibernate             |
-  	  | **spring-boot-starter-data-ldap**               | Starter for using Spring Data LDAP                           |
-  	  | **spring-boot-starter-data-mongodb**            | Starter for using MongoDB document-oriented database and Spring Data MongoDB |
-  	  | **spring-boot-starter-data-mongodb-reactive**   | Starter for using MongoDB document-oriented database and Spring Data MongoDB Reactive |
-  	  | **spring-boot-starter-data-neo4j**              | Starter for using Neo4j graph database and Spring Data Neo4j |
-  	  | **spring-boot-starter-data-r2dbc**              | Starter for using Spring Data R2DBC                          |
-  	  
-  	- Spring Boot Production Starters
-  	
-  	  | Name                             | Description                                                  |
-  	  | -------------------------------- | ------------------------------------------------------------ |
-  	  | **spring-boot-starter-actuator** | Starter for using Spring Boot’s Actuator which provides production-ready features to help you monitor and manage your application |
-  	
-  	- Spring Boot Technical Starters
-  	
-  	  | Name                                  | Description                                                  |
-  	  | ------------------------------------- | ------------------------------------------------------------ |
-  	  | **spring-boot-starter-jetty**         | Starter for using Jetty as the embedded servlet container. An alternative to spring-boot-starter-tomcat |
-  	  | **spring-boot-starter-log4j2**        | Starter for using Log4j2 for logging. An alternative to spring-boot-starter-logging |
-  	  | **spring-boot-starter-logging**       | Starter for logging using Logback. Default logging starter   |
-  	  | **spring-boot-starter-reactor-netty** | Starter for using Reactor Netty as the embedded reactive HTTP server. |
-  	  | **spring-boot-starter-tomcat**        | Starter for using Tomcat as the embedded servlet container. Default servlet container starter used by spring-boot-starter-web |
-  	  | **spring-boot-starter-undertow**      | Starter for using Undertow as the embedded servlet container. An alternative to spring-boot-starter-tomcat |
+| Name                                            | Description                                                  |
+          | ----------------------------------------------- | ------------------------------------------------------------ |
+          | **spring-boot-starter**                         | Core starter, including auto-configuration support, logging, and YAML |
+          | **spring-boot-starter-activemq**                | Starter for JMS messaging using Apache ActiveMQ              |
+          | **spring-boot-starter-amqp**                    | Starter for using Spring AMQP and Rabbit MQ                  |
+          | **spring-boot-starter-aop**                     | Starter for aspect-oriented programming with Spring AOP and AspectJ |
+          | **spring-boot-starter-artemis**                 | Starter for JMS messaging using Apache Artemis               |
+          | **spring-boot-starter-batch**                   | Starter for using Spring Batch                               |
+          | **spring-boot-starter-cache**                   | Starter for using Spring Framework’s caching support         |
+          | **spring-boot-starter-data-cassandra**          | Starter for using Cassandra distributed database and Spring Data Cassandra |
+          | **spring-boot-starter-data-cassandra-reactive** | Starter for using Cassandra distributed database and Spring Data Cassandra Reactive |
+          | **spring-boot-starter-data-couchbase**          | Starter for using Couchbase document-oriented database and Spring Data Couchbase |
+          | **spring-boot-starter-data-couchbase-reactive** | Starter for using Couchbase document-oriented database and Spring Data Couchbase Reactive |
+          | **spring-boot-starter-data-elasticsearch**      | Starter for using Elasticsearch search and analytics engine and Spring Data Elasticsearch |
+          | **spring-boot-starter-data-jdbc**               | Starter for using Spring Data JDBC                           |
+          | **spring-boot-starter-data-jpa**                | Starter for using Spring Data JPA with Hibernate             |
+          | **spring-boot-starter-data-ldap**               | Starter for using Spring Data LDAP                           |
+          | **spring-boot-starter-data-mongodb**            | Starter for using MongoDB document-oriented database and Spring Data MongoDB |
+          | **spring-boot-starter-data-mongodb-reactive**   | Starter for using MongoDB document-oriented database and Spring Data MongoDB Reactive |
+          | **spring-boot-starter-data-neo4j**              | Starter for using Neo4j graph database and Spring Data Neo4j |
+          | **spring-boot-starter-data-r2dbc**              | Starter for using Spring Data R2DBC                          |
+- Spring Boot Production Starters
+
+| Name                             | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| **spring-boot-starter-actuator** | Starter for using Spring Boot’s Actuator which provides production-ready features to help you monitor and manage your application |
+
+- Spring Boot Technical Starters
+
+| Name                                  | Description                                                  |
+      | ------------------------------------- | ------------------------------------------------------------ |
+      | **spring-boot-starter-jetty**         | Starter for using Jetty as the embedded servlet container. An alternative to spring-boot-starter-tomcat |
+      | **spring-boot-starter-log4j2**        | Starter for using Log4j2 for logging. An alternative to spring-boot-starter-logging |
+      | **spring-boot-starter-logging**       | Starter for logging using Logback. Default logging starter   |
+      | **spring-boot-starter-reactor-netty** | Starter for using Reactor Netty as the embedded reactive HTTP server. |
+      | **spring-boot-starter-tomcat**        | Starter for using Tomcat as the embedded servlet container. Default servlet container starter used by spring-boot-starter-web |
+      | **spring-boot-starter-undertow**      | Starter for using Undertow as the embedded servlet container. An alternative to spring-boot-starter-tomcat |
 
 7. do you know  @RequestMapping(value = "/users", method = 
    RequestMethod.POST) ? could you list CRUD by this style?
@@ -118,7 +114,7 @@
 
       A ResultSet object maintains a cursor that points to the current row in the result set. The term "result set" refers to the row and column data contained in a ResultSet object.
 
-    - | JDBC connection | Connection Number             |
+| JDBC connection | Connection Number             |
       | --------------- | ----------------------------- |
       | 1               | Import the package            |
       | 2               | Load and Register the drivers |
@@ -156,6 +152,6 @@
 15. (Optional) 抄写 https://github.com/TAIsRich/springboot-redbook/tree/04_comment 你也可以像我一样分branch添加新代码。
 
 16. (Optional) Try to write the CRUD api for a new application Cassandra-Blog
-      	a. spring 提供了相关dependency,(https://start.spring.io/)
-      		i.  Spring Data for Apache Cassandra
-      	b. Cassandra十分流行，且面试问的多。
+        a. spring 提供了相关dependency,(https://start.spring.io/)
+            i.  Spring Data for Apache Cassandra
+        b. Cassandra十分流行，且面试问的多。

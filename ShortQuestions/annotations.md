@@ -158,7 +158,11 @@ Annotations
 4. **@JoinTable** annotation to specify the mapping of a many-to-many table relationship:
    - the name of the link table and
    - the two Foreign Key columns
-
 5. **@Query annotation in Spring Data JPA to execute both JPQL and native SQL queries.**
 
-   
+
+
+### JPQL
+
+1. @query, @Transactional, @NameQuery, @nameQueries, see HW10/README.md
+2. **@SpringTest** The @SpringBootTest annotation is useful **when we need to bootstrap the entire container**. The annotation works by creating the ApplicationContext that will be utilized in our tests. We can use the webEnvironment attribute of @SpringBootTest to configure our runtime environment; we're using WebEnvironment.
