@@ -14,7 +14,8 @@ import java.util.List;
 @RequestMapping ("/api/v1/posts")
 public class PostController {
 
-    private PostService postService = new PostServiceImpl();
+    @Autowired
+    private PostService postService;
 
     @PostMapping
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto) {

@@ -14,13 +14,17 @@ import java.util.stream.Collectors;
 @Service
 public class PostServiceImpl implements PostService {
 
-    private PostRepository postRepository = new PostRepository();
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     public PostDto createPst(PostDto postDto) {
 
-        postRepository.post(postDto);
-        return postDto;
+        Post post = mapToEntity(postDto);
+        Post savedPost = postRepository.save(post);
+        PostDto postResponse = mapToDTO(savedPost);
+
+        return postResponse;
     }
 
     @Override
@@ -39,20 +43,26 @@ public class PostServiceImpl implements PostService {
 
 //        Post post = postRepository.findById(id).get();
 
-        Post post = postRepository.findById(id);
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         return mapToDTO(post);
     }
 
     @Override
     public PostDto updatPost(PostDto postDto, long id) {
-        postRepository.update(postDto, id);
-        Post updatePost = postRepository.findById(id);
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+        post.setId(post.getId());
+        post.setTitle(postDto.getTitle());
+        post.setDescription(postDto.getDescription());
+        post.setContent(postDto.getContent());
+
+        Post updatePost = postRepository.save(post);
         return mapToDTO(updatePost);
     }
 
     @Override
     public void deletePostById(long id) {
-        postRepository.delete(id);
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+        postRepository.delete(post);
     }
 
     private PostDto mapToDTO(Post post){
