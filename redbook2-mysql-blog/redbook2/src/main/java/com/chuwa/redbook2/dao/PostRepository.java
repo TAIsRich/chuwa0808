@@ -16,4 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     //public Page<Post> searchPostByContentContains(String content);
     public List<Post> searchPostsByContentContains(String content);
 
+    //public long countPostsByDescriptionOrContentContains(String key);
+
 }

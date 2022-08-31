@@ -170,4 +170,8 @@ public class PostServiceImpl implements PostService {
         return postResponse;
     }
 
+    /*@Override
+    public long countPostsByContentOrDescrp(String target) {
+        return postRepository.countPostsByDescriptionOrContentContains(target);
+    }*/
 }

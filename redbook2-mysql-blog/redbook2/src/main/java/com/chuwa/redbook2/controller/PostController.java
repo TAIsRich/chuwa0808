@@ -34,6 +34,11 @@ public class PostController {
     //RequestParam vs Pathvariable
     //reference link: https://javarevisited.blogspot.com/2017/10/differences-between-requestparam-and-pathvariable-annotations-spring-mvc.html#axzz7dNwUpc2o
 
+    /*@GetMapping("/countByContentOrDescrp")
+    public long countPostsByDescriptionOrContentContains(@RequestParam("keyword") String key){
+        return postService.countPostsByContentOrDescrp(key);
+    }*/
+
     @GetMapping
     //public List<PostDto> getAllPosts(){
       //  return postService.getAllPost();

@@ -1210,5 +1210,56 @@ In the repository layer, you need to use the naming convention to use the method
 13. (Optional) use JDBC to read the data from database.
 
 
+# HW10 # Template
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Added to Annotation file.
+    
+2.  Type the code, you need to checkout new branch from branch 02_post_RUD, name the new branch with 05_slides_JPQL_EntityManager_Session.
+    Done.
+
+3.  What is JPQL?
+    The Jakarta Persistence Query Language (JPQL; formerly Java Persistence Query Language) is a platform-independent object-oriented query language defined as part of the Jakarta Persistence (JPA; formerly Java Persistence API) specification.
+    
+    JPQL is a powerful query language that allows you to define database queries based on your entity model. Its structure and syntax are very similar to SQL. JPQL operates on entity while SQL operates the database.
+    
+4.  What is @NamedQuery and @NamedQueries?
+    Hibernate Named Query can be defined in Hibernate mapping files or through the use of JPA annotations @NamedQuery and @NamedNativeQuery. @NameQueries annotation is used to define the multiple named queries. @NameQuery annotation is used to define the single named query.
+    
+5.  What is @Query? In which Interface we write the sql or JPQL?
+    In order to define SQL to execute for a Spring Data repository method, we can annotate the method with the @Query annotation — its value attribute contains the JPQL or SQL to execute.
+
+    We write the JPQL in the DAO interface. The @Query annotation takes precedence over named queries, which are annotated with @NamedQuery or defined in an orm.xml file.
+    
+    (Reference link: https://www.baeldung.com/spring-data-jpa-query)
+
+6.  What is HQL and Criteria Queries?
+    (Reference link: https://rdayala.wordpress.com/hql-vs-criteria-queries/)
+    Hibernate Query Language (HQL) is an object-oriented query language, similar to SQL, but instead of operating on tables and columns, HQL works with persistent objects and their properties. HQL queries are translated by Hibernate into conventional SQL queries, which in turns perform action on database.
+    
+    Criteria Queries is a very useful JPA feature that enables us to write queries without doing raw SQL as well as gives us some object-oriented control over the queries, which is one of the main features of Hibernate. The Criteria API allows us to build up a criteria query object programmatically, where we can apply different kinds of filtration rules and logical conditions. (Reference link: https://www.baeldung.com/hibernate-criteria-queries)
+    
+7.  What is EnityManager?
+    A JPA EntityManager manages connection to a database as well as to database operations. EntityManager is associated with a PersistenceContext. All operations that are performed in a specific session are stored inside the PersistenceContext. EntityManager is the interface to the  Persistence Context. All operations on the entity go through the  EntityManager. We will declare an EntityManager object in our class and mark it with the  @PersistenceContext annotation.
+    
+    Simply put, the EntityManager is an API that manages the lifecycle of entity instances. EntityManager provides a number of methods that perform  SELECT,  INSERT, UPDATE, and DELETE queries.An EntityManager object manages a set of entities that are defined by a persistence unit. Each EntityManager instance is associated with a PersistenceContext.
+    
+    Actually, Hibernate implements methods (e.g., save()) under JPA interface by using EntityManager.
+
+8.  What is SessionFactory and Session?
+    Reference link: https://www.java2novice.com/hibernate/session-factory/
+    Reference link: https://www.youtube.com/watch?v=68vPf2OGfro
+
+    Hibernate SessionFactory is the factory class through which we get sessions and perform database operations. SessionFactory is an interface. SessionFactory can be created by providing Configuration object, which will contain all DB related property details pulled from either hibernate.cfg.xml file or hibernate.properties file. SessionFactory is a factory for Session objects.We can create one SessionFactory implementation per database in any application. If your application is referring to multiple databases, then you need to create one SessionFactory per database. The SessionFactory is a heavyweight object; it is usually created during application start up and kept for later use. The SessionFactory is a thread safe object and used by all the threads of an application.
+
+    The session object provides an interface between the application and data stored in the database. 
+
+    In short, SessionFactory is a factory class for Session objects. It is available for the whole application while a Session is only available for particular transaction. Session is short-lived while SessionFactory objects are long-lived. SessionFactory provides a second level cache and Session provides a first level cache.
+
+9.  What is Transaction? how to manage your transaction?
+    A transaction simply represents a unit of work. 
+    In such case, if one step fails, the whole transaction fails (which is termed as atomicity). A transaction can be described by ACID properties. ACID stands for Atomicity, Consistency, isolation and durability. (Reference: https://www.javatpoint.com/transaction-management-in-jdbc)
+
+10. Write a simple factory design pattern.
+(TODO)
 
 
