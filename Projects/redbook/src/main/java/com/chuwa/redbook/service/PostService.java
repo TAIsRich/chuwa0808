@@ -18,4 +18,10 @@ public interface PostService {
     void deletePostById(long id);
 
     PostResponse searchPostByContentContains(String content);
+
+    List<PostDto> getAllPostWithJPQL();
+    PostDto getPostByIdJPQLIndexParameter(Long id, String title);
+    PostDto getPostByIdJPQLNamedParameter(Long id, String title);
+    PostDto getPostByIdSQLIndexParameter(Long id, String title);
+    PostDto getPostByIdSQLNamedParameter(Long id, String title);
 }
