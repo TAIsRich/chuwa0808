@@ -21,6 +21,11 @@ public class PostController {
         return new ResponseEntity<>(postResponse, HttpStatus.CREATED);
     }
 
+    @GetMapping("/search")
+    public PostResponse searchByContentContains(@RequestParam("keyword") String content){
+        return postService.searchPostByContentContains(content);
+    }
+
 //    @GetMapping
 //    public List<PostDto> getAllPosts() {
 //        return postService.getAllPost();

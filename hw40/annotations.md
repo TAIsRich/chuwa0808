@@ -103,6 +103,23 @@
   private LocalDateTime updateDateTime;
   ```
 
+- JsonProperty
+
+  This annotation helps us in defining a logical property for a field that will be used for both serializing and deserializing.
+
+  ```
+  @JsonProperty("name")
+  private String name;
+  ```
+
+- ManyToOne: define the relations between two entities(tables) as many-to-one.
+
+- JoinColumn: joins with another entity (table).
+
+  ```
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "post_id", nullable = false)
+  private Post post;
+  ```
 
 - 
-

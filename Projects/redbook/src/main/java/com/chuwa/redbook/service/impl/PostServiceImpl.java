@@ -117,4 +117,19 @@ public class PostServiceImpl implements PostService {
 
         return post;
     }
+
+    @Override
+    public PostResponse searchPostByContentContains(String content) {
+
+        List<Post> posts = postRepository.searchPostsByContentContains(content);//leverage the JPA method provided by Java Spring
+        List<PostDto> postDtos = posts
+                .stream()
+                .map(post -> mapToDTO(post))
+                .collect(Collectors.toList());
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+
+        return postResponse;
+    }
 }
