@@ -100,4 +100,19 @@
 	2. understanding: use to create a delete endpoint
 	3. example:
 		1. `@DeleteMapping("/{id}")`
+17. JsonProperty
+18. @JoinColumn
+@JoinTable
+@PersistenceContext
+@NamedQuery
+19. @ManyToOne
+20. OneToMany
+21. ManyToMany
+22. @ResponseStatus
+@Query
+@Transactional
+
+mongodb
+@Document
+@Field
 	
