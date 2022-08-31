@@ -5,6 +5,7 @@ import com.chuwa.redbook.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,33 @@ public class PostController {
         return new ResponseEntity<>(postResponse, HttpStatus.CREATED);
     }
 
+    @GetMapping("/jpql")
+    public List<PostDto> getAllPostsJPQL(){return postService.getAllPostWithJPQL();}
+
+    @GetMapping("/jpql-index/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleJPQLIndex(@PathVariable(name = "id") long id,
+                                                               @RequestParam(value = "title", required = false)String title){
+        return ResponseEntity.ok(postService.getPostByIdJPQLIndexParameter(id, title));
+    }
+
+    @GetMapping("/jpql-named/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleJPQLNamed(@PathVariable(name = "id") long id,
+                                                               @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdJPQLNamedParameter(id, title));
+    }
+
+    @GetMapping("/sql-index/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleSQLIndex(@PathVariable(name = "id") long id,
+                                                              @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdSQLIndexParameter(id, title));
+    }
+
+    @GetMapping("/sql-named/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleSQLParameter(@PathVariable(name = "id") long id,
+                                                                  @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdSQLNamedParameter(id, title));
+    }
+
     @GetMapping
     public List<PostDto> getAllPosts() {return postService.getAllPosts();}
 
@@ -32,7 +60,7 @@ public class PostController {
 
     @PutMapping("/{id}")
     public ResponseEntity<PostDto> updatePostById(@RequestBody PostDto postDto, @PathVariable(name = "id") long id){
-        PostDto postResponse = postService.updatPost(postDto, id);
+        PostDto postResponse = postService.updatePost(postDto, id);
         return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }
 

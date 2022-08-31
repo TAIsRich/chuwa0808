@@ -1,5 +1,6 @@
 package com.chuwa.redbook.service.impl;
 
+import com.chuwa.redbook.dao.PostJPQLRepository;
 import com.chuwa.redbook.dao.PostRepository;
 import com.chuwa.redbook.entity.Post;
 import com.chuwa.redbook.exception.ResourceNotFoundException;
@@ -18,26 +19,15 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private PostJPQLRepository postJPQLRepository;
+
     @Override
     public PostDto createPst(PostDto postDto) {
 
-        // payload to entity so DAO can save data to DB
-        Post post = new Post();
-        if (postDto.getTitle() != null){
-            post.setTitle(postDto.getTitle());
-        } else {
-            post.setTitle("");
-        }
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getContent());
-
+        Post post = mapToEntity(postDto);
         Post savedPost = postRepository.save(post);
-
-        PostDto postResponse = new PostDto();
-        postResponse.setId(savedPost.getId());
-        postResponse.setTitle(savedPost.getTitle());
-        postResponse.setDescription(savedPost.getDescription());
-        postResponse.setContent(savedPost.getContent());
+        PostDto postResponse = mapToDTO(savedPost);
 
         return postResponse;
     }
@@ -63,7 +53,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto updatPost(PostDto postDto, long id) {
+    public PostDto updatePost(PostDto postDto, long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         post.setTitle(postDto.getTitle());
         post.setDescription(postDto.getDescription());
@@ -77,6 +67,35 @@ public class PostServiceImpl implements PostService {
     public void deletePostById(long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
         postRepository.delete(post);
+    }
+
+    @Override
+    public List<PostDto> getAllPostWithJPQL() {
+        return postJPQLRepository.getAllPostWithJPQL().stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+    }
+
+    @Override
+    public PostDto getPostByIdJPQLIndexParameter(Long id, String title) {
+        Post post = postRepository.getPostByIDOrTitleWithJPQLIndexParameters(id, title);
+        return mapToDTO(post);
+    }
+
+    @Override
+    public PostDto getPostByIdJPQLNamedParameter(Long id, String title) {
+        Post post = postRepository.getPostByIDOrTitleWithJPQLNamedParameters(id, title);
+        return mapToDTO(post);
+    }
+
+    @Override
+    public PostDto getPostByIdSQLIndexParameter(Long id, String title) {
+        Post post = postRepository.getPostByIDOrTitleWithSQLIndexParameters(id, title);
+        return mapToDTO(post);
+    }
+
+    @Override
+    public PostDto getPostByIdSQLNamedParameter(Long id, String title) {
+        Post post = postRepository.getPostByIDOrTitleWithSQLNamedParameters(id, title);
+        return mapToDTO(post);
     }
 
     private PostDto mapToDTO(Post post){
