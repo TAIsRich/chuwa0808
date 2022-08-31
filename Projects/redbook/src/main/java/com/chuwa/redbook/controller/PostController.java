@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/posts")
 public class PostController {
@@ -56,5 +58,34 @@ public class PostController {
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
         postService.deletePostById(id);
         return new ResponseEntity<>("Post entity deleted successfully.", HttpStatus.OK);
+    }
+
+    @GetMapping("/jpql")
+    public List<PostDto> getAllPostsJPQL() {
+        return postService.getAllPostWithJPQL();
+    }
+
+    @GetMapping("/jpql-index/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleJPQLIndex(@PathVariable(name = "id") long id,
+                                                               @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdJPQLIndexParameter(id, title));
+    }
+
+    @GetMapping("/jpql-named/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleJPQLNamed(@PathVariable(name = "id") long id,
+                                                               @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdJPQLNamedParameter(id, title));
+    }
+
+    @GetMapping("/sql-index/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleSQLIndex(@PathVariable(name = "id") long id,
+                                                              @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdSQLIndexParameter(id, title));
+    }
+
+    @GetMapping("/sql-named/{id}")
+    public ResponseEntity<PostDto> getPostByIdOrTitleSQLParameter(@PathVariable(name = "id") long id,
+                                                                  @RequestParam(value = "title", required = false) String title) {
+        return ResponseEntity.ok(postService.getPostByIdSQLNamedParameter(id, title));
     }
 }
