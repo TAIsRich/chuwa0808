@@ -55,6 +55,21 @@ public class PostRepository {
         return null;
     }
 
+    public Post update(Post post){
+        final String sql = "UPDATE POSTS " +
+                "SET title = ?, description = ?, content = ? , update_date_time = ? " +
+                "WHERE ID = ?";
+        jdbcTemplate.update(sql, new Object[] {
+                post.getTitle(),
+                post.getDescription(),
+                post.getContent(),
+                LocalDateTime.now(),
+                post.getId()
+        });
+
+        return post;
+    }
+
     public void delete(Post post){
         String sql="DELETE FROM POSTS WHERE ID = ?";
         jdbcTemplate.update(sql, new Object[] {post.getId()});
