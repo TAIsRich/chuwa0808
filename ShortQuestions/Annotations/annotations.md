@@ -86,3 +86,40 @@ public class Post {
 
 14.@Repository 
    dao layer (jpaRepository<object, long>) 
+
+15.@ManyToMany(fetch = FetchType.LAZY) @JoinTable 
+   we dont use foreign key a lot in real project,we use Cascading 
+     * sku和inventory是M:N的关系
+     * 仓库ID，表示可以下单到哪些仓库
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "sku_inventory",
+            joinColumns = @JoinColumn(name = "sku_id"),
+            inverseJoinColumns = @JoinColumn(name = "inventory_id"))
+    private Set<PmsInventory> pmsInventories = new HashSet<>();
+16.@PersistenceContext
+
+17.@NamedQueries
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM 
+Book b WHERE b.title =                :title"),
+    @NamedQuery(name = "Book.findByPublishingDate", query = "SELECT 
+b FROM Book b WHERE     b.publishingDate = :publishingDate")
+})
+public class Book implements Serializable {
+
+18.@Query
+Query("select p from Post p where p.id = :key or p.title = 
+:title")
+Post getPostByIDOrTitleWithJPQLNamedParameters(@Param("key") Long 
+id,@Param("title") 
+String title);
+
+SQL语句中的变量以":"开头。
+名称需与@Param("status")一致
+然后JPA就会把userStatus中的只传递给status,userName的值传递给name
+
+19.@Test
+test class
+
+20.@Transactional 
