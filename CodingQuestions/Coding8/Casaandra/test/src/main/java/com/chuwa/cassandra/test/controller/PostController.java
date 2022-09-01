@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/postapi")
+@RequestMapping("/api/v1/postapi")
 public class PostController {
 //    PostRepository postRepository;
     @Autowired
