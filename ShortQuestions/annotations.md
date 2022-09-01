@@ -20,6 +20,16 @@
 | @DeleteMapping | Annotation for mapping HTTP Delete requests onto specific handler methods. |
 | @RequestBody | Annotation indicating a method parameter should be bound to the body of the web request. |
 | @PathVariable | Annotation which indicates that a method parameter should be bound to a URI template variable. Supported for RequestMapping annotated handler methods. |
+| @OneToMany | it is used in list attributes of entity usually there will be mappedBy to map this one object and fetch type |
+| @ManyToOne | used in a Object attribute and it will be used with JoinColmn(name="forgin_id")  |
+| @ManyToMany | used in ManyToMany relationship, there will be a relationship table, @JoinTbale and @JoinColumn and @inverseJoinColumns |
+| @Query | this annotation will execute sql or jpql, it also accept parameters |
+| @NamedQuery | define a single query usually jpql | 
+| @NamedQueries | define many NamedQuery togather |
+| @Transaction | define this method or class as transactional, the whole can be seen as a unit |
+| @EnableTransactionManagement | enable the transaction in spring boot application |
+| @ControllerAdvice | provide a grobal exception handle |
+| @Valid | check if the request body is obey the rule defined in playload class |
 
 
 
