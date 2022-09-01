@@ -1,4 +1,4 @@
-﻿### @Entity
+### @Entity
 - it is a enity, will be used to map with database
 
 ### @Table
@@ -28,7 +28,7 @@
 
 ### @GeneratedValue
 - 主键⾃增的策略 
-- The @GeneratedValueannotation is to configure the way of increment of the specified column(field). For example when using Mysql, you may specify auto_incrementin the definition of table to make it self-incremental, and then use
+- The @GeneratedValueannotation is to configure the way of increment of the specified column(field). For example when using Mysql, you may specify auto_incrementin the definition of table to make it self-incremental, and then use
 ```
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 ```
@@ -69,7 +69,7 @@ private Long personNumber;
 ### @CreationTimestamp
 - When a new entity gets persisted, Hibernate gets the current timestamp from the VM and sets it as the value of the attribute annotated with @CreationTimestamp. After that, Hibernate will not change the value of this attribute.
 
-- @CreationTimestamp mapping example
+- @CreationTimestamp mapping example
 ```
 @Entity(name = "Event")
 public static class Event {
@@ -113,7 +113,7 @@ public static class Bid {
 
 
 ### @Repository
-- @Repository Annotation is a specialization of @Component annotation which is used to indicate that the class provides the mechanism for storage, retrieval, update, delete and search operation on objects. Though it is a specialization of @Component annotation, so Spring Repository classes are autodetected by spring framework through classpath scanning. This annotation is a general-purpose stereotype annotation which very close to the DAO pattern where DAO classes are responsible for providing CRUD operations on database tables.
+- @Repository Annotation is a specialization of @Component annotation which is used to indicate that the class provides the mechanism for storage, retrieval, update, delete and search operation on objects. Though it is a specialization of @Component annotation, so Spring Repository classes are autodetected by spring framework through classpath scanning. This annotation is a general-purpose stereotype annotation which very close to the DAO pattern where DAO classes are responsible for providing CRUD operations on database tables.
 ```
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -121,7 +121,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 ```
 
 ### @RestController
-- @RestController is a specialized version of the controller. It includes the @Controller and @ResponseBody annotations, and as a result, simplifies the controller implementation
+- @RestController is a specialized version of the controller. It includes the @Controller and @ResponseBody annotations, and as a result, simplifies the controller implementation
 ```
 @RestController
 @RequestMapping("books-rest")
@@ -141,7 +141,7 @@ public class SimpleBookRestController {
 
 ### @RequestMapping
 - Simply put, the annotation is used to map web requests to Spring Controller methods.
-- The HTTP *method* parameter has **no default.** So, if we don't specify a value, it's going to map to any HTTP request.
+- The HTTP *method* parameter has **no default.** So, if we don't specify a value, it's going to map to any HTTP request.
 ```
 @RequestMapping(value = "/ex/foos", method = POST)
 @ResponseBody
@@ -309,6 +309,164 @@ http://localhost:8080/spring-mvc-basics/api/foos
 ID: test
 ```
 
+
+### @ManyToOne
+- @ManyToOne
+  - Based on the example above, We can also add a reference to Cart in each Item using @ManyToOne, making this a bidirectional relationship. Bidirectional means that we are able to access items from carts, and also carts from items.
+  - the @ManyToOne annotation is associated with the Cart class variable. @JoinColumn annotation references the mapped column.
+  - As we have seen in section 2, we can specify a many-to-one relationship by using the @ManyToOne annotation. A many-to-one mapping means that many instances of this entity are mapped to one instance of another entity – many items in one cart.
+  - The @ManyToOne annotation lets us create bidirectional relationships too.
+```
+@Entity
+@Table(name="ITEMS")
+public class Item {
+    
+    //...
+    @ManyToOne
+    @JoinColumn(name="cart_id", nullable=false)
+    private Cart cart;
+
+    public Item() {}
+    
+    // getters and setters
+}
+```
+### @ManyToMany
+- @ManyToMany
+  - A relationship is a connection between two types of entities. In the case of a many-to-many relationship, both sides can relate to multiple instances of the other side.
+  - A student can like many courses, and many students can like the same course
+  - s we know, in RDBMSs we can create relationships with foreign keys. Since both sides should be able to reference the other, we need to create a separate table to hold the foreign keys, Such a table is called a join table. In a join table, the combination of the foreign keys will be its composite primary key.
+  - We should include a Collection in both classes, which contains the elements of the others. After that, we need to mark the class with @Entity and the primary key with @Id to make them proper JPA entities. Also, we should configure the relationship type. So, we mark the collections with @ManyToMany annotations:
+```
+@Entity
+class Student {
+
+    @Id
+    Long id;
+
+    @ManyToMany
+    Set<Course> likedCourses;
+
+    // additional properties
+    // standard constructors, getters, and setters
+}
+
+@Entity
+class Course {
+
+    @Id
+    Long id;
+
+    @ManyToMany
+    Set<Student> likes;
+
+    // additional properties
+    // standard constructors, getters, and setters
+}
+```
+  - We can do this with the @JoinTable annotation in the Student class. We provide the name of the join table (course_like) as well as the foreign keys with the @JoinColumn annotations. The joinColumn attribute will connect to the owner side of the relationship, and the inverseJoinColumn to the other side:
+```
+@ManyToMany
+@JoinTable(
+  name = "course_like", 
+  joinColumns = @JoinColumn(name = "student_id"), 
+  inverseJoinColumns = @JoinColumn(name = "course_id"))
+Set<Course> likedCourses;
+```
+  - Note that using @JoinTable or even @JoinColumn isn't required. JPA will generate the table and column names for us. However, the strategy JPA uses won't always match the naming conventions we use. So, we need the possibility to configure table and column names. On the target side, we only have to provide the name of the field, which maps the relationship. Therefore, we set the mappedBy attribute of the @ManyToMany annotation in the Course class:
+```
+@ManyToMany(mappedBy = "likedCourses")
+Set<Student> likes;
+```
+### @OneToMany
+- @OneToMany:
+  - one-to-many mapping means that one row in a table is mapped to multiple rows in another table
+  - For this example, we'll implement a cart system where we have a table for each cart and another table for each item. One cart can have many items, so here we have a one-to-many mapping.
+  - The way we do it in code is with @OneToMany.
+  - the @OneToMany annotation is used to define the property in Item class that will be used to map the mappedBy variable.
+```
+public class Cart {
+
+    //...     
+ 
+    @OneToMany(mappedBy="cart")
+    private Set<Item> items;
+	
+    //...
+}
+```
+- For example, if one department can employ for several employees then, department to employee is a one to many relationship (1 department employs many employees), while employee to department relationship is many to one (many employees work in one department).
+### @JsonProperty
+### @JoinColumn
+### @Service
+### @NamedQuery
+- Basically @NameQueries annotation is used to define the multiple named queries, adn the @NameQuery annotation is used to define the single named query
+```
+@NamedQueries(  
+    {  
+        @NamedQuery(  
+        name = "findEmployeeByName",  
+        query = "from Employee e where e.name = :name"  
+        )  
+    }  
+)  
+```
+
+- The following @NamedQuery annotation defines a query whose name is "Country.findAll" that retrieves all the Country objects in the database:
+```
+@NamedQuery(name="Country.findAll", query="SELECT c FROM Country c") 
+```
+- The @NamedQuery annotation contains four elements - two of which are required and two are optional. The two required elements, name and query define the name of the query and the query string itself and are demonstrated above. The two optional elements, lockMode and hints, provide static replacement for the setLockMode and setHint methods.
+- Every @NamedQuery annotation is attached to exactly one entity class or mapped superclass - usually to the most relevant entity class. But since the scope of named queries is the entire persistence unit, names should be selected carefully to avoid collision (e.g. by using the unique entity name as a prefix).
+- Attaching multiple named queries to the same entity class requires wrapping them in a @NamedQueries annotation, as follows:
+```
+@Entity
+
+@NamedQueries({
+    @NamedQuery(name="Country.findAll",
+                query="SELECT c FROM Country c"),
+    @NamedQuery(name="Country.findByName",
+                query="SELECT c FROM Country c WHERE c.name = :name"),
+}) 
+public class Country {
+  ...
+}
+```
+### @Transactional
+- The @Transactional annotation tells Spring that a transaction is required to execute this method. When you inject the AuthorService somewhere, Spring generates a proxy object that wraps the AuthorService object and provides the required code to manage the transaction.
+```
+
+@Service
+public class AuthorService {     
+    private AuthorRepository authorRepository;     
+     
+    public AuthorService(AuthorRepository authorRepository) {               
+        this.authorRepository = authorRepository;     
+    }     
+     
+    @Transactional    
+    public void updateAuthorNameTransaction() {         
+        Author author = authorRepository.findById(1L).get(); 
+        author.setName("new name");     
+    } 
+}
+```
+### @PersistenceContext
+### @Query
+- The @Query annotation takes precedence over named queries, which are annotated with @NamedQuery or defined in an orm.xml file.
+- It's a good approach to place a query definition just above the method inside the repository rather than inside our domain model as named queries. The repository is responsible for persistence, so it's a better place to store these definitions.
+- By default, the query definition uses JPQL.
+  - Let's look at a simple repository method that returns active User entities from the database:
+  ```
+  @Query("SELECT u FROM User u WHERE u.status = 1")
+  Collection<User> findAllActiveUsers();
+  ```
+- We can use also native SQL to define our query. All we have to do is set the value of the nativeQuery attribute to true and define the native SQL query in the value attribute of the annotation:
+  ```
+  @Query(
+  value = "SELECT * FROM USERS u WHERE u.status = 1", nativeQuery = true)
+  Collection<User> findAllActiveUsersNative();
+  ```
 ---
 
 ## Annotations for mongoDB only
