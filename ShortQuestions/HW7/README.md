@@ -8,14 +8,14 @@
 
 2. explain how the below annotaitons specify the table in database?
 
-   ​	![1](/Users/xiazhao/repo/chuwa0808/ShortQuestions/Image/1.png)
+   ​	![1](../Image/1.png)
 
    	- columnDefinition : Generated SQL to create a column of the inferred type.
    	- Name column is STUDENT_NAME, and the max length is 50.
 
 3. What is the default column names of the table in database for  @Column?
 
-   ​	![](/Users/xiazhao/repo/chuwa0808/ShortQuestions/Image/2.png)
+   ​	![](../Image/2.png)
 
    	- first_name 
    	- operating_system

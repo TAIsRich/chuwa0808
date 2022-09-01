@@ -60,7 +60,7 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<PostDto>> getPostById4(@RequestParam(value = "keyword") String keyword) {
+    public ResponseEntity<List<PostDto>> searchPostByKeywords(@RequestParam(value = "keyword") String keyword) {
         return ResponseEntity.ok(postService.searchPost(keyword));
     }
 }
