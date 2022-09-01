@@ -1,0 +1,1 @@
+Before you can build the application, you need to set up a Cassandra database. Apache Cassandra is an open-source NoSQL data store optimized for fast reads and fast writes in large datasets.

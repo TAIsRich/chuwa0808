@@ -1103,7 +1103,163 @@ entity, annotations used by controller.
     a. spring 提供了相关dependency,(https://start.spring.io/)
     i.  Spring Data for Apache Cassandra
     b. Cassandra十分流行，且面试问的多。
+    
+    
+# HW9 # Template
+
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Updated in Annotation file.
+    
+2.  Type the Comment feature for the class project.
+    Alreadt committed in HW8.
+    
+3.  In postman, call of the APIs in PostController and CommentController.
+    Successfully done.
+
+4.  What is JPA? and what is Hibernate?
+    JPA is a standard of Object Relational Mapping. It is an interface that defines a set of annotations for creating the object relational mapping.JPA use JDBC to CRUD database, and also transfer result from database to Java Entities. 
+
+    The most popular ORM framework is Hibernate.
+    
+5.  What is Hiraki? what is the benefits of connection pool?
+    Hikari connection pool("CP") is a reliable, high-performance JDBC connection pool. It is much faster, lightweight and have better performance as compare to other connection pool API. Because of all these compelling reasons, HikariCP is now the default pool implementation in Spring Boot 2.
+    
+    Using the connection pool can have the following benefits: 1)reduces the number of times new connection objects are created; 2)promotes connection object reuse; 3)quickens the process of getting a connection; and 4)reduces the amount of effort required to manually manage connection objects.
+    
+6.  What is the  @OneToMany, @ManyToOne, @ManyToMany? write some examples.
+    To establish a dependency between related entities, JPA provides javax. persistence. CascadeType enumerated types that define the cascade operations. These cascading operations can be defined with any type of mapping i.e. One-to-One, One-to-Many, Many-to-One, Many-to-Many.
+
+    1:1
+    e.g., Player(1):PlayerProfile(1)//PlayerProfile will be a field under Player class
+    @OneToOne(cascade = CascadeType.All)
+    @JoinColumn(name = "profile_id", referenceColumnName = "id")
+    private PlayerProfile playerProfile;
+
+    1:M, M:1
+    e.g., Post (1): Comments(M)
+        In 1(Post) class, we define a collectiom to store M(comments).
+        @OneToMany(mappedBy = "post", cascade = CascadeType.All, orphanRemoval = true)
+        private Set<Comment> comment = new HashSet<>();
+        
+        In M, it has 1's class, however, in database, it is a foreign key, and Jpa will do it for us.
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "post_id", nullable = false)
+        private Post post;
+    
+    M:N
+    For a pair of M:N relational tables, there will be a joint table.
+    e.g., pms_inventory(M) : pms_SKU(i.e., stock keeping unit*)(N)
+    
+    @ManyToMany(fetch = FetechType.LAZY)
+    @JoinTable(name = "sku_inventory", 
+                joinColumns = @JoinColumn(name = "sku_id"), 
+                inverseJoinColumns = @JoinColumn(name = "inventory_id"))
+    private Set<PmsInventory> pmsInventories = new HashSet<>();
+    
+    *SKU stands for "stock keeping unit" and is a number that retailers use to differentiate products and track inventory levels. An SKU is typically eight alphanumeric digits long. Products are assigned different SKU numbers based on various characteristics, such as price, manufacturer, color, style, type, and size.
+
+7. What is the  cascade = CascadeType.ALL, orphanRemoval = true? 
+and what are the other CascadeType and their features? 
+In which situation we choose which one?
+
+    The meaning of CascadeType. ALL is that the persistence will propagate (cascade) all EntityManager operations (PERSIST, REMOVE, REFRESH, MERGE, DETACH) to the relating entities. 
+    When we remove the relationship between a parent and child, the child record becomes an orphan record meaning that it does not have a parent record. OrphanRemoval attribute marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the child entity from the corresponding collection of the parent entity.
+    
+    CascadeTypes:
+        PERSIST: (Owning entity saved => realted entity saved) The persist operation makes a transient instance persistent. Cascade Type PERSIST propagates the persist operation from a parent to a child entity. 
+        MERGE: (Owning entity merged => realted entity merged)The merge operation copies the state of the given object onto the persistent object with the same identifier. CascadeType.MERGE propagates the merge operation from a parent to a child entity.
+        REMOVE: (Owning entity removed => realted entity removed)Remove operation removes the row corresponding to the entity from the database and also from the persistent context. CascadeType.REMOVE propagates the remove operation from parent to child entity. Similar to JPA's CascadeType.REMOVE, we have CascadeType.DELETE, which is specific to Hibernate. There is no difference between the two.
+        REFRESH: (Owning entity refreshed => realted entity refreshed)Refresh operations reread the value of a given instance from the database. In some cases, we may change an instance after persisting in the database, but later we need to undo those changes. In that kind of scenario, this may be useful. When we use this operation with Cascade Type REFRESH, the child entity also gets reloaded from the database whenever the parent entity is refreshed.
+        DETACH: (Owning entity manually detached => realted entity detached)The detach operation removes the entity from the persistent context. When we use CascadeType.DETACH, the child entity will also get removed from the persistent context.
+        
+8.  What is the  fetch = FetchType.LAZY, fetch = FetchType.EAGER? what is the difference? In which situation you choose which one?
+
+    Lazy fetch and eager fetch are two ways in which data is loading. Eager fetch means that when a record is fetched from the database, all the associated records from related tables are also fetched. So if we fetch a tournament record, all the registrations for the tournament are also fetched. Eager fetch is the default fetch type used by Hibernate but it is not always the most efficient. Lazy fetch on the other hand, fetches the records only when they are needed.
+    
+    For our post and comment collections, if we don't need data from comment, under the lazy loading, JPA only fecth data from post and doesn't fecth data from comments; under the eager loading, JPA will also fetch comment at the same time when we fetch the post.
+
+9.  What is the rule of JPA naming convention? 
+Shall we implement the method by ourselves? 
+Could you list some examples?
+
+    JPA can help us implement methods based on the column names in a table, on the premise that we will need to follow the JPA naming convension when we create the method names.
+    
+    The first parameter will be mapped to the first column name in the method name, and the second one will be mapped to the second column name in the method name. e.g., for method name “findByLastnameOrFirstname(a, b)", the table need to have column "Lastname" and "Firstname", and then parameter a will be mapped to the Lastname column and b will be mapped to Firstname column to locate the search target. 
+
+10. Add 2 more api  /api/v1/posts/search?keyword=value in your class project. 
+In the repository layer, you need to use the naming convention to use the method provided by JPA.
+
+    Updated.
+
+11. Check out a new branch(hw1_jdbcTemplate) from branch 02_post_RUD, replace the dao layer using JdbcTemplate.
+    
+
+12. watch those videos(看一遍，能理解多少是多少。千万千万不要看其它的视频，会走火入魔晕乎乎的)
+    a. Spring 简介： https://www.youtube.com/watch?v=l0MqsOADAUE&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=64
+    b. IOC/DI: https://www.youtube.com/watch?v=PyMxNr2p0C0&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=65
+    c. IOC container: https://www.youtube.com/watch?v=pLa77Tw-yyI&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=66
+    d.  Bean:
+        i.   https://www.youtube.com/watch?v=OpgMHzM7tgQ&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=67
+
+        ii. https://www.youtube.com/watch?v=OpgMHzM7tgQ&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=68
+        iii.  https://www.youtube.com/watch?v=OpgMHzM7tgQ&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=69
+    e.  DI: 
+        i.  https://www.youtube.com/watch?v=MgTpBST9onM&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=70
+        ii. https://www.youtube.com/watch?v=yhEWZx2i1BA&list=PLmOn9nNkQxJFbsU4Qz8CdRiVM4Qs3ci75&index=71
+    
+13. (Optional) use JDBC to read the data from database.
 
 
+# HW10 # Template
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Added to Annotation file.
+    
+2.  Type the code, you need to checkout new branch from branch 02_post_RUD, name the new branch with 05_slides_JPQL_EntityManager_Session.
+    Done.
+
+3.  What is JPQL?
+    The Jakarta Persistence Query Language (JPQL; formerly Java Persistence Query Language) is a platform-independent object-oriented query language defined as part of the Jakarta Persistence (JPA; formerly Java Persistence API) specification.
+    
+    JPQL is a powerful query language that allows you to define database queries based on your entity model. Its structure and syntax are very similar to SQL. JPQL operates on entity while SQL operates the database.
+    
+4.  What is @NamedQuery and @NamedQueries?
+    Hibernate Named Query can be defined in Hibernate mapping files or through the use of JPA annotations @NamedQuery and @NamedNativeQuery. @NameQueries annotation is used to define the multiple named queries. @NameQuery annotation is used to define the single named query.
+    
+5.  What is @Query? In which Interface we write the sql or JPQL?
+    In order to define SQL to execute for a Spring Data repository method, we can annotate the method with the @Query annotation — its value attribute contains the JPQL or SQL to execute.
+
+    We write the JPQL in the DAO interface. The @Query annotation takes precedence over named queries, which are annotated with @NamedQuery or defined in an orm.xml file.
+    
+    (Reference link: https://www.baeldung.com/spring-data-jpa-query)
+
+6.  What is HQL and Criteria Queries?
+    (Reference link: https://rdayala.wordpress.com/hql-vs-criteria-queries/)
+    Hibernate Query Language (HQL) is an object-oriented query language, similar to SQL, but instead of operating on tables and columns, HQL works with persistent objects and their properties. HQL queries are translated by Hibernate into conventional SQL queries, which in turns perform action on database.
+    
+    Criteria Queries is a very useful JPA feature that enables us to write queries without doing raw SQL as well as gives us some object-oriented control over the queries, which is one of the main features of Hibernate. The Criteria API allows us to build up a criteria query object programmatically, where we can apply different kinds of filtration rules and logical conditions. (Reference link: https://www.baeldung.com/hibernate-criteria-queries)
+    
+7.  What is EnityManager?
+    A JPA EntityManager manages connection to a database as well as to database operations. EntityManager is associated with a PersistenceContext. All operations that are performed in a specific session are stored inside the PersistenceContext. EntityManager is the interface to the  Persistence Context. All operations on the entity go through the  EntityManager. We will declare an EntityManager object in our class and mark it with the  @PersistenceContext annotation.
+    
+    Simply put, the EntityManager is an API that manages the lifecycle of entity instances. EntityManager provides a number of methods that perform  SELECT,  INSERT, UPDATE, and DELETE queries.An EntityManager object manages a set of entities that are defined by a persistence unit. Each EntityManager instance is associated with a PersistenceContext.
+    
+    Actually, Hibernate implements methods (e.g., save()) under JPA interface by using EntityManager.
+
+8.  What is SessionFactory and Session?
+    Reference link: https://www.java2novice.com/hibernate/session-factory/
+    Reference link: https://www.youtube.com/watch?v=68vPf2OGfro
+
+    Hibernate SessionFactory is the factory class through which we get sessions and perform database operations. SessionFactory is an interface. SessionFactory can be created by providing Configuration object, which will contain all DB related property details pulled from either hibernate.cfg.xml file or hibernate.properties file. SessionFactory is a factory for Session objects.We can create one SessionFactory implementation per database in any application. If your application is referring to multiple databases, then you need to create one SessionFactory per database. The SessionFactory is a heavyweight object; it is usually created during application start up and kept for later use. The SessionFactory is a thread safe object and used by all the threads of an application.
+
+    The session object provides an interface between the application and data stored in the database. 
+
+    In short, SessionFactory is a factory class for Session objects. It is available for the whole application while a Session is only available for particular transaction. Session is short-lived while SessionFactory objects are long-lived. SessionFactory provides a second level cache and Session provides a first level cache.
+
+9.  What is Transaction? how to manage your transaction?
+    A transaction simply represents a unit of work. 
+    In such case, if one step fails, the whole transaction fails (which is termed as atomicity). A transaction can be described by ACID properties. ACID stands for Atomicity, Consistency, isolation and durability. (Reference: https://www.javatpoint.com/transaction-management-in-jdbc)
+
+10. Write a simple factory design pattern.
+(TODO)
 
 

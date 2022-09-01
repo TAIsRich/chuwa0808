@@ -14,4 +14,10 @@ public interface PostService {
     PostDto getPostById(long id);
     PostDto updatePost(PostDto postDto, long id);
     void deletePostById(long id);
+
+    //PostResponse searchPostByContentContains(String content, int pageNo, int pageSize, String sortBy, String sortDir);
+
+    PostResponse searchPostByContentContains(String content);
+
+    //long countPostsByContentOrDescrp(String target);
 }

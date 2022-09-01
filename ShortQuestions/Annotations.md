@@ -87,6 +87,34 @@ Spring RestController annotation is a convenience annotation that is itself anno
 ##Entity
 The annotations used under entity may vary based on the type of database used for the application
 
+####@NamedQuery and @NamedQueries
+
+    Hibernate Named Query can be defined in Hibernate mapping files or through the use of JPA annotations @NamedQuery and @NamedNativeQuery. @NameQueries annotation is used to define the multiple named queries. @NameQuery annotation is used to define the single named query.
+    
+    e.g., @NamedQuery
+    @Entity
+    @Table(
+            name = "posts",
+            uniqueConstraints = {
+                 @UniqueConstraint(columnNames = {"title"})
+            }
+    )
+    @NamedQuery(name="Post.getAll", query="select p from Post p")
+    public class Post {}
+
+    e.g., @NamedQueries
+    @Entity
+    @NamedQueries({
+        @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM 
+    Book b WHERE b.title = :title"),
+        @NamedQuery(name = "Book.findByPublishingDate", query = "SELECT 
+    b FROM Book b WHERE b.publishingDate = :publishingDate")
+    })
+    public class Book implements Serializable {
+    ...
+    }
+
+
 ###MySQL
 
 ####@Entity
@@ -182,6 +210,19 @@ The annotations used under entity may vary based on the type of database used fo
         @Autowired
         private PostRepository postRepository;
 
+####@PersistenceContext and @Transactional
+    We will declare an EntityManager object in our class and mark it with the @PersistenceContext annotation. 
+    We must use @Transactional since the operation should be atomic.
+
+    e.g.,
+    @Repository
+    @Transactional
+    public class PostJPQLRepositoryImpl implements PostJPQLRepository {
+        @PersistenceContext
+        EntityManager entityManager;
+        ...
+    }
+
 ##DAO
 ####@Repository
     It is used to indicate that the class provides the mechanism for storage, retrieval, search, update and delete operation on objects.
@@ -190,6 +231,32 @@ The annotations used under entity may vary based on the type of database used fo
     public interface PostRepository extends JpaRepository<Post, Long> {
         //no need to write code
     }
+    
+####@Query
+    In order to define SQL to execute for a Spring Data repository method, we can annotate the method with the @Query annotation — its value attribute contains the JPQL or SQL to execute.
+
+    e.g.,
+    @Repository
+    public interface PostRepository extends JpaRepository<Post, Long> {
+
+        @Query("select p from Post p where p.id = ?1 or p.title = ?2")
+        Post getPostByIDOrTitleWithJPQLIndexParameters(Long id, String title);
+
+        ...}
+
+####@Param
+    The @Param annotation maps the variable fileds in entity class and in SQL database. The SQL variables start with ":", and the name should match status name defined in @Param("StatusName"), and then JPA will map the fields and pass values accordingly.
+
+    e.g.,
+    @Repository
+    public interface PostRepository extends JpaRepository<Post, Long> {
+
+        @Query("select p from Post p where p.id = :key or p.title = :title")
+        Post getPostByIDOrTitleWithJPQLNamedParameters(@Param("key") Long id,
+                                                       @Param("title") String title);
+        ...}
+        
+
 
 ##Exception
 ####@ResponseStatus(value = HttpStatus.XXXX)
