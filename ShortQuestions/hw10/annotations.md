@@ -155,14 +155,18 @@
 	1. usage:
 	2. def:
 	3. example: 
-@Query
+23. @Query
 	1. usage:
 	2. def:
 	3. example: 
-@Transactional
+24. @Transactional
 	1. usage:
 	2. def:
 	3. example: 
+25. @RequestParam
+	1. usage: on controller layer, on Mapping functions
+	2. def: set a endpoint that takes parameter from client
+	3. example: public PostDto searchId(@RequestParam("id") String str)
 mongodb
 @Document
 @Field
