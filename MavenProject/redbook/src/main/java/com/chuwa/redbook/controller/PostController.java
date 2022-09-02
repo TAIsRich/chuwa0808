@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,14 +20,9 @@ public class PostController {
     private PostService postService;
 
     @PostMapping
-    public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto) {
+    public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto) {
         return new ResponseEntity(postService.createPost(postDto), HttpStatus.CREATED);
     }
-
-//    @GetMapping
-//    public List<PostDto> getAllPosts() {
-//        return postService.getAllPost();
-//    }
 
     @GetMapping
     public PostResponse getAllPosts(
@@ -36,12 +32,6 @@ public class PostController {
             @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIR, required = false) String sortDir) {
         return postService.getAllPost(pageNo, pageSize, sortBy, sortDir);
     }
-
-//    @GetMapping
-//    public ResponseEntity<List<PostDto>> getAllPosts() {
-//        List<PostDto> postResponse = postService.getAllPost();
-//        return new ResponseEntity<>(postResponse, HttpStatus.OK);
-//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id) {
