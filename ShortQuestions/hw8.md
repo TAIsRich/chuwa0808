@@ -91,6 +91,6 @@
     Serialization is a mechanism of converting the state of an object into a byte stream. Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. 
 
 13. use stream api to get the average of the array [20, 3, 78, 9, 6, 53, 73, 99, 24, 32]
-    Stream<Integer> y = Stream.of(10, 0, 90, 86, 47, 24, 18, 73, 64, 55);
+    Stream<Integer> y = Stream.of(Integer 10, 0, 90, 86, 47, 24, 18, 73, 64, 55);
     x = y.mapToDouble(Integer::intValue).average().getAsDouble();
     System.out.println(x);
