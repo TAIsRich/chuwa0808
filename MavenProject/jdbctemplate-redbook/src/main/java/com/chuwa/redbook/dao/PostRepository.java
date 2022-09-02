@@ -43,8 +43,11 @@ public class PostRepository {
             return ps;
         }, keyHolder);
 
-        if (result > 0) return findById(keyHolder.getKey().longValue()).get();
-        return null;
+        if (post.getId() == null) {
+            return result > 0 ? findById(keyHolder.getKey().longValue()).get() : null;
+        } else {
+            return findById(post.getId()).get();
+        }
     }
 
     public Optional<Post> findById(Long id) {

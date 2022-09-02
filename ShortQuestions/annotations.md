@@ -166,3 +166,66 @@ Annotations
 
 1. @query, @Transactional, @NameQuery, @nameQueries, see HW10/README.md
 2. **@SpringTest** The @SpringBootTest annotation is useful **when we need to bootstrap the entire container**. The annotation works by creating the ApplicationContext that will be utilized in our tests. We can use the webEnvironment attribute of @SpringBootTest to configure our runtime environment; we're using WebEnvironment.
+
+### ModelMapper & Exception & Validation
+
+1. **@Bean** Spring @Bean annotation **tells that a method produces a bean to be managed by the Spring container**. It is a method-level annotation. During Java configuration ( @Configuration ), the method is executed and its return value is registered as a bean within a BeanFactory .
+
+   ```java
+   @Configuration
+   public class CollegeConfig {
+       @Bean
+       public College collegeBean()
+       {
+           return new College();
+       }
+   }
+   ```
+
+2. **@Configuration** Spring @Configuration annotation helps in Spring annotation based configuration. @Configuration annotation **indicates that a class declares one or more @Bean methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime**.
+
+3. **@ExceptionHandler** Spring is a popular Java application framework and Spring Boot is an evolution of Spring that helps create stand-alone, production-grade Spring based applications easily. @ExceptionHandler is **an annotation for handling exceptions in specific handler classes or handler methods**.
+
+   ```java
+   @ExceptionHandler(value = ProductNotfoundException.class)
+   public ResponseEntity<Object> exception(ProductNotfoundException exception) {
+   }
+   ```
+
+4. **@ControllerAdvice** **@ControllerAdvice is not specific to the exception handling** , its also used for handling property, validation or formatter bindings at the global level. @ControllerAdvice in the context of exception handling is just another way of doing exception handling at a global level using @Exceptionhandler annotation.
+
+   ```java
+   @ControllerAdvice
+   public class GlobalExceptionHandler
+   {
+       @ExceptionHandler(CompanyNotFoundException.class)
+       public ModelAndView handleError(HttpServletRequest req, CompanyNotFoundException ex) 
+       {
+          logger.error("Request: " + req.getRequestURL() + " raised " + ex);
+          ModelAndView mav = new ModelAndView();
+          mav.addObject("exception", ex);
+          mav.addObject("url", req.getRequestURL());
+          mav.setViewName("error");
+          return mav;
+        }
+          return new ResponseEntity<>(new ApiError(errors), headers, status);
+       }
+   }
+   ```
+
+5. **@Valid** @Validated annotation is **a class-level annotation that we can use to tell Spring to validate parameters that are passed into a method of the annotated class**. and. @Valid annotation on method parameters and fields to tell Spring that we want a method parameter or field to be validated.
+
+   ```java
+   @RequestMapping(value = "/saveBasicInfo", method = RequestMethod.POST)
+   public String saveBasicInfo(
+     @Valid @ModelAttribute("useraccount") UserAccount useraccount, 
+     BindingResult result, 
+     ModelMap model) {
+       if (result.hasErrors()) {
+           return "error";
+       }
+       return "success";
+   }
+   ```
+
+   
