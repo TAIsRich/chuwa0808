@@ -123,3 +123,14 @@ SQL语句中的变量以":"开头。
 test class
 
 20.@Transactional 
+
+21.@Bean通常用于第三方的包
+
+22.@ExceptionHandler
+Method Level
+used to handle the specific exceptions and sending the custom 
+responses to the client
+
+23.@ControllerAdvice
+Class Level
+to handle the exceptions globally
