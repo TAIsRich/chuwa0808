@@ -111,3 +111,7 @@ public class Student {
 
 **@Transactional:** annotation which provides broad support for transaction management and allows developers to concentrate on business logic rather than worrying about data integrity in the event of system failures.
 **@PersistenceContext**
+**@ExceptionHandler:** Method Level. It is used to handle the specific exceptions and sending the custom responses to the client.
+**@ControllerAdvice:** Class Level. It is to handle the exceptions globally.
+**@Valid:** annotation can trigger validation simply by annotating a Controller method parameter with the @Valid annotation. There are some constraints defined for the class data members like @NotNull, @NotEmpty, @Size and @Valid instructs the framework to check these constraints against the parameter supplied when someone calls the method. 
+**@EnableTransactionManagement:** enables annotation-driven transaction management capability. 
