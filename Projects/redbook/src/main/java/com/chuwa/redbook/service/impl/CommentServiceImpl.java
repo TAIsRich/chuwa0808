@@ -11,6 +11,7 @@ import com.chuwa.redbook.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,10 +24,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private PostRepository postRepository;
+    /**
+     * use this modelMapper to replace the mapToDto, mapToEntity methods.
+     */
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public CommentDto createComment(long postId, CommentDto commentDto) {
-        Comment comment = mapToEntity(commentDto);
+        Comment comment = modelMapper.map(commentDto, Comment.class);
+//        Comment comment = mapToEntity(commentDto);
         // retrieve post entity by id
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post", "id", postId));
@@ -36,7 +43,8 @@ public class CommentServiceImpl implements CommentService {
         // comment entity to DB
         Comment savedComment = commentRepository.save(comment);
 
-        return mapToDto(savedComment);
+//        return mapToDto(savedComment);
+        return modelMapper.map(savedComment, CommentDto.class);
     }
 
     @Override
