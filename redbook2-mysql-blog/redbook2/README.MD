@@ -1,6 +1,6 @@
-In this branch,
+In this version,
 
-    add BlogAPIException in package exception
-    add all comment related codes in different layer
-
-practice the new apis
+- incorporated the following:
+  - 06_mapper-exception
+  - 07_01 validation
+  - 07_02 actuator 

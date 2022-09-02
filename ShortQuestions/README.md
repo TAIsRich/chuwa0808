@@ -1263,3 +1263,23 @@ In the repository layer, you need to use the naming convention to use the method
 (TODO)
 
 
+# HW11 # Template
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Added to the Annotations file.
+    
+2.  What is hibernate Caching?
+    Caching is a mechanism to enhance the performance of a system. Hibernate offers two caching levels: The first level cache is the session cache. Objects are cached within the current session and they are only alive until the session is closed. The second level cache exists as long as the session factory is alive.
+
+3.  What is the difference between first-level cache and second-level cache?
+    L1 Cache is the cache that exists per Hibernate session, and this cache is not shared among threads. This cache makes use of Hibernate's own caching. Its purpose is to minimize database visit. L2 Cache is a cache that survives beyond a Hibernate session； it stays in sessionFactory and can be shared among threads. Its purpose is for cross-session use.
+
+4.  How do you understand @Transactional?
+    @Transactional annotation is used when you want the certain method/class(=all methods inside) to be executed in a transaction. We must use @Transactional when the operations should be atomic.
+    
+5.  How do you handle the exception in Spring?
+    We usually build a GlobalExceptionHandler class to manage all the customed/defined exceptions and other exceptions. We use annotation @ControllerAdvice at class level and @ExceptionHandler at method level. 
+    @ControllerAdvice is added at class level to handle the exceptions globally.
+    @ExceptionHandler is used at method level to handle the specific exceptions and sending the custom responses to the client.
+
+6.  How do you do the validations in Spring?
+    We usually use annotations, such as @NotEmpty, @Size, and @Email, to variables under payload classes to validate/regulate the expected values. At controller layer, we use @Valid with @RequestBody in PostMapping and PutMapping to indicate the request body where the validation rules should apply.
