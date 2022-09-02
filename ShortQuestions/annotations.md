@@ -2,14 +2,14 @@
 - it is a enity, will be used to map with database
 
 ### @Table
--  will be used to locate the database table name 
+-  will be used to locate the database table name
 -  the JPA annotation is used for adding the table name in the particular MySQL database.
 
 ### @UniqueConstraint
 - Annotation type UniqueConstraint specifies that a unique constraint is to be included in the generated DDL (Data Definition Language) for a table.
 - Let's consider our Person entity. A Person shouldn't have any duplicate record for the active status. In other words, there won't be any duplicate values for the key comprising personNumber and isActive. Here, we need to add unique constraints that span across multiple columns.
 - Multiple Unique Constraints on a Single Entity, A table can have multiple unique constraints.
-- 
+-
 ```
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "personNumber", "isActive" }) })
 
@@ -27,7 +27,7 @@
 - this column is a primary key
 
 ### @GeneratedValue
-- 主键⾃增的策略 
+- 主键⾃增的策略
 - The @GeneratedValueannotation is to configure the way of increment of the specified column(field). For example when using Mysql, you may specify auto_incrementin the definition of table to make it self-incremental, and then use
 ```
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -279,7 +279,7 @@ GET /api/foos HTTP/1.1
 400 Bad Request
 Required String parameter 'id' is not present
 ```
-  - We can configure our @RequestParam to be optional, though, with the required attribute:
+- We can configure our @RequestParam to be optional, though, with the required attribute:
 ```
 @GetMapping("/api/foos")
 @ResponseBody
@@ -364,7 +364,7 @@ class Course {
     // standard constructors, getters, and setters
 }
 ```
-  - We can do this with the @JoinTable annotation in the Student class. We provide the name of the join table (course_like) as well as the foreign keys with the @JoinColumn annotations. The joinColumn attribute will connect to the owner side of the relationship, and the inverseJoinColumn to the other side:
+- We can do this with the @JoinTable annotation in the Student class. We provide the name of the join table (course_like) as well as the foreign keys with the @JoinColumn annotations. The joinColumn attribute will connect to the owner side of the relationship, and the inverseJoinColumn to the other side:
 ```
 @ManyToMany
 @JoinTable(
@@ -373,7 +373,7 @@ class Course {
   inverseJoinColumns = @JoinColumn(name = "course_id"))
 Set<Course> likedCourses;
 ```
-  - Note that using @JoinTable or even @JoinColumn isn't required. JPA will generate the table and column names for us. However, the strategy JPA uses won't always match the naming conventions we use. So, we need the possibility to configure table and column names. On the target side, we only have to provide the name of the field, which maps the relationship. Therefore, we set the mappedBy attribute of the @ManyToMany annotation in the Course class:
+- Note that using @JoinTable or even @JoinColumn isn't required. JPA will generate the table and column names for us. However, the strategy JPA uses won't always match the naming conventions we use. So, we need the possibility to configure table and column names. On the target side, we only have to provide the name of the field, which maps the relationship. Therefore, we set the mappedBy attribute of the @ManyToMany annotation in the Course class:
 ```
 @ManyToMany(mappedBy = "likedCourses")
 Set<Student> likes;
@@ -396,6 +396,116 @@ public class Cart {
 }
 ```
 - For example, if one department can employ for several employees then, department to employee is a one to many relationship (1 department employs many employees), while employee to department relationship is many to one (many employees work in one department).
+
+
+### @Validated and @Valid
+- In many cases, however, Spring does the validation for us. We don’t even need to create a validator object ourselves. Instead, we can let Spring know that we want to have a certain object validated. This works by using the the @Validated and @Valid annotations.
+- The @Validated annotation is a class-level annotation that we can use to tell Spring to validate parameters that are passed into a method of the annotated class.
+- We can put the @Valid annotation on method parameters and fields to tell Spring that we want a method parameter or field to be validated.
+
+1. To validate the request body of an incoming HTTP request, we annotate the request body with the @Valid annotation in a REST controller:
+   - We simply have added the @Valid annotation to the Input parameter, which is also annotated with @RequestBody to mark that it should be read from the request body. By doing this, we’re telling Spring to pass the object to a Validator before doing anything else.
+   - When Spring Boot finds an argument annotated with @Valid, it automatically bootstraps the default JSR 380 implementation — Hibernate Validator — and validates the argument. When the target argument fails to pass the validation, Spring Boot throws a MethodArgumentNotValidException exception.
+
+    ```
+    class Input {
+    
+      @Min(1)
+      @Max(10)
+      private int numberBetweenOneAndTen;
+    
+      @Pattern(regexp = "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$")
+      private String ipAddress;
+      
+      // ...
+    }
+    
+    -------------------------------------------------------------------------------
+    
+    @RestController
+    class ValidateRequestBodyController {
+    
+      @PostMapping("/validateBody")
+      ResponseEntity<String> validateBody(@Valid @RequestBody Input input) {
+        return ResponseEntity.ok("valid");
+      }
+    
+    }
+    ```
+2. Validating Path Variables and Request Parameters: Validating path variables and request parameters works a little differently. We’re not validating complex Java objects in this case, since path variables and request parameters are primitive types like int or their counterpart objects like Integer or String. Instead of annotating a class field like above, we’re adding a constraint annotation (in this case @Min) directly to the method parameter in the Spring controller:
+- Note that we have to add Spring’s @Validated annotation to the controller at class level to tell Spring to evaluate the constraint annotations on method parameters.
+- The @Validated annotation is only evaluated on class level in this case, even though it’s allowed to be used on methods (we’ll learn why it’s allowed on method level when discussing validation groups later).
+- In contrast to request body validation a failed validation will trigger a ConstraintViolationException instead of a MethodArgumentNotValidException. Spring does not register a default exception handler for this exception, so it will by default cause a response with HTTP status 500 (Internal Server Error).
+  ```
+  @RestController
+  @Validated
+  class ValidateParametersController {
+  
+    @GetMapping("/validatePathVariable/{id}")
+    ResponseEntity<String> validatePathVariable(
+        @PathVariable("id") @Min(5) int id) {
+      return ResponseEntity.ok("valid");
+    }
+    
+    @GetMapping("/validateRequestParameter")
+    ResponseEntity<String> validateRequestParameter(
+        @RequestParam("param") @Min(5) int param) { 
+      return ResponseEntity.ok("valid");
+    }
+  }
+  ``` 
+
+
+### Common Validation Annotations:
+- @NotNull: to say that a field must not be null.
+- @NotEmpty: to say that a list field must not empty.
+- @NotBlank: to say that a string field must not be the empty string (i.e. it must have at least one character).
+- @Min and @Max: to say that a numerical field is only valid when it’s value is above or below a certain value.
+- @Pattern: to say that a string field is only valid when it matches a certain regular expression.
+- @Email: to say that a string field must be a valid email address.
+
+### @Transactional
+- Spring provides Declarative Transaction Management via @Transactional annotation. When a method is applied with @Transactional, then it will execute inside a database transaction. @Transactional annotation can be applied at the class level also, in that case, all methods of that class will be executed inside a database transaction.
+
+- How @Transactional works: When @Transactional annotation is detected by Spring, then it creates a proxy[^1] object around the actual bean object. So, whenever the method annotated with @Transactional is called, the request first comes to the proxy object and this proxy object invokes the same method on the target bean. These proxy objects can be supplied with interceptors. Spring creates a TransactionInterceptor and passes it to the generated proxy object. So, when the @Transactional annotated method is called, it gets called on the proxy object first, which in turn invokes the TransactionInterceptor that begins a transaction. Then the proxy object calls the actual method of the target bean. When the method finishes, the TransactionInterceptor commits/rollbacks the transaction.
+
+
+- One thing to remember here is that the Spring wraps the bean in the proxy, the bean has no knowledge of it. So, only the external calls go through the proxy. As for the internal calls (@Transactional method calling the same bean method), they are called using ‘this’. Using @Transactional annotation, the transaction’s propagation and isolation can be set directly
+```  
+@Transactional
+public void createCourseDeclarativeWithRuntimeException(Course course) {
+    courseDao.create(course);
+    throw new DataIntegrityViolationException("Throwing exception for demoing Rollback!!!");
+}
+```
+- Next we'll use the declarative approach to rollback a transaction for the listed checked exceptions. The rollback in our example is on SQLException:
+```
+@Transactional(rollbackFor = { SQLException.class })
+public void createCourseDeclarativeWithCheckedException(Course course) throws SQLException {
+    courseDao.create(course);
+    throw new SQLException("Throwing exception for demoing rollback");
+}
+```
+- Let's see a simple use of attribute noRollbackFor in the declarative approach to prevent rollback of the transaction for the listed exception:
+```
+@Transactional(noRollbackFor = { SQLException.class })
+public void createCourseDeclarativeWithNoRollBack(Course course) throws SQLException {
+    courseDao.create(course);
+    throw new SQLException("Throwing exception for demoing rollback");
+}
+```
+
+- In the programmatic approach, we rollback the transactions using TransactionAspectSupport:
+```
+public void createCourseDefaultRatingProgramatic(Course course) {
+    try {
+       courseDao.create(course);
+    } catch (Exception e) {
+       TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+    }
+}
+```
+- The declarative rollback strategy should be favored over the programmatic rollback strategy.
 ### @JsonProperty
 ### @JoinColumn
 ### @Service
@@ -478,7 +588,7 @@ public class AuthorService {
 ```
 
 ### @Field
-- represent a field (similar to a column in MySQL) 
+- represent a field (similar to a column in MySQL)
 - if without specifying a name, it will distribute the default name
 ```
  @Field("description")
