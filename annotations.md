@@ -1,4 +1,4 @@
-##### Basic Setup
+#### Basics
 
 - SpringBootApplication
 
@@ -65,6 +65,20 @@
   public class ResourceNotFoundException extends RuntimeException{
   ```
 
+- Bean: https://www.baeldung.com/spring-bean-annotations
+  @Bean通常⽤于第三⽅的包，因为只有⾃⼰的source code才能添加@Component，@Service, @Controller, @Repository. Spring @Bean annotation tells that a method produces a bean to be managed by the Spring container. It is a method-level annotation. During Java configuration (@Configuration), the method is executed and its return value is registered as a bean within a BeanFactory. The core Spring container creates and manages beans.
+
+- JsonProperty
+
+  This annotation helps us in defining a logical property for a field that will be used for both serializing and deserializing.
+
+  ```
+  @JsonProperty("name")
+  private String name;
+  ```
+
+#### Database
+
 - Entity
 
 - Table
@@ -103,15 +117,6 @@
   private LocalDateTime updateDateTime;
   ```
 
-- JsonProperty
-
-  This annotation helps us in defining a logical property for a field that will be used for both serializing and deserializing.
-
-  ```
-  @JsonProperty("name")
-  private String name;
-  ```
-
 - ManyToOne: define the relations between two entities(tables) as many-to-one.
 
 - JoinColumn: joins with another entity (table).
@@ -122,4 +127,35 @@
   private Post post;
   ```
 
-- 
+#### Exception handling
+
+- @ExceptionHandler
+  Method Level
+  used to handle the specific exceptions and sending the custom
+  responses to the client
+- ControllerAdvice
+  Class Level
+  to handle the exceptions globally
+
+#### Validation
+
+- NotEmpty
+
+- Size(min=2)
+
+  ```
+  @NotEmpty
+  @Size(min = 2, message = "Post title should have at least 2 characters")
+  private String title;
+  ```
+
+- Valid
+
+  ```
+  public ResponseEntity<PostDto> updatePostById(@Valid @RequestBody PostDto postDto, @PathVariable(name = "id") long id) {
+          PostDto postResponse = postService.updatePost(postDto, id);
+          return new ResponseEntity<>(postResponse, HttpStatus.OK);
+      }
+  ```
+
+  
