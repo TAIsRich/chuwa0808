@@ -7,7 +7,9 @@ import com.chuwa.redbook.entity.Post;
 import com.chuwa.redbook.exception.BlogAPIException;
 import com.chuwa.redbook.exception.ResourceNotFoundException;
 import com.chuwa.redbook.payload.CommentDto;
+import com.chuwa.redbook.payload.PostDto;
 import com.chuwa.redbook.service.CommentService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,12 +26,15 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public CommentDto createComment(long postId, CommentDto commentDto) {
         Comment comment = mapToEntity(commentDto);
         Post post = postRepository.findById(postId).orElseThrow(() -> PostServiceImpl.postNotFindException(postId));
         comment.setPost(post);
-        return mapToDto(commentRepository.save(comment));
+        return modelMapper.map(commentRepository.save(comment), CommentDto.class);
     }
 
     @Override
