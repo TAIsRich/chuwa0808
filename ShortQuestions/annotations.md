@@ -278,4 +278,44 @@ public class PostController {
 ```
 
 
+### @NamedQueries
+```
+Is used for JPQL
+
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM
+Book b WHERE b.title = :title"),
+        @NamedQuery(name = "Book.findByPublishingDate", query = "SELECT
+b FROM Book b WHERE b.publishingDate = :publishingDate")
+})
+public class Book implements Serializable {
+...
+}
+```
+
+### @Query
+```
+The @Query annotation declares finder queries directly on repository methods.
+@Query("select p from Post p where p.id = :key or p.title = :title")
+Post getPostByIDOrTitleWithJPQLNamedParameters(@Param("key") Long id,
+@Param("title") String title);
+```
+
+### @PersistenceContext
+```
+declare an EntityManager object in our
+class and mark it with the @PersistenceContext annotation
+
+@Repository
+@Transactional
+public class PostJPQLRepositoryImpl implements PostJPQLRepository {
+        @PersistenceContext
+        EntityManager entityManager;
+...
+}
+```
+
+
+
 
