@@ -315,6 +315,49 @@ public class PostJPQLRepositoryImpl implements PostJPQLRepository {
 ...
 }
 ```
+### @Transactional
+
+```
+With transactions configured, we can now annotate a bean with @Transactional either at the class or method level:
+@Service
+@Transactional
+public class FooService {
+    //...
+}
+```
+
+### @ExceptionHandler
+
+```
+Method Level
+used to handle the specific exceptions and sending the custom
+responses to the client
+
+@ExceptionHandler(ResourceNotFoundException.class)
+public ResponseEntity<ErrorDetails> handleResourceNotFoundException(
+ResourceNotFoundException exception, WebRequest webRequest) {
+ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
+return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+}
+```
+
+### @ControllerAdvice
+```
+Class Level
+to handle the exceptions globally
+```
+
+### @Valid
+```
+验证request Body，并定制化返回⼀些信息。
+
+// create blog post
+@PostMapping
+public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto) {
+    return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
+}
+
+```
 
 
 
