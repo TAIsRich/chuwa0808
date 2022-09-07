@@ -100,18 +100,73 @@
 	2. understanding: use to create a delete endpoint
 	3. example:
 		1. `@DeleteMapping("/{id}")`
-17. JsonProperty
+17. @JsonProperty
+	1. usage: for fields that mapped to db, use for Serialization and deserialization
+	2. def: to replace the classname/variable name with given name defined in property
+	3. example
+		1. `@JsonProperty(name = "Email")`
+		2. `private string email;`
 18. @JoinColumn
-@JoinTable
-@PersistenceContext
-@NamedQuery
-19. @ManyToOne
-20. OneToMany
-21. ManyToMany
-22. @ResponseStatus
-@Query
-@Transactional
+	1. usage: after OneToOne,OneToMany,ManyToOne... relationships
+	2. def: joins the data to another column so both side have data
+	3. example:
+		1. `@ManyToOne`
+    		2. `@JoinColumn(name = "post_id")`
+   		3. `private String post_id;`
+19. @JoinTable
+	1. usage: after ManyToOne/OneToMany etc. relationships
+	2. def: Join the data to another tables, make it bidirectional
+	3. example
+		1. @ManyToOne
+		2. @JoinTable(name = "post", )
+		3. example
+20. @PersistenceContext
+	1. usage: for create EntityManager
+	2. def: associate with entitymanager, things stores in persistence context
+	3. example:
+		1. @PersistenceContext
+		2. EntityManager entityManager;
 
+21. @NamedQuery
+	1. usage: for functions in entity class
+	2. def:  defines a name and links to a query command
+	3. example: 
+19. @ManyToOne
+	1. usage: on data field
+	2. def: multiple object can associate with this field
+	3. example: 
+		1. @ManyToOne
+    		2. @JoinColumn(name="cart_id", nullable=false)
+    		3. private Cart cart;
+
+20. OneToMany
+	1. usage: on data field
+	2. def: state that this field will associate with multiple object
+	3. example: 
+		1. @OneToMany(mappedBy="cart")
+    		2. private Set<Item> items;
+21. ManyToMany
+	1. usage: on data field
+	2. def: state that this field can have a many to many relationship
+	3. example: 
+		1. @ManyToMany
+    		2. Set<Student> likes;
+22. @ResponseStatus
+	1. usage:
+	2. def:
+	3. example: 
+23. @Query
+	1. usage:
+	2. def:
+	3. example: 
+24. @Transactional
+	1. usage:
+	2. def:
+	3. example: 
+25. @RequestParam
+	1. usage: on controller layer, on Mapping functions
+	2. def: set a endpoint that takes parameter from client
+	3. example: public PostDto searchId(@RequestParam("id") String str)
 mongodb
 @Document
 @Field
