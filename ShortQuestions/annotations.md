@@ -1,3 +1,49 @@
+### @ExceptionHandler
+
+The @ExceptionHandler is an annotation used to handle the specific exceptions and sending the custom responses to the client.
+You can define the @ExceptionHandler method to handle the exceptions as shown. This method should be used for writing the Controller Advice class file.
+
+```java
+@ExceptionHandler(value = ProductNotfoundException.class)
+
+public ResponseEntity<Object> exception(ProductNotfoundException exception) {
+}
+```
+
+### @ControllerAdvice
+
+You can use the following code to create @ControllerAdvice class to handle the exceptions globally
+
+```java
+package com.tutorialspoint.demo.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+@ControllerAdvice
+   public class ProductExceptionController {
+}
+```
+
+### @Transactional
+
+With transactions configured, we can now annotate a bean with @Transactional either at the class or method level:
+
+```java
+@Service
+@Transactional
+public class FooService {
+    //...
+}
+```
+
+### @Validated and @Valid
+
+In Spring, we use @Valid annotation for method level validation. We also use it to mark a member attribute for validation. However, this annotation doesn't support group validation.
+
+Groups help to limit the constraints applied during validation. One particular use case is UI wizards. In the first step, we may have a certain sub-group of fields. In the subsequent step, there may be another group belonging to the same bean. So we need to apply constraints on these limited fields in each step, but @Valid doesn't support this.
+
+In this case, for group-level, we have to use Spring's @Validated, which is a variant of @Valid.  This is used at the method-level. For marking member attributes, we continue to use the @Valid annotation.
+
 ## Entity
 
 ### @Entity
