@@ -8,9 +8,9 @@ import com.chuwa.redbook2.exception.BlogAPIException;
 import com.chuwa.redbook2.exception.ResourceNotFoundException;
 import com.chuwa.redbook2.payload.CommentDto;
 import com.chuwa.redbook2.service.CommentService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,9 +24,13 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public CommentDto createComment(long postId, CommentDto commentDto) {
-        Comment comment = mapToEntity(commentDto);
+        //Comment comment = mapToEntity(commentDto);
+        Comment comment = modelMapper.map(commentDto, Comment.class);
         //retrieve post entity by id
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post", "id", postId));
@@ -36,7 +40,8 @@ public class CommentServiceImpl implements CommentService {
         //comment entity to DB
         Comment savedComment = commentRepository.save(comment);
 
-        return mapToDto(savedComment);
+        //return mapToDto(savedComment);
+        return modelMapper.map(savedComment, CommentDto.class);
     }
 
     @Override
@@ -46,7 +51,8 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> comments = commentRepository.findByPostId(postId);
         return comments
                 .stream()
-                .map(comment -> mapToDto(comment))
+                //.map(comment -> mapToDto(comment))
+                .map(comment -> modelMapper.map(comment, CommentDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -65,7 +71,8 @@ public class CommentServiceImpl implements CommentService {
         if(!comment.getPost().getId().equals(post.getId())){
             throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
         }
-        return mapToDto(comment);
+        //return mapToDto(comment);
+        return modelMapper.map(comment, CommentDto.class);
     }
 
     @Override
@@ -90,7 +97,8 @@ public class CommentServiceImpl implements CommentService {
 
         Comment updatedComment = commentRepository.save(comment);
 
-        return mapToDto(updatedComment);
+        //return mapToDto(updatedComment);
+        return modelMapper.map(updatedComment, CommentDto.class);
     }
 
     @Override
@@ -113,7 +121,9 @@ public class CommentServiceImpl implements CommentService {
 
     }
 
-    private CommentDto mapToDto(Comment comment){
+    /** the below replaced by ModelMapper
+
+    /*private CommentDto mapToDto(Comment comment){
         CommentDto commentDto = new CommentDto();
         commentDto.setId(comment.getId());
         commentDto.setName(comment.getName());
@@ -131,7 +141,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setBody(comment.getBody());
 
         return comment;
-    }
+    }*/
 
 
 }

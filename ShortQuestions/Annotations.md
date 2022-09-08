@@ -3,6 +3,19 @@
 ##General
 ####@Autowired
     It automatically injects the dependent beans into the associated references of a POJO class. This annotation will inject the dependent beans by matching the data-type (i.e. Works internally as Autowiring byType).
+    
+##Config
+####@Configuration
+####@Bean
+
+    e.g., 
+    @Configuration
+    public class CommonConfig {
+
+        @Bean
+        public ModelMapper modelMapper(){return new ModelMapper();}
+        }
+    }
 
 ##Controller
 ####@RestController
@@ -73,6 +86,24 @@ Spring RestController annotation is a convenience annotation that is itself anno
     
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id){}
+    
+####@Valid
+    Mostly used with @RequestBody in PostMapping and PutMapping
+    e.g.,
+    
+    @PostMapping("/posts/{postId}/comments")
+    public ResponseEntity<CommentDto> createComment(@PathVariable(value = "postId") long id,
+                                                    @Valid @RequestBody CommentDto commentDto){
+        return new ResponseEntity<>(commentService.createComment(id, commentDto), HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/posts/{postId}/comments/{id}")
+    public ResponseEntity<CommentDto> updateComment(@PathVariable(value = "postId") Long postId,
+                                                    @PathVariable(value = "id") Long commentId,
+                                                    @Valid @RequestBody CommentDto commentDto){
+        CommentDto updateComment = commentService.updateComment(postId, commentId, commentDto);
+        return new ResponseEntity<>(updateComment, HttpStatus.OK);
+    }
 
 ##Payload/DTO
 
@@ -82,6 +113,28 @@ Spring RestController annotation is a convenience annotation that is itself anno
     e.g.,
     @JsonProperty("description_yyds")
     private String description;
+
+####@NotEmpty and @Size
+    For validation purpose, use with @Valid in the Controller side.
+    e.g., 
+    public class PostDto {
+
+        @NotEmpty
+        @Size(min = 2, message = "Post title should have at least 2 characters")
+        private String title;
+        ...
+    }
+
+####@Email
+    For validation purpose, use with @Valid in the Controller side.
+    e.g., 
+    public class CommentDto {
+        
+        @NotEmpty(message = "Email should not be null or empty")
+        @Email
+        private String email;
+        ...
+    }
     
 
 ##Entity
@@ -265,3 +318,25 @@ The annotations used under entity may vary based on the type of database used fo
     e.g.,
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public class ResourceNotFoundException extends RuntimeException {}
+
+####@ControllerAdvice
+    It is added at class level to handle the exceptions globally.
+
+    e.g.,
+    @ControllerAdvice
+    public class GlobalExceptionHandler {}
+
+####@ExceptionHandler
+    It is used at method level to handle the specific exceptions and sending the custom responses to the client.
+
+    e.g.,
+    @ControllerAdvice
+    public class GlobalExceptionHandler {
+        
+        @ExceptionHandler(ResourceNotFoundException.class)
+        public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException exception,
+                                                                            WebRequest webRequest){
+            ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(),
+                    webRequest.getDescription(false));
+            return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+        }
