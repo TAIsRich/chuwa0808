@@ -30,6 +30,12 @@
 | @EnableTransactionManagement | enable the transaction in spring boot application |
 | @ControllerAdvice | provide a grobal exception handle |
 | @Valid | check if the request body is obey the rule defined in playload class |
+| @Bean | method level bean, usually under @COnfiguration |
+| @Component | a normal spring bean: service, reposotory and controller are also component |
+| @ComponentScan | will scan all the component and add them into ioc container |
+| @Configuration | config class, it must have at least one @Bean method |
+| @Primary | assign a primary impl class to inject |
+| @Qualifier | assign a specific impl class to inject |
 
 
 
