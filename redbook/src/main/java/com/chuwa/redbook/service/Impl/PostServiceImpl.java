@@ -3,6 +3,7 @@ package com.chuwa.redbook.service.Impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,16 +29,17 @@ public class PostServiceImpl implements PostService{
     @Autowired
     private PostJPQLRepository postJPQLRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public PostDto createPost(PostDto postDto){
 
-       Post post = mapToEntity(postDto);
+       Post post = modelMapper.map(postDto, Post.class);
 
-       Post savePost = postRepository.save(post);
+       Post savedPost = postRepository.save(post);
 
-       PostDto postresponse = mapToDTO(savePost);
-
-       return postresponse;
+       return modelMapper.map(savedPost, PostDto.class);
 
     }
 
@@ -56,14 +58,14 @@ public class PostServiceImpl implements PostService{
       post.setContent(postDto.getContent());
 
       Post updatePost = postRepository.save(post);
-      return mapToDTO(updatePost);
+      return modelMapper.map(updatePost, PostDto.class);
     }
 
 
     @Override
     public List<PostDto> getAllPost() {
         List<Post> posts = postRepository.findAll();
-        List<PostDto> postDtos = posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        List<PostDto> postDtos = posts.stream().map(post -> modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
         return postDtos;
     }
 
@@ -81,7 +83,7 @@ public class PostServiceImpl implements PostService{
 
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
 
-        return mapToDTO(post);
+        return modelMapper.map(post, PostDto.class);
     }
 
     @Override
@@ -99,7 +101,7 @@ public class PostServiceImpl implements PostService{
 
         // get content for page abject
         List<Post> posts = pagePosts.getContent();
-        List<PostDto> postDtos = posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        List<PostDto> postDtos = posts.stream().map(post -> modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 
         PostResponse postResponse = new PostResponse();
         postResponse.setContent(postDtos);
@@ -115,66 +117,66 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<PostDto> findByTitleLike(String title){
         List<Post> posts = postRepository.findByTitleLike(title);
-        return posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        return posts.stream().map(post -> modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public List<PostDto> getAllPostWithJPQL() {
-        return postJPQLRepository.getAllPostWithJPQL().stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        return postJPQLRepository.getAllPostWithJPQL().stream().map(post -> modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public PostDto getPostByIdJPQLIndexParameter(Long id, String title) {
         Post post = postRepository.getPostByIDOrTitleWithJPQLIndexParameters(id, title);
-        return mapToDTO(post);
+        return modelMapper.map(post, PostDto.class);
     }
 
     @Override
     public PostDto getPostByIdJPQLNamedParameter(Long id, String title) {
         Post post = postRepository.getPostByIDOrTitleWithJPQLNamedParameters(id, title);
-        return mapToDTO(post);
+        return modelMapper.map(post, PostDto.class);
     }
 
     @Override
     public PostDto getPostByIdSQLIndexParameter(Long id, String title) {
         Post post = postRepository.getPostByIDOrTitleWithSQLIndexParameters(id, title);
-        return mapToDTO(post);
+        return modelMapper.map(post, PostDto.class);
     }
 
     @Override
     public PostDto getPostByIdSQLNamedParameter(Long id, String title) {
         Post post = postRepository.getPostByIDOrTitleWithSQLNamedParameters(id, title);
-        return mapToDTO(post);
+        return modelMapper.map(post, PostDto.class);
     }
 
 
 
-    private PostDto mapToDTO(Post post){
+    // private PostDto mapToDTO(Post post){
 
-      PostDto postDto = new PostDto();
+    //   PostDto postDto = new PostDto();
 
-      postDto.setId(post.getId());
+    //   postDto.setId(post.getId());
 
-      postDto.setDescription(post.getDescription());
+    //   postDto.setDescription(post.getDescription());
 
-      postDto.setTitle(post.getTitle());
+    //   postDto.setTitle(post.getTitle());
 
-      postDto.setContent(post.getContent());
+    //   postDto.setContent(post.getContent());
 
-      return postDto;
-    }
+    //   return postDto;
+    // }
  
 
-    private Post mapToEntity(PostDto postDto){
+    // private Post mapToEntity(PostDto postDto){
 
-        Post post = new Post();
+    //     Post post = new Post();
 
-        post.setTitle(postDto.getTitle());
+    //     post.setTitle(postDto.getTitle());
 
-        post.setDescription(postDto.getDescription());
+    //     post.setDescription(postDto.getDescription());
 
-        post.setContent(postDto.getContent());
+    //     post.setContent(postDto.getContent());
 
-        return post;
-    }
+    //     return post;
+    // }
 }
