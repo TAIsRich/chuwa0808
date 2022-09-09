@@ -1,3 +1,19 @@
+### @CompnonentScan
+
+One of the most important annotations in spring is @ComponentScan which is used along with the @Configuration annotation to specify the packages that we want to be scanned. @ComponentScan without arguments tells Spring to scan the current package and all of its sub-packages.
+
+```http request
+https://www.geeksforgeeks.org/spring-componentscan-annotation-with-example/
+```
+
+### @SpringbootApplication
+
+Spring Boot @SpringBootApplication annotation is used to mark a configuration class that declares one or more @Bean methods and also triggers auto-configuration and component scanning. It’s same as declaring a class with @Configuration, @EnableAutoConfiguration and @ComponentScan annotations.
+
+```http request
+https://www.digitalocean.com/community/tutorials/springbootapplication-springapplication
+```
+
 ### @ExceptionHandler
 
 The @ExceptionHandler is an annotation used to handle the specific exceptions and sending the custom responses to the client.
