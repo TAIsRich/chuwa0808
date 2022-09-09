@@ -396,7 +396,119 @@ public class Cart {
 }
 ```
 - For example, if one department can employ for several employees then, department to employee is a one to many relationship (1 department employs many employees), while employee to department relationship is many to one (many employees work in one department).
+### cascade = CascadeType.ALL, orphanRemoval = true and the other CascadeType and their features
+- let's look at how this cascade type attribute is defined in our code for more clear understanding. Take a scenario where an employee can have multiple accounts, but one account must be associated with only one employee.
+- Look at the bold line in the above source code for EmployeeEntity. It defines cascade=CascadeType.ALL, and it essentially means that any change happened on EmployeeEntity must cascade to AccountEntity as well.
+- If we save an employee, then all associated accounts will also be saved into the database. If you delete an Employee then all accounts associated with that Employee also be deleted. Simple enough !!
+```
+@Entity
+@Table(name = "Employee")
+public class EmployeeEntity implements Serializable
+{
+	private static final long serialVersionUID = -1798070786993154676L;
+	@Id
+	@Column(name = "ID", unique = true, nullable = false)
+	private Integer           employeeId;
+	@Column(name = "FIRST_NAME", unique = false, nullable = false, length = 100)
+	private String            firstName;
+	@Column(name = "LAST_NAME", unique = false, nullable = false, length = 100)
+	private String            lastName;
 
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="EMPLOYEE_ID")
+	private Set<AccountEntity> accounts;
+
+	//Getters and Setters Hidden
+}
+
+@Entity
+@Table(name = "Account")
+public class AccountEntity implements Serializable
+{
+	private static final long serialVersionUID = 1L;
+	@Id
+	@Column(name = "ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer           accountId;
+	@Column(name = "ACC_NO", unique = false, nullable = false, length = 100)
+	private String            accountNumber;
+
+	@ManyToOne (mappedBy="accounts",  fetch = FetchType.LAZY)
+	private EmployeeEntity employee;
+
+}
+```
+- The orphanRemoval option was introduced in JPA 2.0. This provides a way to delete orphaned entities from the database.
+- Whenever we delete an employee, all his accounts will get deleted if we use the CascadeType.REMOVE. But if want that whenever we remove the relationship between an account and an employee, hibernate will check for the accounts in other references. If none is found, hibernate will delete the account since it's an orphan.
+```
+@OneToMany(orphanRemoval = true, mappedBy = "...")
+```
+
+
+- CascadeType.PERSIST : cascade type presist means that save() or persist() operations cascade to related entities.
+- CascadeType.MERGE : cascade type merge means that related entities are merged when the owning entity is merged.
+- CascadeType.REFRESH : cascade type refresh does the same thing for the refresh() operation.
+- CascadeType.REMOVE : cascade type remove removes all related entities association with this setting when the owning entity is deleted.
+- CascadeType.DETACH : cascade type detach detaches all related entities if a manual detach occurs.
+- CascadeType.ALL : cascade type all is shorthand for all of the above cascade operations.
+
+### What is the fetch = FetchType.LAZY, fetch = FetchType.EAGER? what is the difference? In which situation you choose which one?
+- Sometimes you have two entities and there's a relationship between them. For example, you might have an entity called University and another entity called Student and a University might have many Students:
+- The University entity might have some basic properties such as id, name, address, etc. as well as a collection property called students that returns the list of students for a given university:
+```
+public class University {
+   private String id;
+   private String name;
+   private String address;
+   private List<Student> students;
+
+   // setters and getters
+}
+```
+- Now when you load a University from the database, JPA loads its id, name, and address fields for you. But you have two options for how students should be loaded:
+
+  1. To load it together with the rest of the fields (i.e. eagerly), or
+  2. To load it on-demand (i.e. lazily) when you call the university's getStudents() method.
+- When a university has many students it is not efficient to load all of its students together with it, especially when they are not needed and in suchlike cases you can declare that you want students to be loaded when they are actually needed. This is called lazy loading.
+- Here's an example, where students is explicitly marked to be loaded eagerly:
+```
+@Entity
+public class University {
+
+    @Id
+    private String id;
+
+    private String name;
+
+    private String address;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Student> students;
+
+    // etc.    
+}
+```
+
+- And here's an example where students is explicitly marked to be loaded lazily:
+```
+@Entity
+public class University {
+
+    @Id
+    private String id;
+
+    private String name;
+
+    private String address;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Student> students;
+
+    // etc.
+}
+```
+
+- In order for lazy loading to work, the JDBC session must still be open when the target entities want to be loaded into the memory by invoking the getter method (e.g. getStudents()), but sometimes this is not possible, because by the time this method is called, the session is already closed and the entity detached. Similarly, sometimes we have a client/server architecture (e.g. Swing client/JEE server) and the entities/DTOs are transferred over the wire to the client and again most often in these scenarios lazy loading won't work due to the way the entities are serialized over the wire.
 
 ### @Validated and @Valid
 - In many cases, however, Spring does the validation for us. We don’t even need to create a validator object ourselves. Instead, we can let Spring know that we want to have a certain object validated. This works by using the the @Validated and @Valid annotations.
@@ -506,6 +618,46 @@ public void createCourseDefaultRatingProgramatic(Course course) {
 }
 ```
 - The declarative rollback strategy should be favored over the programmatic rollback strategy.
+### @SpringbootApplication?
+- The @SpringBootApplication annotation is a convenience annotation that combines the @EnableAutoConfiguration, @Configuration and the @ComponentScan annotations in a Spring Boot application.
+```
+@SpringBootApplication
+public class Main {
+    public static void main(String[] args) {
+          SpringApplication.run(Main.class, args);
+      }
+}
+```
+### @Configuration
+- which declares a class as the source for bean definitions
+- Designates the class as a configuration class for Java configuration. In addition to beans configured via component scanning, an application may desire to configure some additional beans via the @Bean annotation as demonstrated here. Thus, the return value of methods having the @Bean annotation in this class are registered as beans.
+### @EnableAutoConfiguration
+- which allows the application to add beans using classpath definitions
+- This enables Spring Boot’s autoconfiguration mechanism. Auto-configuration refers to creating beans automatically by scanning the classpath.
+### @ComponentScan
+- which directs Spring to search for components in the path specified
+- Typically, in a Spring application, annotations like @Component, @Configuration, @Service, @Repository are specified on classes to mark them as Spring beans. The @ComponentScan annotation basically tells Spring Boot to scan the current package and its sub-packages in order to identify annotated classes and configure them as Spring beans. Thus, it designates the current package as the root package for component scanning.
+- Spring can automatically scan a package for beans if component scanning is enabled.
+- With Spring, we use the @ComponentScan annotation along with the @Configuration annotation to specify the packages that we want to be scanned. @ComponentScan without arguments tells Spring to scan the current package and all of its sub-packages. Let’s have look at following example, component classes available in reptiles base package and in crocodles, snakes sub-packages, they are annotated with @Component.
+- @ComponentScan configures which packages to scan for classes with annotation configuration. We can specify the base package names directly with one of the basePackages or value arguments (value is an alias for basePackages)
+```
+@Configuration
+@ComponentScan(basePackages = "com.baeldung.annotations")
+class VehicleFactoryConfig {}
+
+
+// we can also refer to classes
+@Configuration
+@ComponentScan(basePackageClasses = VehicleFactoryConfig.class)
+class VehicleFactoryConfig {}
+```
+
+### @Component
+- @Component: it is a general purpose stereotype annotation which indicates that the class annotated with it, is a spring managed component.
+- @Controller, @Service and @Repository are special types of @Component
+
+### @Service
+- the service layer classes that contain the business logic should be annotated with @Service. Apart from the fact that it is used to indicate that the class contains business logic, there is no special meaning to this annotation, however it is possible that Spring may add some additional feature to @Service in future, so it is always good idea to follow the convention.
 ### @JsonProperty
 ### @JoinColumn
 ### @Service
