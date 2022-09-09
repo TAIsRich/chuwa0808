@@ -26,7 +26,7 @@ class PostJPQLRepositoryImplTest {
     private PostJPQLRepositoryImpl repository;
 
     private Post post = new Post(null, "title test", "decription test", "content test",
-            null, null);
+            null, null, null);
 
     @Test
     void getAllPostWithJPQL() {
