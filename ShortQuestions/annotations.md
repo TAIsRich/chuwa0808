@@ -228,4 +228,6 @@ Annotations
    }
    ```
 
+6. **@EnableAutoConfiguration**@EnableAutoConfiguration* is used to enable the auto-configuration
+
    
