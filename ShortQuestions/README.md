@@ -1263,7 +1263,7 @@ In the repository layer, you need to use the naming convention to use the method
 (TODO)
 
 
-# HW11 # Template
+# HW11 #
 1.  List all of the annotations you learned from class and homework to annotaitons.md
     Added to the Annotations file.
     
@@ -1283,3 +1283,167 @@ In the repository layer, you need to use the naming convention to use the method
 
 6.  How do you do the validations in Spring?
     We usually use annotations, such as @NotEmpty, @Size, and @Email, to variables under payload classes to validate/regulate the expected values. At controller layer, we use @Valid with @RequestBody in PostMapping and PutMapping to indicate the request body where the validation rules should apply.
+    
+# HW12 #
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Updated together with HW13's.
+    
+2.  What is Spring and Springboot? What is the benfits of using Srpingboot?
+
+    Spring is a lightweight open-source Java development framework. It provides a comprehensive programming and configuration model for developing enterprise level Java applications. It aims to simplify enterprise Java development and helps developers build applications more effectively and efficiently. Spring focuses on several areas of application development and provides a wide range of features.
+    
+    Spring is the most popular application development framework in Java. However, over the past few years, Spring has become increasingly complex because of added functionalities. Starting a new project usually requires going through a lengthy process and takes a lot of time.
+
+    To avoid starting from scratch and to save time, Spring Boot was introduced. Spring Boot uses Spring as its foundation layer and allows developers to build a standalone application with none or minimal configuration. It is targeted specifically towards building web applications and microservices.
+    
+3.  What is IOC and What is DI?
+
+    Inversion of Contro("IOC") and Dependency Injection("DI") are two key principles associated with Spring benefits. Spring has the ability to autowire the dependency at run time, which allows the developer to write loosely coupled code.
+    
+    IOC is a design principle that allows classes to be loosely coupled and, therefore, easier to test and maintain. IoC refers to transferring the control of objects and their dependencies from the main program to a container or framework.
+    
+    In object-oriented programming (OOP) software design, DI is the process of supplying a resource that a given piece of code requires. The required resource, which is often a component of the application itself, is called a dependency. DI enables you to turn regular Java classes into managed objects and to inject them into any other managed object. Using dependency injection, your code can declare dependencies on any managed object.
+    
+    IoC can be called design principle and DI is its implementation. In Both cases responsibility to manage Objects is transferred to spring container instead so inversion of control.
+    
+4.  What is  @CompnonentScan?
+    One of the most important annotations in spring is @ComponentScan which is used along with the @Configuration annotation to specify the packages that we want to be scanned. @ComponentScan without arguments tells Spring to scan the current package and all of its sub-packages.
+    
+5.  How to define which package spring need to scan in xml and annotaiton?
+    Use @ComponentScan
+    
+6.  What is  @SpringbootApplication?
+    Spring Boot @SpringBootApplication annotation is used to mark a configuration class that declares one or more @Bean methods and also triggers auto-configuration and component scanning. It's same as declaring a class with @Configuration, @EnableAutoConfiguration and @ComponentScan annotations.
+    
+7. How many ways wo can define a bean?
+    Class level: use annotations @Component, @Service, @Repository, and @Controller
+    Method level: @Bean (used with @Configuration) together
+    XML: 
+    <bean id="dataNucleusChuwaNoComponent" 
+     class="com.chuwa.springbasic.components.impl.DataNucleusChuwaNoComponent"></bean>
+    
+8.  What is default bean name for @Component and @Bean?
+    Reference link: https://www.baeldung.com/spring-bean-names
+    
+    Default naming strategy for an annotation used at the class level （@Component):
+    To name a bean, Spring uses the class name and converts the first letter to lowercase. 
+    
+    e.g., Here, Spring creates a bean for the class LoggingService and registers it using the name “loggingService“. This same default naming strategy is applicable for all class-level annotations that are used to create a Spring bean, such as @Component, @Service, and @Controller.
+    @Service
+            public class LoggingService {}
+            
+    Default naming strategy for the @Bean annotation:
+    When we use the @Bean annotation on a method, Spring uses the method name as a bean name
+    
+    e.g., In this configuration class, Spring registers a bean of type AuditService under the name “audit” 
+    @Configuration
+    public class AuditConfiguration {
+        @Bean
+        public AuditService audit() {
+              return new AuditService();
+        }
+    }
+    
+9.  What is the difference between  @component and  @service,@repository?
+    @Component is a generic stereotype for any Spring-managed component. 
+    @Service annotates classes at the service layer. 
+    @Repository annotates classes at the persistence layer, which will act as a database repository.
+    
+10. How many annotaitons we can use to inject the bean?
+    @Autowired: By type -> by name 
+        If there is only one implementation, the default will be this impl;
+        If there are multiple impls, check for any impl with @Qualifier, and use it if found;
+        If there are multiple impls without the @Qualifier annotation, check for any impl with @primary, and use it if found;
+        If there are multiple impls without the @Qualifier and @Primary annotations, check for the impl that has the same name as the variable, and use it if found; 
+        If all of the above fail, throw exception.
+            
+    @Resource: By name -> by type
+    @Inject : can replace the two above
+    
+11. Tell me the three types to do dependency injection(How can we inject the beans in Spring)? Which way is better and why?
+    Reference link: https://reflectoring.io/constructor-injection/#:~:text=Constructor%20injection%20helps%20in%20creating,cannot%20alter%20its%20dependencies%20anymore.
+    
+    - Constructor injection (better, 避免了循环依赖和null): Constructor injection makes code more robust. It allows us to create immutable objects, preventing NullPointerExceptions and other errors.;
+    - Setter injection;
+    - Field injection
+    
+    Reference link: https://www.javacodegeeks.com/2019/02/field-setter-constructor-injection.html
+
+12. If we have multiple beans for one type, how to set one is primary? and how to let the spring to pick one bean to inject if no primay.
+    Use @primary to set the primary bean. 
+    See Q10 for details.
+
+13. What is the difference between BeanFactory and ApplicationContext in Spring?
+    Spring framework provides two IOC container for managing, configuring and manipulating beans. One is BeanFactory and the other is Application Context. 
+    
+    The ApplicationContext comes with advanced features, including several that are geared towards enterprise applications, while the BeanFactory comes with only basic features. Therefore, it's generally recommended to use the ApplicationContext, and we should use BeanFactory only when memory consumption is critical.
+
+14. What is the Scope of a Bean?  and list the examples for each scope.
+    Reference links: 
+    https://www.tutorialspoint.com/spring/spring_bean_scopes.htm
+    https://www.youtube.com/watch?v=NnNvDknQJt0
+    (long) https://www.youtube.com/watch?v=xpKbs8FHUi4
+
+    When defining a <bean> you have the option of declaring a scope for that bean. For example, to force Spring to produce a new bean instance each time one is needed, you should declare the bean's scope attribute to be prototype. Similarly, if you want Spring to return the same bean instance each time one is needed, you should declare the bean's scope attribute to be singleton.
+
+    The Spring Framework supports the following five scopes, three of which are available only if you use a web-aware ApplicationContext.
+    
+        - Singleton: This scopes the bean definition to a single instance per Spring IoC container (default). For Singleton, every time the same object is getting returned. Spring initialized all the singleton classes during the component scanning.
+        - Prototype: This scopes a single bean definition to have any number of object instances.For Prototype, a brand new object is getting craeted and returned with each call. 
+        - Request: This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
+        - Session: This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+        - Global-session: This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+    
+    We will need to be aware that Spring singletons are not Java Singleton. Spring Singleton is very different from Singleton pattern. Spring guarantees to create only one bean instance for given bean id definition per container. Singleton pattern ensures that one and only one instance is created per ClassLoader.
+    
+
+15. Configure a bean using xml. If bean has parameters/dependencies, how can we configure the bean? 
+(you can google the tutorial how to configure beans in xml, and feel free to ask me any quesitons if you don't understand. it is a little bit old, I am not sure if I need to exaplain it in class)
+
+
+# HW13 #
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Updated in Annotation file.
+    
+2.  What is MVC pattern?
+    MVC pattern includes the following aspects: controller, model, and view.
+    Controller: The front controller maps the incoming request to a controller. Controllers contain the business logic of the application. They also handle requests and perform marshalling/unmarshalling. The function of the controller is to handle a user request. The incoming request may be handled in different ways like reading form data, processing it in some way, storing data in a database, or retrieving data from a web service etc. The controller places the data in the model which, simply put, is a container for the data. The controller returns the model (containing data) back to the front controller.
+    Model: Model is a container for data. It is used to transfer data from one part of the Spring MVC application to another.Controller populates the model with data from a form or a database or a web service. As can be seen from the Spring MVC request flow diagram, the controller passes the model to the front controller which forwards it to the view resolver. The view template displays the data in the model.
+    View (template): Spring MVC supports a number of view templates. The most commonly used are JSP or JSTL (JSP Standard Tag Library). Other view templates like Thymeleaf, Groovy, Velocity, and FreeMarker etc., can also be plugged in. View template receives the model containing data. It reads the model and displays the data. If, say, the model contains a list of players, the view template can create a table to display that list. In most cases a view template is a JSP page that provides data to the user.
+    
+3.  What is Front-Controller?
+    Front controller is DispatcherServelet.
+
+4.  What is DispatcherServlet? please decribe how it works.
+        1.  Tomcat 收到Http Request，将request交给DispatcherServlet来处理
+        2.  DispatcherServlet 拿着该req去call HandlerMapper, 
+        3.  HanlerMapper将会找到对应的Controller以及对应的method，并返回给
+        dispactherServlet
+        4.  dispatcherServlet将call该Controller对应的method，此时会触发call service, 
+        repository and database. 
+        5.  然后结果(ModelAndView)再通过Controller返回。一般是返回view name, 一个字
+        符串，比如list-customers. 而数据是要set到Model 中。
+        6.  dispatcerServlet拿着view name去call view Resolver, 
+        7. View Resolver会帮助我们找到view template, 比如list-customers.jsp
+        8.  此时我们有了view template, 也有了数据model，则可以call View engine去帮助我
+        们把数据放到view templatel里，然后转换成纯粹的HTML
+        9.  该HTML就是前端显示的内容，最终返回给browser。
+        
+        Reference video: https://us02web.zoom.us/rec/share/2ercznE0cgyLNiX5WsB_ZzFz1TTn8Tu8HCpU_nqSf0D9xgy-CjGs64IHESe0gGGA.eefqv6Cz5_e4p5o4
+        Passcode: k?8r!.P1
+
+5.  What is JSP and What is ModelAndView？(please google to have a basic knowlege)
+    JavaServer Pages (JSP) is a server-side programming technology for developing Webpages that supports dynamic content and enables the creation of dynamic, platform-independent method for building Web-based applications. This helps developers insert java code in HTML pages by making use of special JSP tags, most of which start with <% and end with %>.
+    
+6.  Could you please google any other servlets(理解多少是多少，不要花太多时间，知道servlet的名字就行。)
+
+7. How many web server do you know? (Tomcat, Jetty, Jboss)
+    Other popular web servers are Apache Web Server, IIS, NGINX, Lighthttpd, Jagsaw, and GlassFish.
+
+8.  clone this repo, and run it in you local.
+    a. https://github.com/TAIsRich/springmvc5-demo
+    b. Notice that you need to configure the Tomcat by yourself. tutorial in the slides.
+    c.  find out the APIs in controlelr and call some APIs, In slides, I also list some API.
+    d.  remeber to create a database for this project
+    e.  all details in the slides.
+ 

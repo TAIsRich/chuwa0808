@@ -1,8 +1,26 @@
 # Annotation Notes
 
 ##General
-####@Autowired
+####@Autowired(By type -> by name)
     It automatically injects the dependent beans into the associated references of a POJO class. This annotation will inject the dependent beans by matching the data-type (i.e. Works internally as Autowiring byType).
+    
+    
+        If there is only one implementation, the default will be this impl;
+        If there are multiple impls, check for any impl with @Qualifier, and use it if found;
+        If there are multiple impls without the @Qualifier annotation, check for any impl with @primary, and use it if found;
+        If there are multiple impls without the @Qualifier and @Primary annotations, check for the impl that has the same name as the variable, and use it if found; 
+        If all of the above fail, throw exception.
+        
+####@Resource: By name -> by type
+    Similar to @Autowired
+    
+####@Inject: can replace @Autowired and @Resource
+
+####@CompnonentScan
+    One of the most important annotations in spring is @ComponentScan which is used along with the @Configuration annotation to specify the packages that we want to be scanned. @ComponentScan without arguments tells Spring to scan the current package and all of its sub-packages.
+    
+####@SpringbootApplication
+    Spring Boot @SpringBootApplication annotation is used to mark a configuration class that declares one or more @Bean methods and also triggers auto-configuration and component scanning. It's same as declaring a class with @Configuration, @EnableAutoConfiguration and @ComponentScan annotations.
     
 ##Config
 ####@Configuration
