@@ -2,6 +2,8 @@ package com.chuwa.redbook.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/posts/{postId}/comments")
-    public ResponseEntity<CommentDto> createComment(@PathVariable(value = "postId") long id, @RequestBody CommentDto commentDto){
+    public ResponseEntity<CommentDto> createComment(@PathVariable(value = "postId") long id, @Valid @RequestBody CommentDto commentDto){
         return new ResponseEntity<>(commentService.createCommentDto(id, commentDto), HttpStatus.CREATED);
     }
 
@@ -40,7 +42,7 @@ public class CommentController {
     }
 
     @PutMapping("/posts/{postId}/comments/{id}")
-    public ResponseEntity<CommentDto> updatComment(@PathVariable(value = "postId") long postId, @ PathVariable(value = " commentId") long commentId, @RequestBody CommentDto commentDtoRequest){
+    public ResponseEntity<CommentDto> updatComment(@PathVariable(value = "postId") long postId, @ PathVariable(value = " commentId") long commentId, @Valid @RequestBody CommentDto commentDtoRequest){
         return new ResponseEntity<>(commentService.updatComment(postId, commentId, commentDtoRequest), HttpStatus.OK);
     }
 
