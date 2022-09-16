@@ -37,7 +37,8 @@
 | @Primary | assign a primary impl class to inject |
 | @Qualifier | assign a specific impl class to inject |
 
-
+| @JsonProperty | set json attribute name |
+| @Value | e.g: @Value("${app.jwt-secret}") to get value from application.property |
 
 
 
