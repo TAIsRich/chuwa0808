@@ -358,3 +358,26 @@ The annotations used under entity may vary based on the type of database used fo
                     webRequest.getDescription(false));
             return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
         }
+        
+##Security
+####@EnableWebSecurity
+####@EnableGlobalMethodSecurity(prePostEnabled = true)
+
+    e.g.,
+    @Configuration
+    @EnableWebSecurity
+    @EnableGlobalMethodSecurity(prePostEnabled = true)
+    public class SecurityInmemoryConfig extends WebSecurityConfigurerAdapter {...}
+    
+####@Value
+    To get value from application.properties
+    e.g.,
+    @Component
+    public class JwtTokenProvider {
+
+        @Value("${app.jwt-secret}")
+        private String jwtSecret;
+        @Value("${app.jwt-expiration-milliseconds}")
+        private int jwtExpirationInMs;
+        ...
+    }

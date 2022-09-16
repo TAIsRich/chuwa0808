@@ -1446,4 +1446,89 @@ In the repository layer, you need to use the naming convention to use the method
     c.  find out the APIs in controlelr and call some APIs, In slides, I also list some API.
     d.  remeber to create a database for this project
     e.  all details in the slides.
+    
+    
+
+# HW14 #
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Updated in Annotation file.
+    
+2.  What is HTTP Session?
+    The session persists for a specified time period, across more than one connection or page request from the user. A session usually corresponds to one user, who may visit a site many times. The server can maintain a session in many ways such as using cookies or rewriting URLs.
+    
+    In client-server protocols, like HTTP, sessions consist of three phases:
+
+        1. The client establishes a TCP connection (or the appropriate connection if the transport layer is not TCP).
+        2. The client sends its request, and waits for the answer.
+        3. The server processes the request, sending back its answer, providing a status code and appropriate data.
+
+3.  What is Cookie? 
+    Cookies are client-side files on a local computer that hold user information. 
+    
+4.  What is the difference between Session and Cookie?
+    Cookies and Sessions are used to store information.
+    Cookies are client-side files on a local computer that hold user information. Sessions are server-side files that contain user data. Cookies end on the lifetime set by the user. When the user quits the browser or logs out of the programmed, the session is over. It can only store a certain amount of info.
+    
+5.  How do we use session and cookie to keep user information across the the application?
+
+6.  What is the spring security filter?
+    Reference link: https://www.javadevjournal.com/spring-security/spring-security-filters/
+    
+    In a web application, we drive Spring security through the servlet filters. Servlet filters works by intercepting the request before it reaches to the actual resource (e.g. Spring controller). 
+    
+    1. Client sends the request for a resource (MVC controller). Application container create filter chain to process incoming request.
+    2. Each HttpServletRequest pass through the filter chain based on the path of the request URI. (We can configure if we execute filter chain for all request or for specific request URI).
+    3. Filters perform the following logic on most of the web application.
+        1. Change the HttpServletRequest or HttpServletResponse before it reached to our Spring MVC controller.
+        2. Can stop the processing of the request and send a response to the client. (e.g. Servlet not allowing requests to specific URI’s).
+    
+7. Do you use any Encoder to encode Password?
+    Use PasswordEncoderGenerator, BCryptPasswordEncoder, 
+
+8.  What is UserDetailService? AuthenticationProvider?AuthenticationManager? AuthenticationFilter?(把这几个名字看熟悉也行)
+    - UserDetailService: Core interface which loads user-specific data. It is used throughout the framework as a user DAO and is the strategy used by the DaoAuthenticationProvider.
+    - AuthenticationProvider: Used by ProviderManager to perform a specific type of authentication. Spring Security provides a variety of options for performing authentication. These options follow a simple contract; an Authentication request is processed by an AuthenticationProvider, and a fully authenticated object with full credentials is returned.
+    - Authentication Manager: AuthenticationManager is a static class that manages the authentication modules that an application uses. When a request is made to protected resources, the AuthenticationManager calls the Authenticate method to get an Authorization instance to use in subsequent requests.
+    - AuthenticationFilter: An authentication filter is a component that authenticates an HTTP request. A Filter that performs authentication of a particular request. 
+
+    AuthenticationProvider vs. AuthenticationManager: 
+    - Authentication Provider calls User Details service loads the User Details and returns the Authenticated Principal. 
+    - Authentication Manager returns the Authenticated Object to Authentication Filter and Authentication Filter sets the Authentication object in Security Context.
+
+9.  What is the disadvantage of Session? how to overcome the disadvantage?
+    Disadvantages: 
+    1. Performance overhead in case of large number of user, because of session data stored in server memory. 
+    2. Overhead involved in serializing and De-Serializing session data because in case of StateServer and SQLServer session mode we need to serialize the object before store.
+    
+    Solution: Ensure that session inactivity timeout is as short as possible, it is recommended that the timeout of the session activity should be less than several hours. Generate a new session identifier when a user re-authenticates or opens a new browser session.
+    
+10. What is JWT?
+    JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. Each JWT contains encoded JSON objects, including a set of claims. JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued.
+    
+11. decribe how do JWT work(slides 里有图， 26页)
+    1. Client side: POST/authenticate with username and password
+    2. Server: Validate the username and password. Generate the JWT using secrete key
+    3. Server: Return the generated JWT
+    4. Client: now can send requests with JWT in the Header
+    5. Server: Validate JWT using secrete key; if validated, further process the request and return the response to the client end.
+
+12. how to get value from application.properties?
+    Use @Value annotation
+    
+13. What is the role of configure(HttpSecurity http) and configure(AuthenticationManagerBuilder auth)?
+    (Reference link: https://ravthiru.medium.com/springboot-security-configuration-using-httpsecurity-vs-websecurity-1a7ec6a23273)
+    Use configure(HttpSecurity http) if you need any endpoint that requires defense against common vulnerabilities.
+    Use configure(AuthenticationManagerBuilder auth) to authenticate and authorize users.
+
+14. What is Spring security authentication and authorization?
+    Authentication and authorization are two vital information security processes that administrators use to protect systems and information. Authentication verifies the identity of a user or service, and authorization determines their access rights.
+    - Authentication: (who are you?) 
+    - Authorization: (can the user do this?)
+    
+15. Reading, 泛读一下即可，自己觉得是重点的，可以多看两眼。https://www.interviewbit.com/spring-security-interview-questions/#is-security-a-cross-cutting-concern
+    a. 1-12
+    b. 17 - 30
+    
+    （关于Spring Security的walkthrough和interview questions)
+ 
  
