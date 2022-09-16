@@ -1,21 +1,28 @@
 package com.chuwa.redbook.payload;
 
-import javax.validation.Valid;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@Api(value = "Comment model info")
 public class CommentDto {
 
+    @ApiModelProperty(value = "Comment id")
     private long id;
 
+    @ApiModelProperty(value = "Comment name")
     @NotEmpty(message = "Name should not be null or empty")
     private String name;
 
+    @ApiModelProperty(value = "Comment email")
     @NotEmpty(message = "Email should not be null or empty")
     @Email
     private String email;
 
+    @ApiModelProperty(value = "Comment body")
     @NotEmpty
     @Size(min = 5, message = "Comment body must be minimum 5 characters")
     private String body;

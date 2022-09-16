@@ -6,6 +6,8 @@ import com.chuwa.redbook.entity.security.Role;
 import com.chuwa.redbook.entity.security.User;
 import com.chuwa.redbook.payload.security.LoginDto;
 import com.chuwa.redbook.payload.security.SignUpDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 
+@Api(value = "Auth controller exposes signin and signup REST APIs")
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -36,6 +39,7 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @ApiOperation(value = "REST API to Signin or Login user to RedBook app")
     @PostMapping("/signin")
     public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -48,6 +52,7 @@ public class AuthController {
     }
 
 
+    @ApiOperation(value = "REST API to Register or Signup user to RedBook app")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto) {
 
