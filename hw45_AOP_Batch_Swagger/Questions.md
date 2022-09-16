@@ -1,0 +1,56 @@
+3. What is the Aspect Oriented Programming? 
+
+   It can be defined as the breaking of code into different modules, also known as modularisation, where the aspect is the key unit of modularity. Aspects enable the implementation of crosscutting concerns such as- transaction, logging not central to business logic without cluttering the code core to its functionality.
+
+4. What are the advantages and disadvantages of Spring AOP? 
+
+   - Advantages
+     1. It uses Spring’s IOC for dependency injection
+     2. Centralize or modularize the cross cutting concerns
+     3. decouple
+     4. Easy to configure
+   - Disadvantages
+     1. only method level advising is supported, not for field level
+     2. only works for public method 
+     3. aspect can't advise other aspect
+
+5. What is Aspect in Spring AOP? 
+
+   Aspect is associated with a pointcut expression and runs at any join point matched by the pointcut.
+
+6. What is Pointcut in Spring AOP? 
+
+   Pointcut is a predicate or expression that matches join points. Use as a condition when to call the method.
+
+7. What is the Join point in Spring AOP? 
+
+   Joint point is a point of execution of the program, such as the execution of a method or the handling of an exception. In Spring AOP, a joint point always represents a method execution.
+
+8. What does it mean by Advice and its types in Spring AOP? 
+
+   It is the action taken by an aspect at a particular join-point. (Code which need to be executed before / after / around i.e. Entry point code).
+
+9. What is Spring AOP Proxy? 
+
+   An object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on). In the Spring Framework, an AOP proxy will be a JDK dynamic proxy or a CGLIB proxy.
+
+10. Briefly Reading: https://www.javainuse.com/spring/sprbatch_interview 
+
+11. When to use Spring Batch?
+
+    When a job need to do periodically.
+
+    1. Define a job interface with abstract methods;
+    2. Define steps of how to dealing with the jo
+
+12. How Spring Batch works? 
+
+    Jobs are defined in a JobRepository, and JobLauncher will invoke a certain job. 
+
+    When a Job is called, ItemReader will read the data from the database, and ItemProcessor will proceed the data based on the steps, ItemWriter will return the result.
+
+13. How can we schedule a Spring Batch Job?
+
+    Method1: Using the @EnableScheduling annotation.
+
+    Method2: Creating a method annotated with @Scheduled and providing recurrence details with the job. Then add the job execution logic inside this method.
