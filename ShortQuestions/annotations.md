@@ -36,6 +36,14 @@
 | @Configuration | config class, it must have at least one @Bean method |
 | @Primary | assign a primary impl class to inject |
 | @Qualifier | assign a specific impl class to inject |
+| @Aspect | using this annotation means this class is aspect(AOP), conbind advice and pointcuts |
+| @Pointcut | pointcut means the position/aspect, usually the class or method  |
+| @Around | around means this method will be executed before and after the pointcut |
+| @Before | before means this medthod will run before the pointcut |
+| @AfterReturning | AfterReturning means this method will run after the pointcut return |
+| @AfterThrowing | AfterThrowing means this method will run after the pointcut throw exception |
+| joinPoint | not annotation, but is important, joinpoint is a point of any place in program: the call of method, the execution of a constructor, the access of a field are all joinpoints |
+
 
 
 
