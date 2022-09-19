@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 
 /**
  * @author Flora Zhong
+ * @reference https://github.com/TAIsRich/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java/com/chuwa/exercise/oa/api/FoodOutletJackson.java
  * @data 8/22/22
  */
 
