@@ -664,7 +664,8 @@ class VehicleFactoryConfig {}
 @Value("${userBucket.path}")
 private String userBucketPath;
 ```
-
+---
+## AOP 
 ### @Aspect
 - a modularization of a concern that cuts across multiple classes. Transaction management is a good example of a crosscutting concern in J2EE applications. In Spring AOP, aspects are implemented using regular classes (the schema-based approach) or regular classes annotated with the @Aspect annotation (the @AspectJ style).
 - The class which implements the JEE application cross-cutting concerns(transaction, logger etc) is known as the aspect. It can be normal class configured through XML configuration or through regular classes annotated with @Aspect.
@@ -707,6 +708,296 @@ class Logging {
     }
 }
 ```
+
+----
+#Junit lifecycle
+- The complete lifecycle of a test case can be seen in three phases with the help of annotations.
+  - Setup: This phase puts the the test infrastructure in place. JUnit provides class level setup (@BeforeAll) and method level setup (@BeforeEach). Generally, heavy objects like databse comnections are created in class level setup while lightweight objects like test objects are reset in the method level setup.
+  - Test Execution: In this phase, the test execution and assertion happen. The execution result will signify a success or failure.
+  - Cleanup: This phase is used to cleanup the test infrastructure setup in the first phase. Just like setup, teardown also happen at class level (@AfterAll) and method level (@AfterEach).
+### Before And After Annotations
+- As shown above, in the test life cycle, we will primarily need to have some annotated methods to setup and cleanup the test environment or test data on which the tests run.
+  - In JUnit, by default, for each test method – a new instance of test is created.
+  - @BeforeAll and @AfterAll annotations – clear by their name – should be called only once in the entire tests execution cycle. So they must be declared static.
+  - @BeforeEach and @AfterEach are invoked for each instance of test so they should not be static.
+  - If there are multiple methods annotated with the same annotation (e.g. two methods with @BeforeAll) then their execution order is not determined.
+```
+public class AppTest {
+
+	@BeforeAll
+	static void setup(){
+		System.out.println("@BeforeAll executed");
+	}
+
+	@BeforeEach
+	void setupThis(){
+		System.out.println("@BeforeEach executed");
+	}
+
+	@Test
+    void testCalcOne()
+	{
+		System.out.println("======TEST ONE EXECUTED=======");
+		Assertions.assertEquals( 4 , Calculator.add(2, 2));
+    }
+
+    @Test
+    void testCalcTwo()
+   {
+		System.out.println("======TEST TWO EXECUTED=======");
+		Assertions.assertEquals( 6 , Calculator.add(2, 4));
+    }
+
+	@AfterEach
+	void tearThis(){
+		System.out.println("@AfterEach executed");
+	}
+
+	@AfterAll
+	static void tear(){
+		System.out.println("@AfterAll executed");
+	}
+}
+
+
+
+----Test Ouput
+@BeforeAll executed
+
+@BeforeEach executed
+======TEST ONE EXECUTED=======
+@AfterEach executed
+
+@BeforeEach executed
+======TEST TWO EXECUTED=======
+@AfterEach executed
+
+@AfterAll executed
+```
+
+### Disabling Tests
+- To disable a test in JUnit 5, you will need to use @Disabled annotation. It is equivalent to JUnit 4’s @Ignored annotation.
+- @Disabled annotation can be applied over test class (disables all test methods in that class) or individual test methods as well.
+```
+@Disabled
+@Test
+void testCalcTwo()
+{
+	System.out.println("======TEST TWO EXECUTED=======");
+	Assertions.assertEquals( 6 , Calculator.add(2, 4));
+}
+```
+### Assertions
+- In any test method, we will need to determine whether it passes or fails. We can do it using Assertions.
+- Assertions help in validating the expected output with the actual output of a test. To keep things simple, all JUnit Jupiter assertions are static methods in the org.junit.jupiter.Assertions class.
+```
+@Test
+public void test() 
+{
+    //Test will pass
+    Assertions.assertEquals(4, Calculator.add(2, 2));
+      
+    //Test will fail 
+    Assertions.assertEquals(3, Calculator.add(2, 2), "Calculator.add(2, 2) test failed");
+      
+    //Test will fail 
+    Supplier<String> messageSupplier  = ()-> "Calculator.add(2, 2) test failed";
+    Assertions.assertEquals(3, Calculator.add(2, 2), messageSupplier);
+}
+
+
+
+//To fail a test, simply use Assertions.fail() method.
+@Test
+void testCase() {
+
+    Assertions.fail("not found good reason to pass");
+}
+```
+
+
+### Assumptions
+- Assumptions provide static methods to support conditional test execution based on assumptions. A failed assumption results in a test being aborted.
+- Assumptions are typically used whenever it does not make sense to continue the execution of a given test method. In the test report, these tests will be marked as passed.
+- Assumptions class has three methods with many overloaded forms:
+  - assumeFalse(): validates the given assumption to be false.
+  - assumeTrue(): validates the given assumption to be true.
+  - assumingThat(): executes the supplied Executable, but only if the supplied assumption is valid.
+
+```
+@Test
+void testOnDev()
+{
+    System.setProperty("ENV", "DEV");
+    Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")));
+    //remainder of test will proceed
+}
+
+@Test
+void testOnProd()
+{
+    System.setProperty("ENV", "PROD");
+    Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")));
+    //remainder of test will be aborted
+}
+```
+----
+
+### @Mock
+What is a Mock:
+- It is important to understand the difference between a mock and an object. An object is an actual instance of a class and any method invoked using object reference will execute the method body defined in the class file.
+- A mock object is a proxy interface to hide an underlying dependency with cannot be tested in a test environment e.g. database, network locations etc. A method invoked using mocked reference does not execute the actual method body defined in the class file, rather the method behavior is configured using when(...).thenReturn(...) methods.
+  - In a junit test, we create objects for the class which need to be tested and its methods to be invoked.
+  - We create mocks for the dependencies which will not be present in the test environment and objects are dependent on it to complete the method call.
+
+Difference between @Mock and @InjectMocks:
+- In mockito-based junit tests, @Mock annotation creates mocks and @InjectMocks creates actual objects and injects mocked dependencies into it.
+  - Use @InjectMocks to create class instances that need to be tested in the test class. We call it ‘code under test‘ or ‘system under test‘.
+  - Use @InjectMocks when actual method body needs to be executed for a given class.
+  - Use @InjectMocks when we need all or few internal dependencies initialized with mock objects to work method correctly.
+  - Use @Mock to create mocks that are needed to support the testing of SUT.
+  - We must define the when(...).thenReturn(...) methods for mock objects whose class methods will be invoked during actual test execution.
+
+- Inorder to understand the difference between @Mock and @InjectMocks with an example. In this example, we have a class MainClass that has a method save().
+- MainClass has a dependency on DatabaseDAO and NetworkDAO. When we call MainClass.save() method, it internally calls save methods of both dependent objects.
+- System Under Test
+```
+public class MainClass {
+
+	DatabaseDAO database;
+	NetworkDAO network;
+
+	//Setters and getters
+
+	public boolean save(String fileName)
+	{
+		database.save(fileName);
+		System.out.println("Saved in database in Main class");
+
+		network.save(fileName);
+		System.out.println("Saved in network in Main class");
+
+		return true;
+	}
+}
+public class DatabaseDAO {
+	public void save(String fileName) {
+		System.out.println("Saved in database");
+	}
+}
+public class NetworkDAO {
+	public void save(String fileName) {
+		System.out.println("Saved in network location");
+	}
+}
+```
+
+- Unit Test:
+```
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+public class ApplicationTest
+{
+	@InjectMocks
+	MainClass mainClass;
+
+	@Mock
+	DatabaseDAO dependentClassOne;
+
+	@Mock
+	NetworkDAO dependentClassTwo;
+
+	@Before
+	public void init() {
+		MockitoAnnotations.openMocks(this);
+	}
+
+	@Test
+	public void validateTest()
+	{
+                //record expectations with mock methods
+                when(dependentClassOne.save()).thenReturn(true);
+                when(dependentClassTwo.save()).thenReturn(true);
+
+		boolean saved = mainClass.save("temp.txt");
+		assertEquals(true, saved);
+
+                //verify recorded expectations
+	}
+}
+```
+### @spy
+- Often you heard developers how to spy and mock in Mockito in unit test but what are the difference between spy and mock in Mockito API? Both can be used to mock methods or fields. The difference is that in mock, you are creating a complete mock or fake object while in spy, there is the real object and you just spying or stubbing specific methods of it.
+- When using mock objects, the default behavior of the method when not stub is do nothing. Simple means, if its a void method, then it will do nothing when you call the method or if its a method with a return then it may return null, empty or the default value.
+- While in spy objects, of course, since it is a real method, when you are not stubbing the method, then it will call the real method behavior. If you want to change and mock the method, then you need to stub it.
+```
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
+ 
+@RunWith(MockitoJUnitRunner.class)
+public class MockSpy {
+ 
+    @Mock
+    private List<String> mockList;
+ 
+    @Spy
+    private List<String> spyList = new ArrayList();
+ 
+    @Test
+    public void testMockList() {
+        //by default, calling the methods of mock object will do nothing
+        mockList.add("test");
+        assertNull(mockList.get(0));
+    }
+ 
+    @Test
+    public void testSpyList() {
+        //spy object will call the real method when not stub
+        spyList.add("test");
+        assertEquals("test", spyList.get(0));
+    }
+ 
+    @Test
+    public void testMockWithStub() {
+        //try stubbing a method
+        String expected = "Mock 100";
+        when(mockList.get(100)).thenReturn(expected);
+ 
+        assertEquals(expected, mockList.get(100));
+    }
+ 
+    @Test
+    public void testSpyWithStub() {
+        //stubbing a spy method will result the same as the mock object
+        String expected = "Spy 100";
+        //take note of using doReturn instead of when
+        doReturn(expected).when(spyList).get(100);
+ 
+        assertEquals(expected, spyList.get(100));
+    }
+}
+```
+
+### @BeforeAll
+- @BoforeAll is used to signal that the annotated method should be executed before all the @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class. By default, the test methods will be executed in the same thread as @BeforeAll annotated method.
+- @BeforeAll annotated method MUST be a static method in the test class.
 ### @JsonProperty
 ### @JoinColumn
 ### @Service
