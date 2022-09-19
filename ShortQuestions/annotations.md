@@ -658,6 +658,55 @@ class VehicleFactoryConfig {}
 
 ### @Service
 - the service layer classes that contain the business logic should be annotated with @Service. Apart from the fact that it is used to indicate that the class contains business logic, there is no special meaning to this annotation, however it is possible that Spring may add some additional feature to @Service in future, so it is always good idea to follow the convention.
+### @Value
+- use the @Value annotation and access the property in whichever Spring bean we are using
+```
+@Value("${userBucket.path}")
+private String userBucketPath;
+```
+
+### @Aspect
+- a modularization of a concern that cuts across multiple classes. Transaction management is a good example of a crosscutting concern in J2EE applications. In Spring AOP, aspects are implemented using regular classes (the schema-based approach) or regular classes annotated with the @Aspect annotation (the @AspectJ style).
+- The class which implements the JEE application cross-cutting concerns(transaction, logger etc) is known as the aspect. It can be normal class configured through XML configuration or through regular classes annotated with @Aspect.
+- class to define all aop self methos
+```
+package org.xyz;
+import org.aspectj.lang.annotation.Aspect;
+
+@Aspect
+public class NotVeryUsefulAspect {
+
+}
+```
+### @Pointcut
+- expression to find all main application methods to insert AOP
+- Since it is not feasible to apply advice at every point of the code, therefore, the selected join points where advice is finally applied are known as the Pointcut. Often you specify these pointcuts using explicit class and method names or through regular expressions that define a matching class and method name patterns. It helps in reduction of repeating code by writing once and use at multiple points.
+- a predicate that matches join points. Advice is associated with a pointcut expression and runs at any join point matched by the pointcut (for example, the execution of a method with a certain name). The concept of join points as matched by pointcut expressions is central to AOP, and Spring uses the AspectJ pointcut expression language by default.
+- Recall that pointcuts determine join points of interest, and thus enable us to control when advice executes. Spring AOP only supports method execution join points for Spring beans, so you can think of a pointcut as matching the execution of methods on Spring beans. A pointcut declaration has two parts: a signature comprising a name and any parameters, and a pointcut expression that determines exactly which method executions we are interested in. In the @AspectJ annotation-style of AOP, a pointcut signature is provided by a regular method definition, and the pointcut expression is indicated using the @Pointcut annotation (the method serving as the pointcut signature must have a void return type).
+- Advice 是和特定的 point cut 关联的, 并且在 point cut 相匹配的 join point 中执行. 在 Spring 中, 所有的方法都可以认为是 joinpoint, 但是我们并不希望在所有的方法上都添加 Advice, 而 pointcut 的作用就是提供一组规则(使用 AspectJ pointcut expression language 来描述) 来匹配joinpoint, 给满足规则的 joinpoint 添加 Advice.
+```
+@Aspect
+class Logging {
+  
+    // pointcut() is a dummy method
+    // required to hold @Pointcut annotation
+    // pointcut() can be used instead of writing line 1
+    // whenever required, as done in line 4.
+    // This prevents a repetition of code.
+  
+    @Pointcut("execution(public void com.aspect.ImplementAspect.aspectCall())") // line 1
+    public void pointCut()
+    {
+    }
+  
+    // pointcut() is used to avoid repetition of code
+    @Before("pointcut()")
+    public void loggingAdvice1()
+    {
+        System.out.println("Before advice is executed");
+    }
+}
+```
 ### @JsonProperty
 ### @JoinColumn
 ### @Service
