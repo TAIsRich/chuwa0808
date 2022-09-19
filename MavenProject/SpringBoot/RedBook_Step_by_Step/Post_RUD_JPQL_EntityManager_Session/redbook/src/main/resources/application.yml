@@ -1,0 +1,11 @@
+# application.properties 和 application.yml没有区别，只是写法略有不同，用哪个都可以
+
+# spring:
+#     datasource:
+#         url: jdbc:mysql://localhost:3306/redbook?useSSL=false&serverTimezone=UTC
+#         username: root
+#         password: 123456
+#     hibernate properties:
+#         jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+#     hibernate ddl auto (create, create-drop, validate, update):
+#         jpa.hibernate.ddl-auto = update
