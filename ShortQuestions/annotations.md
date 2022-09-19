@@ -43,11 +43,15 @@
 | @AfterReturning | AfterReturning means this method will run after the pointcut return |
 | @AfterThrowing | AfterThrowing means this method will run after the pointcut throw exception |
 | joinPoint | not annotation, but is important, joinpoint is a point of any place in program: the call of method, the execution of a constructor, the access of a field are all joinpoints |
-
-
 | @JsonProperty | set json attribute name |
 | @Value | e.g: @Value("${app.jwt-secret}") to get value from application.property |
-
+| @Test | indicate this is a test implementation |
+| @BeforeAll | this method will run before all the test |
+| @BeforeEach | this method will run before each test |
+| @Mock | this will create a fake object  |
+| @InjectMocks | inject all the mock object to this service/controller/repository |
+| @ExtendWith(MockitoExtension.class) | enable mockito |
+| @Spy | allow part of the object real and part fake |
 
 
 
