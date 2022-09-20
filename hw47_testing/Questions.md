@@ -4,7 +4,7 @@ Selenium is a user-behavior simulation. Which will mock the interaction of user'
 
 3. what is cucumber
 
-Cucumber is a behavior driven development tool used to develop test cases for the behavior of software's funcionality. Need to define Given, when and then instructions to use Cucumber to test the web application.
+Cucumber is a behavior driven development tool used to develop test cases for the behavior of software's functionality. Need to define Given, when and then instructions to use Cucumber to test the web application.
 
 4. what is JMeter
 
