@@ -186,7 +186,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 } 
 ```
-**@EnableGlobalMethodSecurity(prePostEnabled = true):** EnableGlobalMethodSecurity provides AOP security on methods. Some of the annotations that it provides are PreAuthorize, PostAuthorize. EnableWebSecurity will provide configuration via HttpSecurity. It's the configuration you could find with <http></http> tag in xml configuration, it allows you to configure your access based on urls patterns, the authentication endpoints, handlers etc...
+**@EnableGlobalMethodSecurity(prePostEnabled = true):** EnableGlobalMethodSecurity provides AOP security on methods. Some of the annotations that it provides are PreAuthorize, PostAuthorize. EnableWebSecurity will provide configuration via HttpSecurity. It's the configuration you could find with <http></http> tag in xml configuration, it allows you to configure your access based on urls patterns, the authentication endpoints, handlers etc.
+
+**@Before:** Run before the method execution
+**@After:** Run after the method returned a result
+**@AfterReturning:** Run after the method returned a result, intercept the returned result as well.
+**@AfterThrowing:** Run after the method throws an exception
+**@Around:** Run around the method execution, combine all three advices above. @Aspect - indicate this is a aop class
+**@Component:** This annotation mark the beans as Spring’s managed components
+
+**@Api:** Marks a class as a Swagger resource.
+**@ApiImplicitParam:** Represents a single parameter in an API Operation.
+**ApiImplicitParams:** A wrapper to allow a list of multiple ApiImplicitParam objects. 
+**@ApiModel:** Provides additional information about Swagger models.
+**@ApiModelProperty:** Adds and manipulates data of a model property.
+**@ApiOperation:** Describes an operation or typically a HTTP method against a specific path.
+**@ApiParam:** Adds additional meta-data for operation parameters.
+**@ApiResponse:** Describes a possible response of an operation.
+**@ApiResponses:** A wrapper to allow a list of multiple ApiResponse objects.
+**@AuthorizationScope:** Describes an OAuth2 authorization scope.
+**@Extension:** An optionally named list of extension properties.
+**@ExtensionProperty:** A name/value property within a Swagger extension.
+**@ExternalDocs:** Represents an external documentation description.
+
+**@Scheduled:** is a method-level annotation applied at runtime to mark the method to be scheduled. It takes one attribute from cron, fixedDelay, or fixedRate for specifying the schedule of execution in different formats.
 
 **@Disabled:** To disable a test in JUnit 5, you will need to use @Disabled annotation. It is equivalent to JUnit 4’s @Ignored annotation. @Disabled annotation can be applied over test class (disables all test methods in that class) or individual test methods as well.
 
