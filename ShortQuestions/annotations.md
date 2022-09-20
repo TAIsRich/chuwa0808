@@ -188,29 +188,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ```
 **@EnableGlobalMethodSecurity(prePostEnabled = true):** EnableGlobalMethodSecurity provides AOP security on methods. Some of the annotations that it provides are PreAuthorize, PostAuthorize. EnableWebSecurity will provide configuration via HttpSecurity. It's the configuration you could find with <http></http> tag in xml configuration, it allows you to configure your access based on urls patterns, the authentication endpoints, handlers etc...
 
-**@Before:** Run before the method execution
-**@After:** Run after the method returned a result
-**@AfterReturning:** Run after the method returned a result, intercept the returned result as well.
-**@AfterThrowing:** Run after the method throws an exception
-**@Around:** Run around the method execution, combine all three advices above. @Aspect - indicate this is a aop class
-**@Component:** This annotation mark the beans as Spring’s managed components
+**@Disabled:** To disable a test in JUnit 5, you will need to use @Disabled annotation. It is equivalent to JUnit 4’s @Ignored annotation. @Disabled annotation can be applied over test class (disables all test methods in that class) or individual test methods as well.
 
-**@Api:** Marks a class as a Swagger resource.
-**@ApiImplicitParam:** Represents a single parameter in an API Operation.
-**ApiImplicitParams:** A wrapper to allow a list of multiple ApiImplicitParam objects. 
-**@ApiModel:** Provides additional information about Swagger models.
-**@ApiModelProperty:** Adds and manipulates data of a model property.
-**@ApiOperation:** Describes an operation or typically a HTTP method against a specific path.
-**@ApiParam:** Adds additional meta-data for operation parameters.
-**@ApiResponse:** Describes a possible response of an operation.
-**@ApiResponses:** A wrapper to allow a list of multiple ApiResponse objects.
-**@AuthorizationScope:** Describes an OAuth2 authorization scope.
-**@Extension:** An optionally named list of extension properties.
-**@ExtensionProperty:** A name/value property within a Swagger extension.
-**@ExternalDocs:** Represents an external documentation description.
+**@Test:** This annotation marks a method as a test method. There are other annotations as well like @RepeatedTest, @ParameterizedTest, or @TestFactory in case we want additional functionality.
 
-**@Scheduled:** is a method-level annotation applied at runtime to mark the method to be scheduled. It takes one attribute from cron, fixedDelay, or fixedRate for specifying the schedule of execution in different formats.
+**@BeforeAll:** runs only once before all the test methods of a Test class. Sometimes there are heavy operations like setting up a Database connection or spinning up an embedded server etc which should be done only once for a test class.
 
+**@AfterAll:** runs only once after all the test methods of a Test class. Mostly the setup that is done in @BeforeAll method also needs to be cleaned up like closing the Database connection or shutting down the embedded server etc which is generally done only once for a test class.
 
+**@BeforeEach:** This method is executed before each test method. This is used to ensure we have clean data(for eg. setting up mocks) for each test case and is not updated by any other already executed @Test method.
+
+**@AfterEach:** This method is executed after each test method. This is generally used to clean up the data or to perform an action after a @Test method.
+
+**@DataJpaTest:** Spring Boot provides the @DataJpaTest annotation to test the persistence layer components that will auto configure in-memeory embedded database for testing purposes.
+
+**@SpringBootTest:** annotation tells Spring Boot to look for a main configuration class (one with @SpringBootApplication, for instance) and use that to start a Spring application context.
+
+**@Mock:** annotation comes from Mockito Framework which allows for easy Mock creation. This annotation is used by MockitoJUnitRunner, each field annotated with it will have Mock for specified class created. This annotation does not inject mocks into tested class on itself, to use injection you need to have target class annotated with @InjectMocks annotation.
+
+**@MockBean:** annotation comes from spring-boot-test, it creates Mockito Mock and also injects it into Application Context created by @SpringBootTest. All beans which refers to mocked class via @Autowired will get this mock injected instead of real class.
+
+Main difference between @MockBean and @Mock annotation is that @MockBean creates mock and injects it into Application Context, while @Mock annotation only creates it, if you want to inject it, you can do it manually or with @InjectMocks annotation, however injection is being done to the class not whole Application Context.
+
+**@ExtendWith:** annotation is used to load a JUnit 5 extension. JUnit defines an extension API, which allows a third-party vendor like Mockito to hook into the lifecycle of running test classes and add additional functionality. The MockitoExtension looks at the test class, finds member variables annotated with the @Mock annotation, and creates a mock implementation of those variables. It then finds member variables annotated with the @InjectMocks annotation and attempts to inject its mocks into those classes, using either construction injection or setter injection.
 
 
