@@ -62,6 +62,10 @@ public class Post {
         this.updateDateTime = updateDateTime;
     }
 
+    public Post(long l, String string, String string2, String string3, String string4, LocalDateTime now,
+            LocalDateTime now2) {
+    }
+
     public Long getId() {
         return id;
     }
