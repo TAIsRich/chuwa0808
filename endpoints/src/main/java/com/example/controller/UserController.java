@@ -1,15 +1,20 @@
 package com.example.controller;
 
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.ResponseResult;
 import com.example.service.Impl.UserServiceImpl;
 
+@Validated
 @RestController
 @RequestMapping("api/v1/reward")
 public class UserController {
@@ -18,15 +23,13 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @PostMapping("/{name}")
-    public ResponseEntity<String> getTotleReward(@PathVariable String name){
-        int credit = userServiceImpl.getTotleReward(name);
-        return new ResponseEntity<>(name + "'s total reward is " + credit, HttpStatus.OK);
+    public ResponseResult getTotleReward(@PathVariable @NotNull String name){
+      return userServiceImpl.getTotleReward(name);
     }
 
     @PostMapping("/{name}/{month}")
-    public ResponseEntity<String> getMonthReward(@PathVariable String name ,@PathVariable int month){
-        int credit = userServiceImpl.getMonthReward(name,month);
-        return new ResponseEntity<>(name + "'s total reward is " + credit, HttpStatus.OK);
+    public ResponseResult getMonthReward(@PathVariable @NotNull String name ,@PathVariable @Range(min = 1,max = 12) int month){
+        return userServiceImpl.getMonthReward(name, month);
     }
 
 }

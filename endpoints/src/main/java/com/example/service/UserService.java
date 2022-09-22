@@ -1,10 +1,11 @@
 package com.example.service;
 
+import com.example.dto.ResponseResult;
 
 public interface UserService{
 
-    int getTotleReward(String username);
+    ResponseResult getTotleReward(String username);
 
-    int getMonthReward(String username, int month);
+    ResponseResult getMonthReward(String username, int month);
 
 }

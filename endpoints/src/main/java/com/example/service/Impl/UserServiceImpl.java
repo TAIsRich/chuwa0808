@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.TransactionRepoistory;
 import com.example.dao.UserRepository;
+import com.example.dto.ResponseResult;
 import com.example.entity.Transaction;
 import com.example.entity.User;
+import com.example.enums.AppHttpCodeEnum;
 
 
 
@@ -21,25 +23,36 @@ public class UserServiceImpl {
     @Autowired
     private TransactionRepoistory transactionRepoistory;
 
-    public int getTotleReward(String username){
+    public ResponseResult getTotleReward(String username){
         
         User user = userRepository.findByName(username);
-       
+        
+        if(user == null) return ResponseResult.errorResult(AppHttpCodeEnum.NO_USER);
+        
         List<Transaction> transactions = transactionRepoistory.findByUserId(user.getId());
 
-        return getReward(transactions);
+        if(transactions.size() == 0) return ResponseResult.errorResult(AppHttpCodeEnum.NO_TRANSACTION);
+        
+        int reward = getReward(transactions);
+        return ResponseResult.okResult(reward);
     }
 
-    public int getMonthReward(String username, int month){
+    public ResponseResult getMonthReward(String username, int month){
+
         User user = userRepository.findByName(username);
 
+        if(user == null) return ResponseResult.errorResult(AppHttpCodeEnum.NO_USER);
+       
         List<Transaction> transactions = transactionRepoistory.findByUserIdAndMonth(user.getId(), month);
-        
-        return getReward(transactions);
+       
+        if(transactions.size() == 0) return ResponseResult.errorResult(AppHttpCodeEnum.NO_TRANSACTION);
+
+        int reward = getReward(transactions);
+        return ResponseResult.okResult(reward);
 
     }
 
-    public int getReward(List<Transaction> transactions){
+    private int getReward(List<Transaction> transactions){
         int total = 0;
 
         for(Transaction t : transactions){
