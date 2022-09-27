@@ -47,33 +47,27 @@ class PostServiceImplTest {
       */
     @Mock
     private PostRepository postRepositoryMock;
-
     /**
      * 未定义的方法（behavior），则调用真实的方法。
      * 已定义的方法when().thenReturn(), 则调用mock的虚假behavior。
      */
     @Spy
     private ModelMapper modelMapper;
-
     /**
      * 为该class依赖的变量，注入对应的Mock对象。
      * 比如PostServiceImpl依赖postRepository 和modelMapper,则将上面@Mock和@Spy修饰的注入进来
      */
     @InjectMocks
     private PostServiceImpl postService;
-
     /**
      * 定义两个fields
      */
     private PostDto postDto;
     private Post post;
-
-
     @BeforeAll
     static void beforeAll() {
         logger.info("START test");
     }
-
     @BeforeEach
     void setUp() {
         logger.info("set up Post for each test");
@@ -82,35 +76,15 @@ class PostServiceImplTest {
         ModelMapper modelMapper = new ModelMapper();
         this.postDto = modelMapper.map(this.post, PostDto.class);
     }
-
-    @Test
-    public void testCreatePost() {
-        // define the behaviors
-        Mockito.when(postRepositoryMock.save(ArgumentMatchers.any(Post.class)))
-                .thenReturn(post);
-
-        // execute
-        PostDto postResponse = postService.createPost(postDto);
-
-        // assertions
-        Assertions.assertNotNull(postResponse);
-        Assertions.assertEquals(postDto.getTitle(), postResponse.getTitle());
-        Assertions.assertEquals(postDto.getDescription(), postResponse.getDescription());
-        Assertions.assertEquals(postDto.getContent(), postResponse.getContent());
-    }
-
     @Test
     public void testGetAllPost() {
         List<Post> posts = new ArrayList<>();
         posts.add(post);
-
         // define the behaviors
         Mockito.when(postRepositoryMock.findAll())
                 .thenReturn(posts);
-
         // execute
         List<PostDto> postDtos = postService.getAllPost();
-
         // assertions
         Assertions.assertNotNull(postDtos);
         Assertions.assertEquals(1, postDtos.size());
@@ -119,7 +93,19 @@ class PostServiceImplTest {
         Assertions.assertEquals(postDto.getDescription(), postResponse.getDescription());
         Assertions.assertEquals(postDto.getContent(), postResponse.getContent());
     }
-
+    @Test
+    public void testCreatePost() {
+        // define the behaviors
+        Mockito.when(postRepositoryMock.save(ArgumentMatchers.any(Post.class)))
+                .thenReturn(post);
+        // execute
+        PostDto postResponse = postService.createPost(postDto);
+        // assertions
+        Assertions.assertNotNull(postResponse);
+        Assertions.assertEquals(postDto.getTitle(), postResponse.getTitle());
+        Assertions.assertEquals(postDto.getDescription(), postResponse.getDescription());
+        Assertions.assertEquals(postDto.getContent(), postResponse.getContent());
+    }
     @Test
     public void testGetPostById() {
         // define the behaviors
