@@ -1530,5 +1530,214 @@ In the repository layer, you need to use the naming convention to use the method
     b. 17 - 30
     
     （关于Spring Security的walkthrough和interview questions)
+    
+# HW15 # (hw46)
+
+1.  List all of the annotations you learned from class and homework to annotaitons.md
+    Updated together with HW16.
+    
+2.  Briefly reading: https://www.techgeeknext.com/spring-boot/spring-aop-interview-questions
+
+3.  What is the Aspect Oriented Programming?
+
+    Aspect-oriented programming (AOP) is a programming technique that supports the separation of cross-cutting concerns in order to increase modularity.
+
+    AOP is typically used to implement cross-cutting concerns, which implies that it defines functionality that is required in multiple places across an application in one place. You can add new functionality before or after a method is executed like transaction management, logging or security which cut across multiple types and objects (often termed crosscutting concerns).
+
+4.  What are the advantages and disadvantages of Spring AOP?
+
+    Advantages of Spring AOP
+        It is easy to configure.
+        Spring AOP is implemented in pure Java, so separate compilation unit or separate class loader are not required.
+        It utilizes Spring's IOC container for dependency injection.
+        Can create aspects using @AspectJ annotation based or using XML based.
+        It integrates cross-cutting concerns into the classes,.
+        
+    Disadvantages of Spring AOP
+        Debugging the AOP framework-based application code is a little challenge.
+        Only methods with a public visibility will be recommended, not those with a private, protected, or default visibility.
+        Aspects cannot be advised by other aspects. This is because once a class is marked as an aspect (using XML or annotation), Spring prevents it from being auto-proxied.
+    
+5.  What is Aspect in Spring AOP?
+    An aspect is a cross-cutting module that combines advice and pointcuts. A standard class tagged with the @Aspect annotation can be used to implement an aspect. Aspects are mostly used to enable cross-cutting concerns like logging, profiling, caching, and transaction management.
+
+6.  What is Pointcut in Spring AOP?
+    A pointcut is an expression that chooses one or more join points at which advice is given. Pointcuts can be defined using expressions or patterns. It supports a number of expressions that correspond to the join points. 
+
+7.  What is the Join point in Spring AOP?
+    A join point is a place in the application where an AOP aspect is applied. It could also be a specific advice execution instance. A join point in AOP can be a method execution, exception handling, changing the value of an object variable, and so on.
+
+8.  What does it mean by Advice and its types in Spring AOP?
+    The advice is an action which we take before or after the method execution. In the Spring AOP framework, there are five types of advice: before, after, after-returning, after-throwing, and around advice. Advice is taken at a specific join point.
+
+9.  What is Spring AOP Proxy?
+    AOP proxy is an object that is formed when advice is applied to a target object. The JDK dynamic proxy is used by Spring AOP to build proxy classes with target classes and advice invocations.
+
+10. Briefly Reading: https://www.javainuse.com/spring/sprbatch_interview
+    Spring Batch is a lightweight, comprehensive batch framework designed to enable the development of robust batch applications vital for the daily operations of enterprise systems. Spring Batch builds upon the productivity, POJO-based development approach, and general ease of use capabilities people have come to know from the Spring Framework, while making it easy for developers to access and leverage more advanced enterprise services when necessary.
+
+11. When to use Spring Batch?
+    Spring Batch provides reusable functions that are essential in processing large volumes of records, including logging/tracing, transaction management, job processing statistics, job restart, skip, and resource management.
+
+12. How Spring Batch works?
+    （Reference link: https://www.javainuse.com/spring/sprbatch_interview)
+    Spring Batch follows the traditional batch architecture where a job repository does the work of scheduling and interacting with the job. A job can have more than one step. And every step typically follows the sequence of reading data, processing it and writing it.
+    
+        Step - A Step that delegates to a Job to do its work. This is a great tool for managing dependencies between jobs, and also to modularise complex step logic into something that is testable in isolation. The job is executed with parameters that can be extracted from the step execution, hence this step can also be usefully used as the worker in a parallel or partitioned execution.
+        ItemReader - Strategy interface for providing the data. Implementations are expected to be stateful and will be called multiple times for each batch, with each call to read() returning a different value and finally returning null when all input data is exhausted. Implementations need not be thread-safe and clients of a ItemReader need to be aware that this is the case. A richer interface (e.g. with a look ahead or peek) is not feasible because we need to support transactions in an asynchronous batch.
+        ItemProcessor - Interface for item transformation. Given an item as input, this interface provides an extension point which allows for the application of business logic in an item oriented processing scenario. It should be noted that while it's possible to return a different type than the one provided, it's not strictly necessary. Furthermore, returning null indicates that the item should not be continued to be processed.
+        ItemStreamWriter - Basic interface for generic output operations. Class implementing this interface will be responsible for serializing objects as necessary. Generally, it is responsibility of implementing class to decide which technology to use for mapping and how it should be configured. The write method is responsible for making sure that any internal buffers are flushed. If a transaction is active it will also usually be necessary to discard the output on a subsequent rollback. The resource to which the writer is sending data should normally be able to handle this itself.
+        
+
+13. How can we schedule a Spring Batch Job?
+    Spring Batch can be scheduled using Cron Job.
+
+
+# HW16 # (hw47)
+
+1.  List all of the new learned annotations to your annotations.md
+    Updated in Annotation file.
+    
+2.  what is selenium(YouTube)?
+    Selenium is an open-source tool for automating browser-based applications, and it is a browser Automation framework. Selenium scripts test your website by simulating user behavior – they navigate through web pages, click links, submit forms, and verify that the expected text or elements are present on the pages.It is a user-behavior simulation. For web applications, the automation of functional testing can be done directly with Selenium by simulating expected returns.
+
+3.  what is cucumber(youtueb)?
+    Cucumber is a software tool that supports behavior-driven development("BDD*"), a software development technique that has evolved from TDD (Test Driven Development), which is an approach or programming practice where the developers write new code only when the automated test case fails. To be more precise, Cucumber can be defined as a testing framework, driven by plain English text. It serves as documentation, automated tests, and a development aid – all in one.
+    
+    Advantages of Cucumber Over Other Tools
+        Cucumber supports different languages like Java.net and Ruby.
+        It acts as a bridge between the business and technical language. We can accomplish this by creating a test case in plain English text.
+        It allows the test script to be written without knowledge of any code, it allows the involvement of non-programmers as well.
+        It serves the purpose of end-to-end test framework unlike other tools.
+        Due to simple test script architecture, Cucumber provides code reusability.
+        
+    BDD:
+        Behavior-driven development’s approach involves the usage of shared language that enhances communication between various tech and non-tech teams. Tests are more user-focused and based on the system’s behavior. In BDD, “Given-When-Then” is the proposed approach for writing test cases.
+        Consider the below example for better understanding:
+            - Given the user has entered invalid credentials
+            - When the user clicks submit button
+            - Then display the proper validation message
+        
+4.  what is JMeter(youtube)?
+
+    JMeter is an open-source Java application used to analyse web applications' performance. The Apache JMeter is an open-source, purely Java-based software. The software is used to perform performance testing, functional testing, and load testing of web applications. It is used to test load testing functional behavior and measuring performance.
+
+    JMeter and Selenium are both used for web application testing, but the main difference between JMeter and Selenium is that JMeter is best for load and stress testing while Selenium offers full test automation and cross-browser testing. 
+
+5.  what is unit-test?
+    A unit test is a way of testing a unit - the smallest piece of code that can be logically isolated in a system. Unit testing involves the testing of each unit or an individual component of the software application. The purpose is to validate that each unit of the software code performs as expected. Unit testing is done during develpment of an application by the developers. Unit may be a anindividual function, method, procedure, module and object.
+    Even though we have QA, usually the developer who developed the new code write unit test by themselves.
+
+6.  What is the lifecircle of Junit?
+    In JUnit 5, the test lifecycle is driven by four primary annotations i.e. @BeforeAll, @BeforeEach, @AfterEach and @AfterAll. Along with it, each test method must be marked with @Test annotation from package org.junit.jupiter.api.
+    
+    Normally, a test class contains multiple test methods. JUnit manages the execution of each test method in form of a lifecycle.
+
+    The complete lifecycle of a test case can be seen in three phases with the help of annotations.
+
+        1. Setup: This phase puts the the test infrastructure in place. JUnit provides class level setup (@BeforeAll) and method level setup (@BeforeEach). Generally, heavy objects like databse comnections are created in class level setup while lightweight objects like test objects are reset in the method level setup.
+        2. Test Execution: In this phase, the test execution and assertion happen. The execution result will signify a success or failure.
+        3. Cleanup: This phase is used to cleanup the test infrastructure setup in the first phase. Just like setup, teardown also happen at class level (@AfterAll) and method level (@AfterEach).
+
+7. Is @BeforeAll method should be Class level(static)?
+    @BeforeAll methods must have a void return type, must not be private, and must be static by default because it is for the class level.
+
+8.  What is Mockito? and what is its limitations?
+    Mockito is a java based mocking framework, used in conjunction with other testing frameworks such as JUnit and TestNG. It internally uses Java Reflection API and allows to create objects of a service. A mock object returns a dummy data and avoids external dependencies.
+    
+    It cannot mock final classes, constructors or static methods. It requires Java version 6 plus to run. It also cannot mock equals(), hashCode() methods. VM mocking is only possible on VMs that are supported by Objenesis.
+    
+    The best way to avoid the limitations of Mockito is to not insist on writing isolated unit tests.
+
+9.  What is @Mock and what is @InjectMocks?
+
+    @Mock: It is used to mock the objects that helps in minimizing the repetitive mock objects. It makes the test code and verification error easier to read as parameter names (field names) are used to identify the mocks. The @Mock annotation is available in the org. mockito package. 
+    
+    In mock, you are creating a complete mock or fake object; a mock in mockito is a normal mock in other mocking frameworks (allows you to stub invocations; that is, return specific values out of method calls).
+
+    Mockito @InjectMocks annotations allow us to inject mocked dependencies in the annotated class mocked object. This is useful when we have external dependencies in the class we want to mock. We can specify the mock objects to be injected using @Mock or @Spy annotations.
+    
+    Mockito tries to inject mocked dependencies using one of the three approaches, in the specified order.
+
+        - Constructor Based Injection - when there is a constructor defined for the class, Mockito tries to inject dependencies using the biggest constructor.
+        - Setter Methods Based - when there are no constructors defined, Mockito tries to inject dependencies using setter methods.
+        - Field Based - if there are no constructors or field-based injection possible, then mockito tries to inject dependencies into the field itself.
+
+10. What is the stubbing?
+    Stubbing, like mocking, means creating a stand-in, but a stub only mocks the behavior, but not the entire object. This is used when your implementation only interacts with a certain behavior of the object.
+
+11. what is Mockito ArgumentMatchers
+    Argument matchers are mainly used for performing flexible verification and stubbing in Mockito. It extends ArgumentMatchers class to access all the matcher functions. Mockito uses equal() as a legacy method for verification and matching of argument values.
+
+12. what is Hamcrest Matchers
+    Hamcrest is a framework that assists writing software tests in the Java programming language. It supports creating customized assertion matchers ('Hamcrest' is an anagram of 'matchers'), allowing match rules to be defined declaratively. These matchers have uses in unit testing frameworks such as JUnit and jMock.
+    
+13. do you know @spy? what is difference between @spy and @Mock?
+
+    Spies are used for creating partial or half mock objects. Like mock, spies are also used in large test suites.
+
+    Both can be used to mock methods or fields. The difference is that in mock, you are creating a complete mock or fake object while in spy, there is the real object and you just spying or stubbing specific methods of it. While in spy objects, of course, since it is a real method, when you are not stubbing the method, then it will call the real method behavior. If you want to change and mock the method, then you need to stub it.
+
+    A mock in mockito is a normal mock in other mocking frameworks (allows you to stub invocations; that is, return specific values out of method calls).
+
+    A spy in mockito is a partial mock in other mocking frameworks (part of the object will be mocked and part will use real method invocations).
+
+14. briefly reading this articles
+    a. https://www.javatpoint.com/examples-of-mockito-and-junit-in-eclipse-ide
+    b. https://www.javatpoint.com/junit-tutorial
+    c.  https://www.javatpoint.com/testng-tutorial
+    d.  https://www.javatpoint.com/jmeter-tutorial
  
  
+# HW17 #
+1.  list all of the new annotations you learned to your annotations.md
+
+2.  Document the microservice architeture and components/tools/dependencies
+    - API Gateway: (tool: Zuul API Gateway) receives requests and directs the requests to the correct service to further process; it also involves login and security.
+    
+    - Service Registry: (tool: Eureka) A service registry is a database used to keep track of the available instances of each microservice in an application. The service registry needs to be updated each time a new service comes online and whenever a service is taken offline or becomes unavailable. Eureke also expects the registered services to send heartbeats at the regulat pace to detect any potential crash.
+    
+    - Config Service: (tool: Spring Cloud) Central configuration server provides configurations (properties) to each micro service connected. As mentioned in the above diagram, Spring Cloud Config Server can be used as a central cloud config server by integrating to several environments.    
+    
+    - Load Balancer: (tool: Ribbon) load balancer acts as the “traffic cop” sitting in front of your servers and routing client requests across all servers capable of fulfilling those requests in a manner that maximizes speed and capacity utilization and ensures that no one server is overworked, which could degrade performance.
+    
+    - Circuit Breaker: (tool: Hytrix) Circuit breakers are a design pattern to create resilient microservices by limiting the impact of service failures and latencies. The major aim of the Circuit Breaker pattern is to prevent any cascading failure in the system. In a microservice system, failing fast is critical. is a library that controls the interaction between microservices to provide latency and fault tolerance. Additionally, it makes sense to modify the UI to let the user know that something might not have worked as expected or would take more time.    
+    
+    - Message broker:（tool: Kafka, RabbitMQ) Message broker can be used for communications between microservices. There are message producers and consumers. Producer sent message to Kakfa server, and Kafka servier dispatch message to different queue based on routing key; consumer can subscribe, listen to, and consume messages from kafka. Kafka is primarily used to build real-time streaming data pipelines and applications that adapt to the data streams. It combines messaging, storage, and stream processing to allow storage and analysis of both historical and real-time data. Apache Kafka was designed to solve issues of readability and scaling that holds back queues of older messages. Apache Kafka architecture for microservices utilizes an application setup where Microservices communicate with each other through Kafka. 
+    
+     - Deployment: (tool: Docker, Kubernates)Docker guarantees that application microservices will run in their own environments that are completely separate from the operating system. While Docker is a container runtime, Kubernetes is a platform for running and managing containers from many container runtimes. Kubernetes supports numerous container runtimes including Docker, containerd, CRI-O, and any implementation of the Kubernetes CRI (Container Runtime Interface). Docker is an open source platform that's used to build, ship and run distributed services. Kubernetes is an open source orchestration platform for automating deployment, scaling and the operations of application containers across clusters of hosts. Microservices structure an application into several modular services.
+     
+3.  What are Resilience patterns? What is circuit breaker?
+    (Reference link: https://www.jrebel.com/blog/microservices-resilience-patterns)
+    
+    Resilience patterns are a type of service architecture that help to prevent cascading failures and to preserve functionality in the event of service failure.Common resiliency patterns used in application development include the bulkhead pattern and circuit breaker pattern. These patterns often incorporate other resiliency techniques like fallback, retry, and timeout.
+    
+    The circuit breaker pattern is an application resiliency pattern used to limit the amount of requests to a service based on configured thresholds — helping to prevent the service from being overloaded. If a system call results in an error, the circuit breaker is opened and does not allow any calls to pass through.
+
+4.  Watching the below videos. and write your understanding about microservice. (要开始熟悉印度又音了，所以给了好多视频)
+    a. Required (按顺序看会好很多)
+        i.  What, Why and How: 
+        i.  https://www.youtube.com/watch?v=rv4LlmLmVWk
+        ii. https://www.youtube.com/watch?v=j1gU2oGFayY
+        iii.  https://www.youtube.com/watch?v=gfWr2_H39N0 (这口音，得看三遍才行)
+        iv.  https://www.youtube.com/watch?v=rckfN7xFig0 (这口音，得看三遍才行)
+        ii. Tutorial List
+        i.  https://youtube.com/playlist?list=PLqq-6Pq4lTTZSKAFG6aCDVDP86Qx4lNas
+        iii.  Microservices interview question and answers
+        i.  https://www.youtube.com/watch?v=G0waumbpK48&t=2s
+    b. Message Queue
+        i.  我们组给intern看的： https://youtube.com/playlist?list=PLCh
+        59G4US86oC5GnhYrSrKZKDoQbfzZLW
+        ii. https://www.youtube.com/watch?v=oUJbuFMyBDk
+        iii.  https://youtube.com/playlist?list=PLCh59G4US86oC5GnhYrSr
+        KZKDoQbfzZLW
+    c.  Docker & Kubernet (Docker 很有魅力，别沉迷进去花太多时间)
+        i.  https://www.youtube.com/watch?v=rmf04ylI2K0
+        ii. https://www.youtube.com/watch?v=pTFZFxd4hOI
+    d.  CI/CD(听下印度又音，看Jenkins一遍长什么样子就行)
+        i.  https://www.youtube.com/watch?v=2INTzteK4B4
+    e.  NoSQL
+        i.  https://www.youtube.com/watch?v=xQnIN9bW0og
+    f.  System Design
+        i.  https://www.youtube.com/watch?v=vvhC64hQZMk
+        g.  https://www.interviewbit.com/microservices-interview-questions/#main-role-of-docker-in-microservices
